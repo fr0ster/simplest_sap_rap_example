@@ -80,12 +80,12 @@ association to parent ZOK_I_PRODUCT_#### as _Product
 }
 ```
 
-## CDS Interface for view entity Market lst dictionary
+## CDS Interface for view entity Markets dictionary
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Market list'
+@EndUserText.label: 'Markets data'
 
 define view entity ZOK_I_COUNTRY_####
   as select from zok_d_market_####
@@ -99,7 +99,7 @@ define view entity ZOK_I_COUNTRY_####
 }
 ```
 
-## CDS Interface for view entity Markets Value Helper
+## CDS Interface for view entity Country Value Helper
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED

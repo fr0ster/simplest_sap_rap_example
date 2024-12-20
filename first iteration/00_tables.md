@@ -31,7 +31,7 @@ define table zok_d_product_#### {
 }
 ```
 
-## Table for view entity Market
+## Table for view entity Markets data
 
 ```ABAP
 @EndUserText.label : 'Markets data'
@@ -94,7 +94,7 @@ define table zok_d_market_#### {
 }
 ```
 
-## Table for view entity Market Phase dictionary
+## Table for view entity Phases dictionary
 
 ```ABAP
 @EndUserText.label : 'Phases'
