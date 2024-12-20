@@ -17,6 +17,7 @@
 3. Create CDS Projections as describe in 02_cds.md
 4. Create Metadata Extensions as describe in 03_metadata_extension.md
 5. Create Service Definition as describe in 04_service.md
+6. Create class for data generation as describe in generator.md and execute in console over F9
 
 ### the final step:
 - Create Service Binding for ODataV2 UI based on your Service Definition
