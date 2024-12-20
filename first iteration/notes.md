@@ -7,6 +7,10 @@
  
  This for the future simplest application.
 
+ ### Pay attention:
+ 1. Instead #### in object names you should use any fourth symbols of you choice
+ 2. All objects should be created in your own package
+
 1. Create tables as describe in 00_tables.md
 2. Create CDS Interfaces as describe in 01_cds.md
 3. Create CDS Projections as describe in 01_cds.md
