@@ -23,4 +23,4 @@
 - Name it ZOK_UI_PRODUCT_O2_<your_suffix>
 
 
-Here you should create read only application
+Here you should create read-only application
