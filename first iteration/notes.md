@@ -19,4 +19,4 @@
 
 In the final step:
 - Create Service Binding for ODataV2 UI based on your Service Definition
-- Name it ZOK_UI_PRODUCT_O2_####
+- Name it ZOK_UI_PRODUCT_O2_<your_suffix>
