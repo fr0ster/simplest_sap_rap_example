@@ -1,0 +1,18 @@
+# Notes
+## First iteration
+
+- Here we should create:
+ - Tables
+ - CDS (Core Database Services)
+ 
+ This for the future simplest application.
+
+1. Create tables as describe in 00_tables.md
+2. Create CDS Interfaces as describe in 01_cds.md
+3. Create CDS Projections as describe in 01_cds.md
+4. Create Metadata Extensions as describe in 03_metadata_extension.md
+5. Create Service Definition as describe in 04_service.md
+
+In the final step:
+- Create Service Binding for ODataV2 UI based on your Service Definition
+- Name it ZOK_UI_PRODUCT_O2_####
