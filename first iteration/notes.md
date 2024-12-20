@@ -13,7 +13,7 @@
 
 1. Create tables as describe in 00_tables.md
 2. Create CDS Interfaces as describe in 01_cds.md
-3. Create CDS Projections as describe in 01_cds.md
+3. Create CDS Projections as describe in 02_cds.md
 4. Create Metadata Extensions as describe in 03_metadata_extension.md
 5. Create Service Definition as describe in 04_service.md
 
