@@ -1,9 +1,12 @@
 # Notes
 ## First iteration
 
-Here we should create:
+Here we should create back-end objects for Fiori read-only application:
 - Tables
-- CDS (Core Database Services)
+- Data models (CDS Interface)
+- Busines model (CDS projection)
+- Service Definition
+- Service Binding
  
  This is for the future simplest application.
 
