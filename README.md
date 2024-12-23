@@ -1,5 +1,8 @@
 # Simplest SAP RAP Example
-In this guide, we will build a simple SAP RAP application, progressively enhancing its functionality over several iterations. Each iteration focuses on specific tasks such as behavior implementation, data modeling, UI annotations, advanced features like Draft Handling, and OData services.
+
+---
+In this guide, we will build a simple SAP RAP application, progressively enhancing its functionality over several iterations. Each iteration focuses on specific tasks such as behavior implementation, data modeling, UI annotations, advanced features like Draft Handling, and OData services.```
+
 ---
 ## Iteration 1: Read-Only Application
 In the first iteration, we create the foundation of the application:
