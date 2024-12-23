@@ -9,14 +9,14 @@
 
 @Metadata.ignorePropagatedAnnotations: true
 
-define root view entity ZOK_I_PRODUCT_####
-  as select from zok_d_product_####
+define root view entity Z_I_PRODUCT_####
+  as select from z_d_product_####
 
-  composition [0..*] of ZOK_I_MARKET_1234 as _Market
+  composition [0..*] of Z_I_MARKET_1234 as _Market
 
-  association [1..1] to ZOK_I_PG_VH_####                  as _PG on $projection.Pgid = _PG.Pgid
-  association [1..1] to ZOK_I_PHASE_VH_####               as _PHASE on $projection.Phaseid = _PHASE.Phaseid
-  association [0..1] to ZOK_I_UOM_VH_####                 as _UOM on $projection.SizeUom = _UOM.Msehi
+  association [1..1] to Z_I_PG_VH_####                  as _PG on $projection.Pgid = _PG.Pgid
+  association [1..1] to Z_I_PHASE_VH_####               as _PHASE on $projection.Phaseid = _PHASE.Phaseid
+  association [0..1] to Z_I_UOM_VH_####                 as _UOM on $projection.SizeUom = _UOM.Msehi
 
 {
   key prod_uuid          as ProdUuid,
@@ -60,10 +60,10 @@ define root view entity ZOK_I_PRODUCT_####
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Market Interface'
 @Metadata.ignorePropagatedAnnotations: true
-define view entity ZOK_I_MARKET_#### as select from zok_d_prod_mrkt
-association to parent ZOK_I_PRODUCT_#### as _Product
+define view entity Z_I_MARKET_#### as select from z_d_prod_mrkt
+association to parent Z_I_PRODUCT_#### as _Product
     on $projection.ProdUuid = _Product.ProdUuid
-    association [1..1] to ZOK_I_COUNTRY_#### as _Countries on $projection.Mrktid = _Countries.Mrktid
+    association [1..1] to Z_I_COUNTRY_#### as _Countries on $projection.Mrktid = _Countries.Mrktid
 {
     key prod_uuid as ProdUuid,
     key mrkt_uuid as MrktUuid,
@@ -87,8 +87,8 @@ association to parent ZOK_I_PRODUCT_#### as _Product
 
 @EndUserText.label: 'Market list'
 
-define view entity ZOK_I_COUNTRY_####
-  as select from zok_d_market_####
+define view entity Z_I_COUNTRY_####
+  as select from z_d_market_####
 
 {
   key mrktid   as Mrktid,
@@ -113,8 +113,8 @@ define view entity ZOK_I_COUNTRY_####
 
 @UI.presentationVariant: [ { sortOrder: [ { by: 'Country', direction: #ASC } ] } ]
 
-define view entity ZOK_I_COUNTRY_VH_####
-  as select from ZOK_I_COUNTRY_####
+define view entity Z_I_COUNTRY_VH_####
+  as select from Z_I_COUNTRY_####
 
 {
       @ObjectModel.text.element: [ 'Country' ]
@@ -139,8 +139,8 @@ define view entity ZOK_I_COUNTRY_VH_####
 
 @UI.presentationVariant: [ { sortOrder: [ { by: 'ProdUuid', direction: #ASC } ] } ]
 
-define view entity ZOK_I_PRODUCT_VH_####
-  as select distinct from zok_d_product_####
+define view entity Z_I_PRODUCT_VH_####
+  as select distinct from z_d_product_####
 
 {
       @UI.hidden: true
@@ -168,7 +168,7 @@ define view entity ZOK_I_PRODUCT_VH_####
 @Search.searchable: true
 @UI.presentationVariant: [ { sortOrder: [ { by: 'Currency', direction: #ASC } ] } ]
 
-define view entity ZOK_I_CURRENCY_VH_####
+define view entity Z_I_CURRENCY_VH_####
   as select distinct from I_Currency
 
 {
@@ -196,8 +196,8 @@ define view entity ZOK_I_CURRENCY_VH_####
 
 @Search.searchable: true
 
-define view entity ZOK_I_PG_VH_####
-  as select from zok_d_prod_grp_####
+define view entity Z_I_PG_VH_####
+  as select from z_d_prod_grp_####
 
 {
       @ObjectModel.text.element: [ 'Pgname' ]
@@ -227,7 +227,7 @@ define view entity ZOK_I_PG_VH_####
 @Search.searchable: true
 @UI.presentationVariant: [ { sortOrder: [ { by: 'phaseid', direction: #ASC } ] } ]
 
-define view entity ZOK_I_PHASE_VH_####
+define view entity Z_I_PHASE_VH_####
   as select from zpip_d_phase_####
 
 {
@@ -257,8 +257,8 @@ define view entity ZOK_I_PHASE_VH_####
 
 @UI.presentationVariant: [ { sortOrder: [ { by: 'msehi', direction: #ASC } ] } ]
 
-define view entity ZOK_I_UOM_VH_####
-  as select from zok_d_uom_####
+define view entity Z_I_UOM_VH_####
+  as select from z_d_uom_####
 
 {
       @ObjectModel.text.element: [ 'Msehi' ]

@@ -1,7 +1,7 @@
 # Class for data generation
 
 ```ABAP
-CLASS zok_cl_generate_data DEFINITION
+CLASS z_cl_generate_data DEFINITION
   PUBLIC
   FINAL
   CREATE PUBLIC .
@@ -14,12 +14,12 @@ CLASS zok_cl_generate_data DEFINITION
 ENDCLASS.
 
 
-CLASS zok_cl_generate_data IMPLEMENTATION.
+CLASS z_cl_generate_data IMPLEMENTATION.
   METHOD if_oo_adt_classrun~main.
-    DATA lt_prod_grs TYPE TABLE OF zok_d_prod_grp.
-    DATA lt_phases   TYPE TABLE OF zok_d_phase.
-    DATA lt_markets  TYPE TABLE OF zok_d_market.
-    DATA lt_uom      TYPE TABLE OF zok_d_uom.
+    DATA lt_prod_grs TYPE TABLE OF z_d_prod_grp_####.
+    DATA lt_phases   TYPE TABLE OF z_d_phase_####.
+    DATA lt_markets  TYPE TABLE OF z_d_market_####.
+    DATA lt_uom      TYPE TABLE OF z_d_uom_####.
 
     out->write( sy-dbcnt ).
     out->write( 'product data cleared successfully!' ).
@@ -43,12 +43,12 @@ CLASS zok_cl_generate_data IMPLEMENTATION.
           imageurl = 'https://st4.depositphotos.com/18657574/22404/v/1600/depositphotos_224044856-stock-illustration-stove-concept-vector-linear-icon.jpg' ) ).
 
     " Delete the possible entries in the database table - in case it was already filled
-    DELETE FROM zok_d_prod_grp.
+    DELETE FROM z_d_prod_grp_####.
     " insert the new table entries
-    INSERT zok_d_prod_grp FROM TABLE @lt_prod_grs.
+    INSERT z_d_prod_grp_#### FROM TABLE @lt_prod_grs.
 
     " check the result
-    SELECT * FROM zok_d_prod_grp INTO TABLE @lt_prod_grs.
+    SELECT * FROM z_d_prod_grp_#### INTO TABLE @lt_prod_grs.
     out->write( sy-dbcnt ).
     out->write( 'product groups data inserted successfully!' ).
 
@@ -60,12 +60,12 @@ CLASS zok_cl_generate_data IMPLEMENTATION.
                          ( phaseid  = '4' phase = 'OUT' ) ).
 
     " Delete the possible entries in the database table - in case it was already filled
-    DELETE FROM zok_d_phase.
+    DELETE FROM z_d_phase_####.
     " insert the new table entries
-    INSERT zok_d_phase FROM TABLE @lt_phases.
+    INSERT z_d_phase_#### FROM TABLE @lt_phases.
 
     " check the result
-    SELECT * FROM zok_d_phase INTO TABLE @lt_phases.
+    SELECT * FROM z_d_phase_#### INTO TABLE @lt_phases.
     out->write( sy-dbcnt ).
     out->write( 'phases data inserted successfully!' ).
 
@@ -105,12 +105,12 @@ CLASS zok_cl_generate_data IMPLEMENTATION.
           imageurl = 'https://cdn.webshopapp.com/shops/94414/files/54940016/poland-flag-image-free-download.jpg' ) ).
 
     " Delete the possible entries in the database table - in case it was already filled
-    DELETE FROM zok_d_market.
+    DELETE FROM z_d_market_####.
     " insert the new table entries
-    INSERT zok_d_market FROM TABLE @lt_markets.
+    INSERT z_d_market_#### FROM TABLE @lt_markets.
 
     " check the result
-    SELECT * FROM zok_d_market INTO TABLE @lt_markets.
+    SELECT * FROM z_d_market_#### INTO TABLE @lt_markets.
     out->write( sy-dbcnt ).
     out->write( 'markets data inserted successfully!' ).
 
@@ -130,12 +130,12 @@ CLASS zok_cl_generate_data IMPLEMENTATION.
                       ( msehi = 'YD'  isocode = 'YRD' ) ).
 
     " Delete the possible entries in the database table - in case it was already filled
-    DELETE FROM zok_d_uom.
+    DELETE FROM z_d_uom_####.
     " insert the new table entries
-    INSERT zok_d_uom FROM TABLE @lt_uom.
+    INSERT z_d_uom_#### FROM TABLE @lt_uom.
 
     " check the result
-    SELECT * FROM zok_d_uom INTO TABLE @lt_uom.
+    SELECT * FROM z_d_uom_#### INTO TABLE @lt_uom.
     out->write( sy-dbcnt ).
     out->write( 'uom data inserted successfully!' ).
   ENDMETHOD.

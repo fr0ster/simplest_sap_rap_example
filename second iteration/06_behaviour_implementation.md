@@ -6,8 +6,8 @@
 managed implementation in class zbp_ok_i_product_#### unique;
 strict ( 2 );
 
-define behavior for ZOK_I_PRODUCT_#### alias Product
-persistent table zok_d_product
+define behavior for Z_I_PRODUCT_#### alias Product
+persistent table z_d_product
 lock master
 authorization master ( instance )
 etag master LocalChangedTime
@@ -28,7 +28,7 @@ etag master LocalChangedTime
   LocalChangedTime;
   field ( readonly : update ) Prodid;
 
-  mapping for zok_d_product
+  mapping for z_d_product
     {
       ProdUUID         = prod_uuid;
       ProdID           = prodid;
@@ -48,8 +48,8 @@ etag master LocalChangedTime
     }
 }
 
-define behavior for ZOK_I_MARKET_#### alias Market
-persistent table zok_d_prod_mrkt
+define behavior for Z_I_MARKET_#### alias Market
+persistent table z_d_prod_mrkt
 lock dependent by _Product
 authorization dependent by _Product
 etag master LocalChangedTime
@@ -62,7 +62,7 @@ etag master LocalChangedTime
   field ( numbering : managed, readonly ) MrktUuid;
   field ( readonly ) ProdUuid;
 
-  mapping for zok_d_prod_mrkt
+  mapping for z_d_prod_mrkt
     {
       ProdUuid         = prod_uuid;
       MrktUuid         = mrkt_uuid;
@@ -83,7 +83,7 @@ etag master LocalChangedTime
 projection;
 strict ( 2 );
 
-define behavior for ZOK_C_PRODUCT_#### alias _Product
+define behavior for Z_C_PRODUCT_#### alias _Product
 {
   use create;
   use update;
@@ -92,7 +92,7 @@ define behavior for ZOK_C_PRODUCT_#### alias _Product
   use association _Market { create; }
 }
 
-define behavior for ZOK_C_MARKET_#### alias _Market
+define behavior for Z_C_MARKET_#### alias _Market
 {
   use update;
   use delete;

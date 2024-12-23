@@ -6,8 +6,8 @@
 managed implementation in class zbp_ok_i_product_#### unique;
 strict ( 2 );
 
-define behavior for ZOK_I_PRODUCT_#### alias Product
-persistent table zok_d_product
+define behavior for Z_I_PRODUCT_#### alias Product
+persistent table z_d_product
 lock master
 authorization master ( instance )
 etag master LocalChangedTime
@@ -40,7 +40,7 @@ etag master LocalChangedTime
   validation check_prod_id on save { field Prodid; }
   action change_phase_id result [1] $self;
 
-  mapping for zok_d_product
+  mapping for z_d_product
     {
       ProdUUID         = prod_uuid;
       ProdID           = prodid;
@@ -60,8 +60,8 @@ etag master LocalChangedTime
     }
 }
 
-define behavior for ZOK_I_MARKET_#### alias Market
-persistent table zok_d_prod_mrkt
+define behavior for Z_I_MARKET_#### alias Market
+persistent table z_d_prod_mrkt
 lock dependent by _Product
 authorization dependent by _Product
 etag master LocalChangedTime
@@ -74,7 +74,7 @@ etag master LocalChangedTime
   field ( numbering : managed, readonly ) MrktUuid;
   field ( readonly ) ProdUuid;
 
-  mapping for zok_d_prod_mrkt
+  mapping for z_d_prod_mrkt
     {
       ProdUuid         = prod_uuid;
       MrktUuid         = mrkt_uuid;
@@ -95,7 +95,7 @@ etag master LocalChangedTime
 projection;
 strict ( 2 );
 
-define behavior for ZOK_C_PRODUCT_#### alias _Product
+define behavior for Z_C_PRODUCT_#### alias _Product
 {
   use create;
   use update;
@@ -106,7 +106,7 @@ define behavior for ZOK_C_PRODUCT_#### alias _Product
   use action change_phase_id;
 }
 
-define behavior for ZOK_C_MARKET_#### alias _Market
+define behavior for Z_C_MARKET_#### alias _Market
 {
   use update;
   use delete;
@@ -146,7 +146,7 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD get_instance_features.
-    READ ENTITIES OF zok_i_product_#### IN LOCAL MODE
+    READ ENTITIES OF z_i_product_#### IN LOCAL MODE
          ENTITY Product
          FIELDS ( Prodid
                   Phaseid ) WITH CORRESPONDING #( keys )
@@ -225,12 +225,12 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD set_phase_id.
-    READ ENTITIES OF zok_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( Phaseid ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
+    READ ENTITIES OF z_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( Phaseid ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
     DELETE lt_products WHERE Phaseid IS NOT INITIAL.
     IF lt_products IS INITIAL.
       RETURN.
     ENDIF.
-    MODIFY ENTITIES OF zok_i_product_#### IN LOCAL MODE
+    MODIFY ENTITIES OF z_i_product_#### IN LOCAL MODE
            ENTITY Product
            UPDATE FIELDS ( Phaseid )
            WITH VALUE #( FOR product IN lt_products
@@ -240,16 +240,16 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD check_prod_id.
-    READ ENTITIES OF zok_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( Prodid ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
+    READ ENTITIES OF z_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( Prodid ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
 
-    DATA lt_product TYPE SORTED TABLE OF zok_i_product_#### WITH UNIQUE KEY Prodid.
+    DATA lt_product TYPE SORTED TABLE OF z_i_product_#### WITH UNIQUE KEY Prodid.
 
     lt_product = CORRESPONDING #( lt_products DISCARDING DUPLICATES MAPPING prodid = Prodid EXCEPT * ).
     DELETE lt_product WHERE prodid IS INITIAL.
 
     IF lt_product IS NOT INITIAL.
       " Check if ID exist
-      SELECT FROM zok_d_product
+      SELECT FROM z_d_product
         FIELDS prodid
         FOR ALL ENTRIES IN @lt_product
         WHERE prodid = @lt_product-prodid
@@ -269,20 +269,20 @@ CLASS lhc_Product IMPLEMENTATION.
       APPEND VALUE #( %tky            = ls_product-%tky
                       %state_area     = 'VALIDATE_PRODID'
                       %msg            = COND #( WHEN ls_product-Prodid IS NOT INITIAL
-                                                THEN NEW zok_cx_product(
+                                                THEN NEW z_cx_product(
                                                              io_severity = if_abap_behv_message=>severity-error
-                                                             iv_textid   = zok_cx_product=>prodid_is_duplicated
+                                                             iv_textid   = z_cx_product=>prodid_is_duplicated
                                                              iv_prodid   = ls_product-Prodid )
-                                                ELSE NEW zok_cx_product(
+                                                ELSE NEW z_cx_product(
                                                              io_severity = if_abap_behv_message=>severity-error
-                                                             iv_textid   = zok_cx_product=>prodid_is_empty ) )
+                                                             iv_textid   = z_cx_product=>prodid_is_empty ) )
                       %element-Prodid = if_abap_behv=>mk-on )
              TO reported-product.
     ENDLOOP.
   ENDMETHOD.
 
   METHOD change_phase_id.
-    READ ENTITIES OF zok_i_product_#### IN LOCAL MODE
+    READ ENTITIES OF z_i_product_#### IN LOCAL MODE
          ENTITY Product
          FIELDS ( ProdUuid Prodid Phaseid )
          WITH CORRESPONDING #( keys )
@@ -308,7 +308,7 @@ CLASS lhc_Product IMPLEMENTATION.
         lv_next = phase_id-plan.
       ENDIF.
       " -----
-      MODIFY ENTITIES OF zok_i_product_#### IN LOCAL MODE
+      MODIFY ENTITIES OF z_i_product_#### IN LOCAL MODE
              ENTITY Product
              UPDATE
              FIELDS ( Phaseid )
@@ -317,7 +317,7 @@ CLASS lhc_Product IMPLEMENTATION.
                              Phaseid = lv_next ) )
              FAILED   failed
              REPORTED reported.
-      READ ENTITIES OF zok_i_product_#### IN LOCAL MODE
+      READ ENTITIES OF z_i_product_#### IN LOCAL MODE
            ENTITY Product
            ALL FIELDS WITH CORRESPONDING #( keys )
            RESULT DATA(ls_result).

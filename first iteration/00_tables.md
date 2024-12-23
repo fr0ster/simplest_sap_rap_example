@@ -8,14 +8,14 @@
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table zok_d_product_#### {
+define table z_d_product_#### {
 
   key client         : abap.clnt not null;
   key prod_uuid      : sysuuid_x16 not null;
   prodid             : abap.char(15);
   pgid               : abap.char(3);
   phaseid            : abap.int1;
-  @Semantics.amount.currencyCode : 'zok_d_product.price_currency'
+  @Semantics.amount.currencyCode : 'z_d_product.price_currency'
   price              : abap.curr(15,2);
   price_currency     : waers_curc;
   height             : abap.dec(20,2);
@@ -39,7 +39,7 @@ define table zok_d_product_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table zok_d_prod_mrkt_#### {
+define table z_d_prod_mrkt_#### {
 
   key client         : abap.clnt not null;
   key prod_uuid      : sysuuid_x16 not null;
@@ -64,7 +64,7 @@ define table zok_d_prod_mrkt_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table zok_d_market_#### {
+define table z_d_market_#### {
 
   key client : abap.clnt not null;
   key mrktid : abap.int1 not null;
@@ -83,7 +83,7 @@ define table zok_d_market_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table zok_d_market_#### {
+define table z_d_market_#### {
 
   key client : abap.clnt not null;
   key mrktid : abap.int1 not null;
@@ -102,7 +102,7 @@ define table zok_d_market_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #ALLOWED
-define table zok_d_phase_#### {
+define table z_d_phase_#### {
 
   key client  : abap.clnt not null;
   key phaseid : abap.int1 not null;
@@ -119,7 +119,7 @@ define table zok_d_phase_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table zok_d_uom_#### {
+define table z_d_uom_#### {
 
   key client : abap.clnt not null;
   key msehi  : msehi not null;
