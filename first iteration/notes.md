@@ -1,9 +1,9 @@
 # Notes
 ## First iteration
 
-- Here we should create:
- - Tables
- - CDS (Core Database Services)
+Here we should create:
+- Tables
+- CDS (Core Database Services)
  
  This is for the future simplest application.
 
