@@ -4,7 +4,7 @@
 Here we should create back-end objects for Fiori read-only application:
 - Tables
 - Data models (CDS Interface)
-- Busines model (CDS projection)
+- Business model (CDS projection)
 - Service Definition
 - Service Binding OData V2
  
