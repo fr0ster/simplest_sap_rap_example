@@ -21,26 +21,28 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
   - Ensure all dependent CDS views are activated in bulk or in the correct sequence.
 ---
 ### Steps:
-1. **Create Tables**:
-  - Follow the instructions in `00_tables.md` to define the database tables required for the application.
-2. **Define CDS Interfaces**:
-  - Create CDS views for the **data model** as described in `01_cds.md`.
-3. **Create CDS Projections**:
-  - Develop the CDS views for the **business model** as outlined in `02_cds.md`.
+1. **[Create Tables](./00_tables.md)**:
+  - Follow the instructions in [00_tables.md](./00_tables.md) to define the database tables required for the application.
+2. **[Define CDS Interfaces](./01_cds.md)**:
+  - Create CDS views for the **data model** as described in [01_cds.md](./01_cds.md).
+3. **[Create CDS Projections](./02_cds.md)**:
+  - Develop the CDS views for the **business model** as outlined in [02_cds.md](./02_cds.md).
   - Ensure that only necessary fields are exposed.
-4. **Add Metadata Extensions**:
+4. **[Add Metadata Extensions](./03_metadata_extension.md)**:
   - Use **Metadata Extensions** to configure annotations for the List Report and Object Page UI.
-  - Refer to `03_metadata_extension.md` for details.
-5. **Create Service Definition**:
-  - Define the service interface in `04_service.md`, specifying the entities and operations that should be available.
-6. **Generate Sample Data**:
-  - Implement a class for data generation as described in `generator.md`.
+  - Refer to [03_metadata_extension.md](./03_metadata_extension.md) for details.
+5. **[Create Service Definition](./04_service.md)**:
+  - Define the service interface in [04_service.md](./04_service.md), specifying the entities and operations that should be available.
+6. **[Generate Sample Data](./05_generator.md)**:
+  - Implement a class for data generation as described in [generator.md](./05_generator.md).
   - Execute the class in the ABAP console using **F9** to populate the tables with sample data.
 ---
 ### The Final Step:
 - **Create Service Binding (OData V2)**:
- - Bind the service definition to an OData V2 protocol for UI consumption.
- - Name the service binding as `Z_UI_PRODUCT_O2_<your_suffix>`.
+  - Bind the service definition to an OData V2 protocol for UI consumption.
+  - Name the service binding as `Z_UI_PRODUCT_O2_<your_suffix>`.
+- Activate and publish the service.
+- Test the service using the **Preview** button in the Service Binding editor.
 ---
 ### Possible Issues and Solutions:
 #### 1. **CDS Views Not Activating**
@@ -59,21 +61,19 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
   - Verify that the **Metadata Extension** includes proper UI annotations for the fields:
     - Use `@UI.lineItem` for fields to be displayed in the list view.
     - Use `@UI.identification` for fields to appear in the object page header.
-  - Example:
+  - Example of **Metadata Extension**:
     ```abap
-    @UI: {
-      lineItem: [
-        { position: 10; label: 'Product ID'; },
-        { position: 20; label: 'Product Name'; }
-      ],
-      identification: [
-        { position: 10; label: 'Product Name'; }
-      ]
-    }
-    define view ZI_Product as projection on Z_Product {
-      key ProductID,
-      ProductName
-    }
+    @Metadata.layer: #CUSTOMER
+    annotate view ZI_Product with {
+      @UI: {
+        lineItem: [
+          { position: 10; label: 'Product ID'; }
+        ],
+        identification: [
+          { position: 10; label: 'Product Name'; }
+        ]
+      }
+    };
     ```
 ---
 ### Summary:
