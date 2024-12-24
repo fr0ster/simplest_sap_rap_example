@@ -12,8 +12,13 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
   - Replace `####` in object names with four meaningful symbols of your choice (e.g., `Z_UI_PRDT`).
 2. **Package Consistency**:
   - All objects must be created within your own development package to ensure consistency and organization.
-3. **Modular Design**:
-  - Follow the modular approach to separate concerns and ensure reusability.
+3. **CDS Activation**:
+  - CDS views that are connected via **composition associations** (e.g., `association [1..*]`) must be activated **together**.
+  - This applies to:
+    - **Creating new CDS views** that include compositions.
+    - **Modifying existing compositions**, where associations are added or changed.
+    - If one of the connected views is not activated, the entire activation process may fail.
+  - Ensure all dependent CDS views are activated in bulk or in the correct sequence.
 ---
 ### Steps:
 1. **Create Tables**:
@@ -37,6 +42,39 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
  - Bind the service definition to an OData V2 protocol for UI consumption.
  - Name the service binding as `Z_UI_PRODUCT_O2_<your_suffix>`.
 ---
+### Possible Issues and Solutions:
+#### 1. **CDS Views Not Activating**
+  **Problem**:
+  - CDS views fail to activate, particularly those with **composition associations**.
+  **Solution**:
+  - Activate all CDS views connected through composition **together**, especially:
+    - When creating a new CDS view with a composition.
+    - When modifying an existing composition that introduces or changes associations.
+  - Always activate both the root view and any dependent views linked by the composition. Use the activation tool to ensure all dependencies are resolved.
+#### 2. **Columns Missing in Preview**
+  **Problem**:
+  - The preview in the Fiori List Report does not show columns or data properly.
+  - Metadata is missing, or UI annotations are not defined for the required fields.
+  **Solution**:
+  - Verify that the **Metadata Extension** includes proper UI annotations for the fields:
+    - Use `@UI.lineItem` for fields to be displayed in the list view.
+    - Use `@UI.identification` for fields to appear in the object page header.
+  - Example:
+    ```abap
+    @UI: {
+      lineItem: [
+        { position: 10; label: 'Product ID'; },
+        { position: 20; label: 'Product Name'; }
+      ],
+      identification: [
+        { position: 10; label: 'Product Name'; }
+      ]
+    }
+    define view ZI_Product as projection on Z_Product {
+      key ProductID,
+      ProductName
+    }
+    ```
+---
 ### Summary:
 This iteration sets up the foundational components of the application, including the database, data model, and service configuration. At the end of this iteration, you will have a fully functional **read-only application** that can be consumed through OData V2.
-has context menu
