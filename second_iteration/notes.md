@@ -1,6 +1,6 @@
 # Notes
 ## Second Iteration
----
+
 In this iteration, we will implement the core **business behavior** for the application. The goal is to enhance the Business Object (BO) by enabling transactional operations and ensuring proper backend logic for data integrity and consistency.
 
 ---
