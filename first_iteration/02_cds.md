@@ -5,25 +5,25 @@
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Product Projection'
+@EndUserText.label: 'Product data'
 
 @Metadata.allowExtensions: true
 @Metadata.ignorePropagatedAnnotations: true
 
 @Search.searchable: true
 
-define root view entity Z_C_PRODUCT_####
+define root view entity Z##_C_PRODUCT_####
   provider contract transactional_query
-  as projection on Z_I_PRODUCT_####
+  as projection on Z##_I_PRODUCT_####
 
 {
   key ProdUuid,
 
-      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z_I_PRODUCT_VH_####', element: 'Prodid' } } ]
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_PRODUCT_VH_####', element: 'Prodid' } } ]
       @Search.defaultSearchElement: true
       Prodid,
 
-      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z_I_PG_VH_####', element: 'Pgid' } } ]
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_PG_VH_####', element: 'Pgid' } } ]
       @ObjectModel.text.element: [ 'Pgname' ]
       @Search.defaultSearchElement: true
       Pgid,
@@ -34,7 +34,7 @@ define root view entity Z_C_PRODUCT_####
       @Semantics.amount.currencyCode: 'PriceCurrency'
       Price,
 
-      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z_I_PHASE_VH_####', element: 'Phaseid' } } ]
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_PHASE_VH_####', element: 'Phaseid' } } ]
       @ObjectModel.text.element: [ 'PhaseName' ]
       @Search.defaultSearchElement: true
       Phaseid,
@@ -50,7 +50,7 @@ define root view entity Z_C_PRODUCT_####
       @Semantics.quantity.unitOfMeasure: 'SizeUom'
       Width,
 
-      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z_I_UOM_VH_####', element: 'Msehi' } } ]
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_UOM_VH_####', element: 'Msehi' } } ]
       @EndUserText.label: 'Units'
       @ObjectModel.text.element: [ 'DimName' ]
       @Search.defaultSearchElement: true
@@ -59,7 +59,7 @@ define root view entity Z_C_PRODUCT_####
 
       _UOM.Isocode      as DimName,
 
-      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z_I_CURRENCY_VH_####', element: 'Currency' } } ]
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_CURRENCY_VH_####', element: 'Currency' } } ]
       @Search.defaultSearchElement: true
       PriceCurrency,
 
@@ -69,7 +69,7 @@ define root view entity Z_C_PRODUCT_####
       ChangedTime,
       LocalChangedTime,
       /* Associations */
-      _Market : redirected to composition child Z_C_MARKET_1234,
+      _Market : redirected to composition child Z##_C_MARKET_####,
       _PG,
       _PHASE,
       _UOM
@@ -80,27 +80,27 @@ define root view entity Z_C_PRODUCT_####
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Market Projection'
+@EndUserText.label: 'Market data'
 
 @Metadata.allowExtensions: true
 @Metadata.ignorePropagatedAnnotations: true
 
 @Search.searchable: true
 
-define view entity Z_C_MARKET_####
-  as projection on Z_I_MARKET_####
+define view entity Z##_C_MARKET_####
+  as projection on Z##_I_MARKET_####
 
 {
   key ProdUuid,
   key MrktUuid,
 
-      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z_I_COUNTRY_VH_####', element: 'Mrktid' } } ]
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_COUNTRY_VH_####', element: 'Id' } } ]
       @ObjectModel.text.element: [ 'Country' ]
       @Search.defaultSearchElement: true
       Mrktid,
 
       _Countries.Code     as Code,
-      _Countries.Mrktname as Country,
+      _Countries.Country  as Country,
       _Countries.Imageurl as ImageUrl,
       Startdate,
       Enddate,
@@ -110,7 +110,7 @@ define view entity Z_C_MARKET_####
       ChangedTime,
       LocalChangedTime,
       /* Associations */
-      _Product : redirected to parent Z_C_PRODUCT_1234,
+      _Product : redirected to parent Z##_C_PRODUCT_####,
 
       _Countries
 }

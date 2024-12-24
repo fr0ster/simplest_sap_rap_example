@@ -9,7 +9,8 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
 ---
 ### Pay Attention:
 1. **Object Naming**:
-  - Replace `####` in object names with four meaningful symbols of your choice (e.g., `Z_UI_PRDT`).
+  - Replace the `##` prefix in object names with any two meaningful characters of your choice (e.g., `OK`).
+  - Replace the `####` suffix in object names with four meaningful characters specific to your project (e.g., `0001`).
 2. **Package Consistency**:
   - All objects must be created within your own development package to ensure consistency and organization.
 3. **CDS Activation**:
@@ -33,14 +34,14 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
   - Refer to [03_metadata_extension.md](./03_metadata_extension.md) for details.
 5. **[Create Service Definition](./04_service.md)**:
   - Define the service interface in [04_service.md](./04_service.md), specifying the entities and operations that should be available.
-6. **[Generate Sample Data](./05_generator.md)**:
-  - Implement a class for data generation as described in [generator.md](./05_generator.md).
+6. **[Generate Sample Data](./generator.md)**:
+  - Implement a class for data generation as described in [generator.md](./generator.md).
   - Execute the class in the ABAP console using **F9** to populate the tables with sample data.
 ---
 ### The Final Step:
 - **Create Service Binding (OData V2)**:
   - Bind the service definition to an OData V2 protocol for UI consumption.
-  - Name the service binding as `Z_UI_PRODUCT_O2_<your_suffix>`.
+  - Name the service binding as `Z##_UI_PRODUCT_O2_####`.
 - Activate and publish the service.
 - Test the service using the **Preview** button in the Service Binding editor.
 ---
@@ -67,7 +68,8 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
     annotate view ZI_Product with {
       @UI: {
         lineItem: [
-          { position: 10; label: 'Product ID'; }
+          { position: 10; label: 'Product ID'; },
+          { position: 20; label: 'Product Name'; }
         ],
         identification: [
           { position: 10; label: 'Product Name'; }

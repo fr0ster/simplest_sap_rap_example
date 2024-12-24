@@ -5,18 +5,18 @@
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Product Interface'
+@EndUserText.label: 'Product data'
 
 @Metadata.ignorePropagatedAnnotations: true
 
-define root view entity Z_I_PRODUCT_####
-  as select from z_d_product_####
+define root view entity Z##_I_PRODUCT_####
+  as select from z##_d_prod_####
 
-  composition [0..*] of Z_I_MARKET_1234 as _Market
+  composition [0..*] of Z##_I_MARKET_#### as _Market
 
-  association [1..1] to Z_I_PG_VH_####                  as _PG on $projection.Pgid = _PG.Pgid
-  association [1..1] to Z_I_PHASE_VH_####               as _PHASE on $projection.Phaseid = _PHASE.Phaseid
-  association [0..1] to Z_I_UOM_VH_####                 as _UOM on $projection.SizeUom = _UOM.Msehi
+  association [1..1] to Z##_I_PG_VH_####                  as _PG on $projection.Pgid = _PG.Pgid
+  association [1..1] to Z##_I_PHASE_VH_####               as _PHASE on $projection.Phaseid = _PHASE.Phaseid
+  association [0..1] to Z##_I_UOM_VH_####                 as _UOM on $projection.SizeUom = _UOM.Msehi
 
 {
   key prod_uuid          as ProdUuid,
@@ -58,42 +58,49 @@ define root view entity Z_I_PRODUCT_####
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
-@EndUserText.label: 'Market Interface'
+
+@EndUserText.label: 'Market data'
+
 @Metadata.ignorePropagatedAnnotations: true
-define view entity Z_I_MARKET_#### as select from z_d_prod_mrkt
-association to parent Z_I_PRODUCT_#### as _Product
-    on $projection.ProdUuid = _Product.ProdUuid
-    association [1..1] to Z_I_COUNTRY_#### as _Countries on $projection.Mrktid = _Countries.Mrktid
+
+define view entity Z##_I_MARKET_####
+  as select from z##_d_mrkt_####
+
+  association to parent Z##_I_PRODUCT_#### as _Product   on $projection.ProdUuid = _Product.ProdUuid
+  association [1..1] to Z##_I_COUNTRY_#### as _Countries on $projection.Mrktid = _Countries.Id
+
 {
-    key prod_uuid as ProdUuid,
-    key mrkt_uuid as MrktUuid,
-    mrktid as Mrktid,
-    startdate as Startdate,
-    enddate as Enddate,
-    created_by as CreatedBy,
-    creation_time as CreationTime,
-    changed_by as ChangedBy,
-    changed_time as ChangedTime,
-    local_changed_time as LocalChangedTime,
-    _Product,
-    _Countries
+  key prod_uuid          as ProdUuid,
+  key mrkt_uuid          as MrktUuid,
+
+      mrktid             as Mrktid,
+      startdate          as Startdate,
+      enddate            as Enddate,
+      created_by         as CreatedBy,
+      creation_time      as CreationTime,
+      changed_by         as ChangedBy,
+      changed_time       as ChangedTime,
+      local_changed_time as LocalChangedTime,
+
+      _Product,
+      _Countries
 }
 ```
 
-## CDS Interface for view entity Markets dictionary
+## CDS Interface for view entity Countries dictionary
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Markets data'
+@EndUserText.label: 'Countries dict'
 
-define view entity Z_I_COUNTRY_####
-  as select from z_d_market_####
+define view entity Z##_I_COUNTRY_####
+  as select from z##_d_ctry_####
 
 {
-  key mrktid   as Mrktid,
+  key land     as Id,
 
-      mrktname as Mrktname,
+      name     as Country,
       code     as Code,
       imageurl as Imageurl
 }
@@ -104,7 +111,7 @@ define view entity Z_I_COUNTRY_####
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Country VH'
+@EndUserText.label: 'Country Search Help'
 
 @ObjectModel.resultSet.sizeCategory: #XS
 @ObjectModel.usageType: { serviceQuality: #X, sizeCategory: #S, dataClass: #MIXED }
@@ -113,15 +120,15 @@ define view entity Z_I_COUNTRY_####
 
 @UI.presentationVariant: [ { sortOrder: [ { by: 'Country', direction: #ASC } ] } ]
 
-define view entity Z_I_COUNTRY_VH_####
-  as select from Z_I_COUNTRY_####
+define view entity Z##_I_COUNTRY_VH_####
+  as select from Z##_I_COUNTRY_####
 
 {
       @ObjectModel.text.element: [ 'Country' ]
-  key Mrktid,
+  key Id,
 
       @Search.defaultSearchElement: true
-      Mrktname as Country
+      Country as Country
 }
 ```
 
@@ -139,8 +146,8 @@ define view entity Z_I_COUNTRY_VH_####
 
 @UI.presentationVariant: [ { sortOrder: [ { by: 'ProdUuid', direction: #ASC } ] } ]
 
-define view entity Z_I_PRODUCT_VH_####
-  as select distinct from z_d_product_####
+define view entity Z##_I_PRODUCT_VH_####
+  as select distinct from z##_d_prod_####
 
 {
       @UI.hidden: true
@@ -158,7 +165,7 @@ define view entity Z_I_PRODUCT_VH_####
 
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Currency Interface'
+@EndUserText.label: 'Currency Search Help'
 
 @Metadata.ignorePropagatedAnnotations: true
 
@@ -168,7 +175,7 @@ define view entity Z_I_PRODUCT_VH_####
 @Search.searchable: true
 @UI.presentationVariant: [ { sortOrder: [ { by: 'Currency', direction: #ASC } ] } ]
 
-define view entity Z_I_CURRENCY_VH_####
+define view entity Z##_I_CURRENCY_VH_####
   as select distinct from I_Currency
 
 {
@@ -187,7 +194,7 @@ define view entity Z_I_CURRENCY_VH_####
 
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Product Group Interface'
+@EndUserText.label: 'Product Group Search Help'
 
 @Metadata.ignorePropagatedAnnotations: true
 
@@ -196,8 +203,8 @@ define view entity Z_I_CURRENCY_VH_####
 
 @Search.searchable: true
 
-define view entity Z_I_PG_VH_####
-  as select from z_d_prod_grp_####
+define view entity Z##_I_PG_VH_####
+  as select from z##_d_pg_####
 
 {
       @ObjectModel.text.element: [ 'Pgname' ]
@@ -217,7 +224,7 @@ define view entity Z_I_PG_VH_####
 
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Phase Interface'
+@EndUserText.label: 'Phase Search Help'
 
 @Metadata.ignorePropagatedAnnotations: true
 
@@ -227,8 +234,8 @@ define view entity Z_I_PG_VH_####
 @Search.searchable: true
 @UI.presentationVariant: [ { sortOrder: [ { by: 'phaseid', direction: #ASC } ] } ]
 
-define view entity Z_I_PHASE_VH_####
-  as select from zpip_d_phase_####
+define view entity Z##_I_PHASE_VH_####
+  as select from z##_d_phase_####
 
 {
       @ObjectModel.text.element: [ 'Phase' ]
@@ -246,7 +253,7 @@ define view entity Z_I_PHASE_VH_####
 
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'VH UOM'
+@EndUserText.label: 'UOM Search Help'
 
 @Metadata.ignorePropagatedAnnotations: true
 
@@ -257,8 +264,8 @@ define view entity Z_I_PHASE_VH_####
 
 @UI.presentationVariant: [ { sortOrder: [ { by: 'msehi', direction: #ASC } ] } ]
 
-define view entity Z_I_UOM_VH_####
-  as select from z_d_uom_####
+define view entity Z##_I_UOM_VH_####
+  as select from z##_d_uom_####
 
 {
       @ObjectModel.text.element: [ 'Msehi' ]

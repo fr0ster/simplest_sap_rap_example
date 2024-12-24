@@ -5,7 +5,7 @@
 ```ABAP
 @Metadata.layer: #CORE
 
-annotate entity Z_C_PRODUCT_####
+annotate entity Z##_C_PRODUCT_####
     with
 
 {
@@ -13,12 +13,12 @@ annotate entity Z_C_PRODUCT_####
                { id: 'idProduct',
                  purpose: #STANDARD,
                  type: #IDENTIFICATION_REFERENCE,
-                 label: 'product Info',
+                 label: 'General info',
                  position: 10 },
                { id: 'Market',
                  purpose: #STANDARD,
                  type: #LINEITEM_REFERENCE,
-                 label: 'Market',
+                 label: 'Market info',
                  position: 30,
                  targetElement: '_Market' } ]
 
@@ -78,7 +78,7 @@ annotate entity Z_C_PRODUCT_####
 ```ABAP
 @Metadata.layer: #CORE
 
-annotate entity Z_C_MARKET_####
+annotate entity Z##_C_MARKET_####
     with
 
 {
