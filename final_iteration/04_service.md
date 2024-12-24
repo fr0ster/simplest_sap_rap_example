@@ -4,8 +4,8 @@
 
 ```ABAP
 @EndUserText.label: 'Product Service Definition'
-define service Z_PRODUCT_#### {
-  expose Z_C_PRODUCT_#### as Product;
-  expose Z_C_MARKET_####  as Market;
+define service Z##_PRODUCT_#### {
+  expose Z##_C_PRODUCT_#### as Product;
+  expose Z##_C_MARKET_####  as Market;
 }
 ```

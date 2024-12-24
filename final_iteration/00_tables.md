@@ -8,14 +8,14 @@
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table z_d_product_#### {
+define table z##_d_prod_#### {
 
   key client         : abap.clnt not null;
   key prod_uuid      : sysuuid_x16 not null;
   prodid             : abap.char(15);
   pgid               : abap.char(3);
   phaseid            : abap.int1;
-  @Semantics.amount.currencyCode : 'z_d_product.price_currency'
+  @Semantics.amount.currencyCode : 'z##_d_prod_####.price_currency'
   price              : abap.curr(15,2);
   price_currency     : waers_curc;
   height             : abap.dec(20,2);
@@ -31,7 +31,7 @@ define table z_d_product_#### {
 }
 ```
 
-## Table for view entity Market
+## Table for view entity Markets data
 
 ```ABAP
 @EndUserText.label : 'Markets data'
@@ -39,7 +39,7 @@ define table z_d_product_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table z_d_prod_mrkt_#### {
+define table z##_d_mrkt_#### {
 
   key client         : abap.clnt not null;
   key prod_uuid      : sysuuid_x16 not null;
@@ -56,19 +56,19 @@ define table z_d_prod_mrkt_#### {
 }
 ```
 
-## Table for view entity Markets dictionary
+## Table for view entity Countries dictionary
 
 ```ABAP
-@EndUserText.label : 'Markets dict'
+@EndUserText.label : 'Countries dict'
 @AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table z_d_market_#### {
+define table z##_d_ctry_#### {
 
   key client : abap.clnt not null;
-  key mrktid : abap.int1 not null;
-  mrktname   : abap.char(40);
+  key land   : abap.int1 not null;
+  name       : abap.char(40);
   code       : abap.lang;
   imageurl   : abap.char(200);
 
@@ -78,31 +78,30 @@ define table z_d_market_#### {
 ## Table for view entity Product Group dictionary
 
 ```ABAP
-@EndUserText.label : 'Markets dict'
+@EndUserText.label : 'Product group dict'
 @AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table z_d_market_#### {
+define table zok_d_pg_0001 {
 
   key client : abap.clnt not null;
-  key mrktid : abap.int1 not null;
-  mrktname   : abap.char(40);
-  code       : abap.lang;
+  key pgid   : abap.char(3) not null;
+  pgname     : abap.char(30);
   imageurl   : abap.char(200);
 
 }
 ```
 
-## Table for view entity Market Phase dictionary
+## Table for view entity Phases dictionary
 
 ```ABAP
-@EndUserText.label : 'Phases'
+@EndUserText.label : 'Phases dict'
 @AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #ALLOWED
-define table z_d_phase_#### {
+define table z##_d_phase_#### {
 
   key client  : abap.clnt not null;
   key phaseid : abap.int1 not null;
@@ -114,12 +113,12 @@ define table z_d_phase_#### {
 ## Table for view entity UOM dictionary
 
 ```ABAP
-@EndUserText.label : 'UOM'
+@EndUserText.label : 'UOM dict'
 @AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table z_d_uom_#### {
+define table z##_d_uom_#### {
 
   key client : abap.clnt not null;
   key msehi  : msehi not null;

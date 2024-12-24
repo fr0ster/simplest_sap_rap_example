@@ -3,11 +3,11 @@
 ## Behaviour Implementation for CDS Interface
 
 ```ABAP
-managed implementation in class zbp_ok_i_product_#### unique;
+managed implementation in class zbp_##_i_product_#### unique;
 strict ( 2 );
 
-define behavior for Z_I_PRODUCT_#### alias Product
-persistent table z_d_product
+define behavior for Z##_I_PRODUCT_#### alias Product
+persistent table z##_d_prod_####
 lock master
 authorization master ( instance )
 etag master LocalChangedTime
@@ -40,7 +40,7 @@ etag master LocalChangedTime
   validation check_prod_id on save { field Prodid; }
   action change_phase_id result [1] $self;
 
-  mapping for z_d_product
+  mapping for z##_d_prod_####
     {
       ProdUUID         = prod_uuid;
       ProdID           = prodid;
@@ -60,8 +60,8 @@ etag master LocalChangedTime
     }
 }
 
-define behavior for Z_I_MARKET_#### alias Market
-persistent table z_d_prod_mrkt
+define behavior for Z##_I_MARKET_#### alias Market
+persistent table z##_d_mrkt_####
 lock dependent by _Product
 authorization dependent by _Product
 etag master LocalChangedTime
@@ -74,7 +74,7 @@ etag master LocalChangedTime
   field ( numbering : managed, readonly ) MrktUuid;
   field ( readonly ) ProdUuid;
 
-  mapping for z_d_prod_mrkt
+  mapping for z##_d_mrkt_####
     {
       ProdUuid         = prod_uuid;
       MrktUuid         = mrkt_uuid;
@@ -95,7 +95,7 @@ etag master LocalChangedTime
 projection;
 strict ( 2 );
 
-define behavior for Z_C_PRODUCT_#### alias _Product
+define behavior for Z##_C_PRODUCT_#### alias _Product
 {
   use create;
   use update;
@@ -106,7 +106,7 @@ define behavior for Z_C_PRODUCT_#### alias _Product
   use action change_phase_id;
 }
 
-define behavior for Z_C_MARKET_#### alias _Market
+define behavior for Z##_C_MARKET_#### alias _Market
 {
   use update;
   use delete;
@@ -114,6 +114,191 @@ define behavior for Z_C_MARKET_#### alias _Market
   use association _Product;
 }
 ```
+## Message class
+### Z##_MESSAGE_####
+
+```ABAP
+001
+Prodid &1 is duplicated
+002
+Prodid is empty
+003
+Market &1 does not exist!
+004
+Start date &1 must be on or after system date!
+005
+Start date &1 must not be after end date &2!
+006
+The market &1 for this product already exists.
+007
+Can not change to Phase &1.
+008
+It is the last Phase!
+```
+
+## Error message Implementation Class
+
+```ABAP
+CLASS z##_cx_product_#### DEFINITION
+  PUBLIC
+  INHERITING FROM cx_static_check FINAL
+  CREATE PUBLIC.
+
+  PUBLIC SECTION.
+    INTERFACES if_t100_message.
+    INTERFACES if_t100_dyn_msg.
+    INTERFACES if_abap_behv_message.
+
+    CONSTANTS:
+      BEGIN OF pgid_not_exists,
+        msgid TYPE symsgid      VALUE 'Z##_MESSAGE_####',
+        msgno TYPE symsgno      VALUE '000',
+        attr1 TYPE scx_attrname VALUE 'PGID',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF pgid_not_exists.
+
+    CONSTANTS: BEGIN OF prodid_is_duplicated,
+                 msgid TYPE symsgid      VALUE 'Z##_MESSAGE_####',
+                 msgno TYPE symsgno      VALUE '001',
+                 attr1 TYPE scx_attrname VALUE 'PRODID',
+                 attr2 TYPE scx_attrname VALUE '',
+                 attr3 TYPE scx_attrname VALUE '',
+                 attr4 TYPE scx_attrname VALUE '',
+               END OF prodid_is_duplicated.
+
+    CONSTANTS: BEGIN OF prodid_is_empty,
+                 msgid TYPE symsgid      VALUE 'Z##_MESSAGE_####',
+                 msgno TYPE symsgno      VALUE '002',
+                 attr1 TYPE scx_attrname VALUE '',
+                 attr2 TYPE scx_attrname VALUE '',
+                 attr3 TYPE scx_attrname VALUE '',
+                 attr4 TYPE scx_attrname VALUE '',
+               END OF prodid_is_empty.
+
+    CONSTANTS: BEGIN OF market_not_exist,
+                 msgid TYPE symsgid      VALUE 'Z##_MESSAGE_####',
+                 msgno TYPE symsgno      VALUE '003',
+                 attr1 TYPE scx_attrname VALUE 'MRKTID',
+                 attr2 TYPE scx_attrname VALUE '',
+                 attr3 TYPE scx_attrname VALUE '',
+                 attr4 TYPE scx_attrname VALUE '',
+               END OF market_not_exist.
+
+    CONSTANTS: BEGIN OF start_date_before_system_date,
+                 msgid TYPE symsgid      VALUE 'Z##_MESSAGE_####',
+                 msgno TYPE symsgno      VALUE '004',
+                 attr1 TYPE scx_attrname VALUE 'STARTDATE',
+                 attr2 TYPE scx_attrname VALUE '',
+                 attr3 TYPE scx_attrname VALUE '',
+                 attr4 TYPE scx_attrname VALUE '',
+               END OF start_date_before_system_date.
+
+    CONSTANTS: BEGIN OF end_date_before_start_date,
+                 msgid TYPE symsgid      VALUE 'Z##_MESSAGE_####',
+                 msgno TYPE symsgno      VALUE '005',
+                 attr1 TYPE scx_attrname VALUE 'STARTDATE',
+                 attr2 TYPE scx_attrname VALUE 'ENDDATE',
+                 attr3 TYPE scx_attrname VALUE '',
+                 attr4 TYPE scx_attrname VALUE '',
+               END OF end_date_before_start_date.
+
+    CONSTANTS: BEGIN OF market_exists,
+                 msgid TYPE symsgid      VALUE 'Z##_MESSAGE_####',
+                 msgno TYPE symsgno      VALUE '006',
+                 attr1 TYPE scx_attrname VALUE 'MRKTID',
+                 attr2 TYPE scx_attrname VALUE '',
+                 attr3 TYPE scx_attrname VALUE '',
+                 attr4 TYPE scx_attrname VALUE '',
+               END OF market_exists.
+
+    CONSTANTS: BEGIN OF prod_phase,
+                 msgid TYPE symsgid      VALUE 'Z##_MESSAGE_####',
+                 msgno TYPE symsgno      VALUE '007',
+                 attr1 TYPE scx_attrname VALUE 'PHASEID',
+                 attr2 TYPE scx_attrname VALUE '',
+                 attr3 TYPE scx_attrname VALUE '',
+                 attr4 TYPE scx_attrname VALUE '',
+               END OF prod_phase.
+
+    CONSTANTS: BEGIN OF prod_last_phase,
+                 msgid TYPE symsgid      VALUE 'Z##_MESSAGE_####',
+                 msgno TYPE symsgno      VALUE '008',
+                 attr1 TYPE scx_attrname VALUE '',
+                 attr2 TYPE scx_attrname VALUE '',
+                 attr3 TYPE scx_attrname VALUE '',
+                 attr4 TYPE scx_attrname VALUE '',
+               END OF prod_last_phase.
+
+    CONSTANTS: BEGIN OF invalid_delivery_date,
+                 msgid TYPE symsgid      VALUE 'Z##_MESSAGE_####',
+                 msgno TYPE symsgno      VALUE '009',
+                 attr1 TYPE scx_attrname VALUE 'STARTDATE',
+                 attr2 TYPE scx_attrname VALUE 'ENDDATE',
+                 attr3 TYPE scx_attrname VALUE '',
+                 attr4 TYPE scx_attrname VALUE '',
+               END OF invalid_delivery_date.
+
+    CONSTANTS: BEGIN OF invalid_business_partner,
+                 msgid TYPE symsgid      VALUE 'ZPIP_MSG_PRODUCT',
+                 msgno TYPE symsgno      VALUE '010',
+                 attr1 TYPE scx_attrname VALUE 'BUSINESSPARTNER',
+                 attr2 TYPE scx_attrname VALUE '',
+                 attr3 TYPE scx_attrname VALUE '',
+                 attr4 TYPE scx_attrname VALUE '',
+               END OF invalid_business_partner.
+
+    DATA pg_id           TYPE zpip_pg_id            READ-ONLY.
+    DATA prodid          TYPE zpip_product_id       READ-ONLY.
+    DATA mrktid          TYPE zpip_market_id        READ-ONLY.
+    DATA startdate       TYPE zpip_start_date       READ-ONLY.
+    DATA enddate         TYPE zpip_end_date         READ-ONLY.
+    DATA phaseid         TYPE zpip_phase_id         READ-ONLY.
+    DATA businesspartner TYPE zpip_business_partner READ-ONLY.
+
+    METHODS constructor
+      IMPORTING io_severity        TYPE if_abap_behv_message=>t_severity DEFAULT if_abap_behv_message=>severity-error
+                iv_textid          LIKE if_t100_message=>t100key         OPTIONAL
+                iv_pervious        TYPE REF TO cx_root                   OPTIONAL
+                iv_pgid            TYPE zpip_pg_id                       OPTIONAL
+                iv_prodid          TYPE zpip_product_id                  OPTIONAL
+                iv_mrktid          TYPE zpip_market_id                   OPTIONAL
+                iv_startdate       TYPE zpip_start_date                  OPTIONAL
+                iv_enddate         TYPE zpip_end_date                    OPTIONAL
+                iv_phaseid         TYPE zpip_phase_id                    OPTIONAL
+                iv_businesspartner TYPE zpip_business_partner            OPTIONAL.
+
+  PROTECTED SECTION.
+
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+CLASS z##_cx_product_#### IMPLEMENTATION.
+  METHOD constructor ##ADT_SUPPRESS_GENERATION.
+    " TODO: parameter IV_PERVIOUS is never used (ABAP cleaner)
+
+    super->constructor( previous = previous ).
+    CLEAR me->textid.
+    IF textid IS INITIAL.
+      if_t100_message~t100key = if_t100_message=>default_textid.
+    ELSE.
+      if_t100_message~t100key = iv_textid.
+    ENDIF.
+
+    if_abap_behv_message~m_severity = io_severity.
+    pg_id = iv_pgid.
+    prodid = iv_prodid.
+    mrktid    = |{ iv_mrktid ALPHA = OUT }|.
+    startdate = iv_startdate.
+    enddate   = iv_enddate.
+    phaseid = iv_phaseid.
+    businesspartner = iv_businesspartner.
+  ENDMETHOD.
+ENDCLASS.
+```
+
 ## Behaviour Implementation Class for Interface
 
 ```ABAP
@@ -146,7 +331,7 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD get_instance_features.
-    READ ENTITIES OF z_i_product_#### IN LOCAL MODE
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
          ENTITY Product
          FIELDS ( Prodid
                   Phaseid ) WITH CORRESPONDING #( keys )
@@ -225,12 +410,12 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD set_phase_id.
-    READ ENTITIES OF z_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( Phaseid ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( Phaseid ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
     DELETE lt_products WHERE Phaseid IS NOT INITIAL.
     IF lt_products IS INITIAL.
       RETURN.
     ENDIF.
-    MODIFY ENTITIES OF z_i_product_#### IN LOCAL MODE
+    MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Product
            UPDATE FIELDS ( Phaseid )
            WITH VALUE #( FOR product IN lt_products
@@ -240,9 +425,9 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD check_prod_id.
-    READ ENTITIES OF z_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( Prodid ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( Prodid ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
 
-    DATA lt_product TYPE SORTED TABLE OF z_i_product_#### WITH UNIQUE KEY Prodid.
+    DATA lt_product TYPE SORTED TABLE OF z##_i_product_#### WITH UNIQUE KEY Prodid.
 
     lt_product = CORRESPONDING #( lt_products DISCARDING DUPLICATES MAPPING prodid = Prodid EXCEPT * ).
     DELETE lt_product WHERE prodid IS INITIAL.
@@ -282,7 +467,7 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD change_phase_id.
-    READ ENTITIES OF z_i_product_#### IN LOCAL MODE
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
          ENTITY Product
          FIELDS ( ProdUuid Prodid Phaseid )
          WITH CORRESPONDING #( keys )
@@ -308,7 +493,7 @@ CLASS lhc_Product IMPLEMENTATION.
         lv_next = phase_id-plan.
       ENDIF.
       " -----
-      MODIFY ENTITIES OF z_i_product_#### IN LOCAL MODE
+      MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
              ENTITY Product
              UPDATE
              FIELDS ( Phaseid )
@@ -317,7 +502,7 @@ CLASS lhc_Product IMPLEMENTATION.
                              Phaseid = lv_next ) )
              FAILED   failed
              REPORTED reported.
-      READ ENTITIES OF z_i_product_#### IN LOCAL MODE
+      READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Product
            ALL FIELDS WITH CORRESPONDING #( keys )
            RESULT DATA(ls_result).

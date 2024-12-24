@@ -13,7 +13,7 @@
 @UI.presentationVariant: [ { sortOrder: [ { by: 'Prodid', direction: #ASC },
                                           { by: 'PGNAME', direction: #ASC } ] } ]
 
-annotate entity Z_C_PRODUCT_####
+annotate entity Z##_C_PRODUCT_####
     with
 
 {
@@ -98,7 +98,7 @@ annotate entity Z_C_PRODUCT_####
 ```ABAP
 @Metadata.layer: #CORE
 
-annotate entity Z_C_MARKET_####
+annotate entity Z##_C_MARKET_####
     with
 
 {
