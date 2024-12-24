@@ -15,7 +15,7 @@ define table z##_d_product_## {
   prodid             : abap.char(15);
   pgid               : abap.char(3);
   phaseid            : abap.int1;
-  @Semantics.amount.currencyCode : 'z_d_product.price_currency'
+  @Semantics.amount.currencyCode : 'z##_d_product_##.price_currency'
   price              : abap.curr(15,2);
   price_currency     : waers_curc;
   height             : abap.dec(20,2);
@@ -78,7 +78,7 @@ define table z##_d_market_## {
 ## Table for view entity Product Group dictionary
 
 ```ABAP
-@EndUserText.label : 'Markets dict'
+@EndUserText.label : 'Product Group dict'
 @AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
@@ -97,7 +97,7 @@ define table z##_d_market_## {
 ## Table for view entity Phases dictionary
 
 ```ABAP
-@EndUserText.label : 'Phases'
+@EndUserText.label : 'Phases dict'
 @AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
@@ -114,7 +114,7 @@ define table z##_d_phase_## {
 ## Table for view entity UOM dictionary
 
 ```ABAP
-@EndUserText.label : 'UOM'
+@EndUserText.label : 'UOM dict'
 @AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
