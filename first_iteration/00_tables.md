@@ -8,7 +8,7 @@
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table z_d_product_#### {
+define table z##_d_product_## {
 
   key client         : abap.clnt not null;
   key prod_uuid      : sysuuid_x16 not null;
@@ -39,7 +39,7 @@ define table z_d_product_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table z_d_prod_mrkt_#### {
+define table z##_d_prod_mrkt_## {
 
   key client         : abap.clnt not null;
   key prod_uuid      : sysuuid_x16 not null;
@@ -64,7 +64,7 @@ define table z_d_prod_mrkt_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table z_d_market_#### {
+define table z##_d_market_## {
 
   key client : abap.clnt not null;
   key mrktid : abap.int1 not null;
@@ -83,7 +83,7 @@ define table z_d_market_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table z_d_market_#### {
+define table z##_d_market_## {
 
   key client : abap.clnt not null;
   key mrktid : abap.int1 not null;
@@ -102,7 +102,7 @@ define table z_d_market_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #ALLOWED
-define table z_d_phase_#### {
+define table z##_d_phase_## {
 
   key client  : abap.clnt not null;
   key phaseid : abap.int1 not null;
@@ -119,7 +119,7 @@ define table z_d_phase_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table z_d_uom_#### {
+define table z##_d_uom_## {
 
   key client : abap.clnt not null;
   key msehi  : msehi not null;
