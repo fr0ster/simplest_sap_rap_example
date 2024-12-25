@@ -1,7 +1,9 @@
+
 # Table Definition
 
 ## Table for Root View Entity Product
 
+<a name="z##_d_prod_####"></a>
 ### Z##_D_PROD_####
 
 ```ABAP
@@ -35,6 +37,7 @@ define table z##_d_prod_#### {
 
 ## Table for View Entity Markets Data
 
+<a name="z##_d_mrkt_####"></a>
 ### Z##_D_MRKT_####
 
 ```ABAP
@@ -62,6 +65,7 @@ define table z##_d_mrkt_#### {
 
 ## Table for View Entity Countries Dictionary
 
+<a name="z##_d_ctry_####"></a>
 ### Z##_D_CTRY_####
 
 ```ABAP
@@ -83,6 +87,7 @@ define table z##_d_ctry_#### {
 
 ## Table for View Entity Product Group Dictionary
 
+<a name="zok_d_pg_####"></a>
 ### ZOK_D_PG_####
 
 ```ABAP
@@ -103,14 +108,15 @@ define table zok_d_pg_#### {
 
 ## Table for View Entity Phases Dictionary
 
+<a name="z##_d_phase_####"></a>
 ### Z##_D_PHASE_####
 
 ```ABAP
 @EndUserText.label : 'Phases dict'
 @AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
 @AbapCatalog.tableCategory : #TRANSPARENT
-@AbapCatalog.deliveryClass : #A
-@AbapCatalog.dataMaintenance : #ALLOWED
+@AbapCatalog.deliveryClass : #ALLOWED
+@AbapCatalog.dataMaintenance : #RESTRICTED
 define table z##_d_phase_#### {
 
   key client  : abap.clnt not null;
@@ -122,6 +128,7 @@ define table z##_d_phase_#### {
 
 ## Table for View Entity UOM Dictionary
 
+<a name="z##_d_uom_####"></a>
 ### Z##_D_UOM_####
 
 ```ABAP
