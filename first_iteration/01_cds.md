@@ -1,6 +1,7 @@
 # CDS Interface definition
 
 ## CDS Interface for root view entity Product
+## Z##_I_PRODUCT_####
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
@@ -65,6 +66,7 @@ define root view entity Z##_I_PRODUCT_####
 ```
 
 ## CDS Interface for view entity Market
+## Z##_I_MARKET_####
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
@@ -108,6 +110,7 @@ define view entity Z##_I_MARKET_####
 ```
 
 ## CDS Interface for view entity Countries dictionary
+###### Z##_I_COUNTRY_####
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
@@ -127,6 +130,7 @@ define view entity Z##_I_COUNTRY_####
 ```
 
 ## CDS Interface for view entity Country Value Helper
+###### Z##_I_COUNTRY_VH_####
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
@@ -153,6 +157,7 @@ define view entity Z##_I_COUNTRY_VH_####
 ```
 
 ## CDS Interface for view entity Products Value Helper
+###### Z##_I_PRODUCT_VH_####
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
@@ -179,6 +184,7 @@ define view entity Z##_I_PRODUCT_VH_####
 ```
 
 ## CDS Interface for view entity Currency Value Helper
+###### Z##_I_CURRENCY_VH_####
 
 ```ABAP
 @AbapCatalog.viewEnhancementCategory: [ #NONE ]
@@ -208,6 +214,7 @@ define view entity Z##_I_CURRENCY_VH_####
 ```
 
 ## CDS Interface for view entity Product Group Value Helper
+###### Z##_I_PG_VH_####
 
 ```ABAP
 @AbapCatalog.viewEnhancementCategory: [ #NONE ]
@@ -238,6 +245,7 @@ define view entity Z##_I_PG_VH_####
 ```
 
 ## CDS Interface for view entity Phase Value Helper
+###### Z##_I_PHASE_VH_####
 
 ```ABAP
 @AbapCatalog.viewEnhancementCategory: [ #NONE ]
@@ -267,6 +275,7 @@ define view entity Z##_I_PHASE_VH_####
 ```
 
 ## CDS Interface for view entity UOM Value Helper
+###### Z##_I_UOM_VH_####
 
 ```ABAP
 @AbapCatalog.viewEnhancementCategory: [ #NONE ]
