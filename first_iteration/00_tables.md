@@ -83,7 +83,7 @@ define table z##_d_ctry_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table zok_d_pg_0001 {
+define table zok_d_pg_#### {
 
   key client : abap.clnt not null;
   key pgid   : abap.char(3) not null;

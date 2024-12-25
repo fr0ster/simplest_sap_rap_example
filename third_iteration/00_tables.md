@@ -1,6 +1,6 @@
 # Table definition
 
-## Table for view entity Critically levels
+## Table for view entity Orders
 
 ```ABAP
 @EndUserText.label : 'Orders data'
@@ -8,7 +8,7 @@
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table zok_d_order_0001 {
+define table zok_d_order_#### {
 
   key client         : abap.clnt not null;
   key prod_uuid      : sysuuid_x16 not null;
@@ -16,9 +16,9 @@ define table zok_d_order_0001 {
   key order_uuid     : sysuuid_x16 not null;
   quantity           : abap.int2;
   delivery_date      : abap.dats;
-  @Semantics.amount.currencyCode : 'zok_d_order_0001.amountcurr'
+  @Semantics.amount.currencyCode : 'zok_d_order_####.amountcurr'
   netamount          : abap.curr(15,2);
-  @Semantics.amount.currencyCode : 'zok_d_order_0001.amountcurr'
+  @Semantics.amount.currencyCode : 'zok_d_order_####.amountcurr'
   grossamount        : abap.curr(15,2);
   amountcurr         : waers_curc;
   created_by         : abp_creation_user;

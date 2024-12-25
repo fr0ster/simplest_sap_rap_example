@@ -5,7 +5,7 @@
 ```ABAP
 @Metadata.layer: #CORE
 
-annotate entity ZOK_C_MARKET_0001
+annotate entity Z##_C_MARKET_####
     with
 
 {
@@ -65,7 +65,7 @@ annotate entity ZOK_C_MARKET_0001
 ```ABAP
 @Metadata.layer: #CORE
 
-annotate entity ZOK_C_ORDER_0001
+annotate entity Z##_C_ORDER_####
     with
 
 {

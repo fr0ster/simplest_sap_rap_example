@@ -83,7 +83,7 @@ define table z##_d_ctry_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table zok_d_pg_0001 {
+define table zok_d_pg_#### {
 
   key client : abap.clnt not null;
   key pgid   : abap.char(3) not null;
@@ -127,6 +127,35 @@ define table z##_d_uom_#### {
 
 }
 ```
+## Table for view entity Orders
+
+```ABAP
+@EndUserText.label : 'Orders data'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zok_d_order_#### {
+
+  key client         : abap.clnt not null;
+  key prod_uuid      : sysuuid_x16 not null;
+  key mrkt_uuid      : sysuuid_x16 not null;
+  key order_uuid     : sysuuid_x16 not null;
+  quantity           : abap.int2;
+  delivery_date      : abap.dats;
+  @Semantics.amount.currencyCode : 'zok_d_order_####.amountcurr'
+  netamount          : abap.curr(15,2);
+  @Semantics.amount.currencyCode : 'zok_d_order_####.amountcurr'
+  grossamount        : abap.curr(15,2);
+  amountcurr         : waers_curc;
+  created_by         : abp_creation_user;
+  creation_time      : abp_creation_tstmpl;
+  changed_by         : abp_lastchange_user;
+  changed_time       : abp_lastchange_tstmpl;
+  local_changed_time : abp_locinst_lastchange_tstmpl;
+
+}
+```
 ## Table for view entity Critically levels
 
 ```ABAP
@@ -135,14 +164,20 @@ define table z##_d_uom_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table zok_d_crtly_0001 {
+define table z##_d_crtly_#### {
 
-  key client  : abap.clnt not null;
-  key id      : abap.char(40) not null;
-  treashhold1 : abap.dec(15,4) not null;
-  treashhold2 : abap.dec(15,4) not null;
-  treashhold3 : abap.dec(15,4) not null;
-  treashhold4 : abap.dec(15,4) not null;
+  key client         : abap.clnt not null;
+  key id             : abap.char(40) not null;
+  treashhold1        : abap.dec(15,4) not null;
+  treashhold2        : abap.dec(15,4) not null;
+  treashhold3        : abap.dec(15,4) not null;
+  treashhold4        : abap.dec(15,4) not null;
+  created_by         : abp_creation_user;
+  creation_time      : abp_creation_tstmpl;
+  changed_by         : abp_lastchange_user;
+  changed_time       : abp_lastchange_tstmpl;
+  local_changed_time : abp_locinst_lastchange_tstmpl;
+
 
 }
 ```

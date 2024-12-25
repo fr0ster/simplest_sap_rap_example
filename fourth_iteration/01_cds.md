@@ -7,7 +7,7 @@
 
 @EndUserText.label: 'Criticality levels'
 
-define root view entity ZOK_I_CRITICALITY_LEVELS_0001
+define root view entity Z##_I_CRITICALITY_LEVELS_####
   as select from z##_d_crtly_####
 
 {

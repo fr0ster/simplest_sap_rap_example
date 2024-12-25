@@ -97,5 +97,4 @@ define view entity Z##_I_MARKET_####
       _Countries,
       _Orders
 }
-
 ```

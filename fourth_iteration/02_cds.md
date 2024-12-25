@@ -35,18 +35,18 @@ define root view entity Z##_C_CRITICALITY_LEVELS_####
 
 @Search.searchable: true
 
-define root view entity ZOK_C_PRODUCT_0001
+define root view entity Z##_C_PRODUCT_####
   provider contract transactional_query
-  as projection on ZOK_I_PRODUCT_0001
+  as projection on Z##_I_PRODUCT_####
 
 {
   key ProdUuid,
 
-      @Consumption.valueHelpDefinition: [ { entity: { name: 'ZOK_I_PRODUCT_VH_0001', element: 'Prodid' } } ]
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_PRODUCT_VH_####', element: 'Prodid' } } ]
       @Search.defaultSearchElement: true
       Prodid,
 
-      @Consumption.valueHelpDefinition: [ { entity: { name: 'ZOK_I_PG_VH_0001', element: 'Pgid' } } ]
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_PG_VH_####', element: 'Pgid' } } ]
       @ObjectModel.text.element: [ 'Pgname' ]
       @Search.defaultSearchElement: true
       Pgid,
@@ -59,7 +59,7 @@ define root view entity ZOK_C_PRODUCT_0001
 
       PriceCriticality,
 
-      @Consumption.valueHelpDefinition: [ { entity: { name: 'ZOK_I_PHASE_VH_0001', element: 'Phaseid' } } ]
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_PHASE_VH_####', element: 'Phaseid' } } ]
       @ObjectModel.text.element: [ 'PhaseName' ]
       @Search.defaultSearchElement: true
       Phaseid,
@@ -75,7 +75,7 @@ define root view entity ZOK_C_PRODUCT_0001
       @Semantics.quantity.unitOfMeasure: 'SizeUom'
       Width,
 
-      @Consumption.valueHelpDefinition: [ { entity: { name: 'ZOK_I_UOM_VH_0001', element: 'Msehi' } } ]
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_UOM_VH_####', element: 'Msehi' } } ]
       @EndUserText.label: 'Units'
       @ObjectModel.text.element: [ 'DimName' ]
       @Search.defaultSearchElement: true
@@ -84,7 +84,7 @@ define root view entity ZOK_C_PRODUCT_0001
 
       _UOM.Isocode                as DimName,
 
-      @Consumption.valueHelpDefinition: [ { entity: { name: 'ZOK_I_CURRENCY_VH_0001', element: 'Currency' } } ]
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_CURRENCY_VH_####', element: 'Currency' } } ]
       @Search.defaultSearchElement: true
       PriceCurrency,
 
@@ -94,7 +94,7 @@ define root view entity ZOK_C_PRODUCT_0001
       ChangedTime,
       LocalChangedTime,
       /* Associations */
-      _Market : redirected to composition child ZOK_C_MARKET_0001,
+      _Market : redirected to composition child Z##_C_MARKET_####,
 
       _PG,
       _PHASE,

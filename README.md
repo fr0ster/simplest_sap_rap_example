@@ -28,11 +28,16 @@ In this iteration, we refine and enhance the data model:
 ---
 ## [Iteration 4: Advanced Data Model Refinements](./fourth_iteration/notes.md)
 In this iteration, we refine and enhance the data model:
-- Add **associations in the projection layer** for context-specific navigation.
+- Add **associations in the data model layer** for context-specific navigation.
 - Introduce **calculated fields** for derived values where needed.
 - Adjust existing associations for value help or dependent relationships.
 ---
-## [Iteration 5: UI Enhancements and Annotations](./fifth_iteration/notes.md)
+## [Iteration 5: Advanced Data Model Refinements](./fifth_iteration/notes.md)
+In this iteration, we refine and enhance the data model:
+- Add **associations in the busines model layer** for context-specific navigation.
+- Introduce **charts** for market analitics.
+---
+## [Iteration 6: UI Enhancements and Annotations](./sixth_iteration/notes.md)
 In this iteration, we improve the UI and add advanced annotations:
 - Add **search functionality** to the **List Report**.
 - Configure the **header section** in the **Object Page** to display key information.
@@ -41,13 +46,13 @@ In this iteration, we improve the UI and add advanced annotations:
 - Define **field-level annotations** for labels, tooltips, and formatting.
 - Configure dynamic visibility and field control for enhanced user experience.
 ---
-## [Iteration 6: Draft Handling](./sixth_iteration/notes.md)
+## [Iteration 7: Draft Handling](./seventh_iteration/notes.md)
 In this iteration, we enable **Draft Handling** to allow intermediate saving of changes:
 - Configure the **Draft Behavior** in the Behavior Definition (BDEF).
 - Implement logic to handle draft-specific actions, such as saving and discarding changes.
 - Test the draft workflow in both the UI and backend.
 ---
-## [Iteration 7: Side-by-Side Extension with New OData V4 Service](./seventh_iteration/notes.md)
+## [Iteration 8: Side-by-Side Extension with New OData V4 Service](./seventh_iteration/notes.md)
 In this iteration, we implement a **side-by-side extension** by creating a new **OData V4 service** based on an extended projection of the Business Object (BO):
 - **OData V4 Service Binding**:
  - Create a new service for the extended projection of the BO.

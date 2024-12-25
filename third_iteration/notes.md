@@ -21,11 +21,11 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
   - **Any** child entity should have assotiation to **root entity**. For example, **Orders** is **third** level and **have** assotiation to **Market**, but **Market** isn't **root** and for correct work of **Behavior Implementation** you should add assotiation to **Product**, **root** of owr **Busines Object**.
   - Check, that all used assotiation define in BDEF for every entity. Root entity have assotiation to second level only, but other entity have assotiation to every used for navigatio level.
   ```ABAP
-  managed implementation in class zbp_ok_i_product_0001 unique;
+  managed implementation in class zbp_ok_i_product_#### unique;
   strict ( 2 );
 
-  define behavior for ZOK_I_PRODUCT_0001 alias Product
-  persistent table zok_d_prod_0001
+  define behavior for Z##_I_PRODUCT_#### alias Product
+  persistent table zok_d_prod_####
   lock master
   authorization master ( instance )
   etag master LocalChangedTime
@@ -35,8 +35,8 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
     " Part of code was skipped
   }
 
-  define behavior for ZOK_I_MARKET_0001 alias Market
-  persistent table zok_d_mrkt_0001
+  define behavior for Z##_I_MARKET_#### alias Market
+  persistent table zok_d_mrkt_####
   lock dependent by _Product
   authorization dependent by _Product
   etag master LocalChangedTime
@@ -47,8 +47,8 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
     " Part of code was skipped
   }
 
-  define behavior for ZOK_I_ORDER_0001 alias Order
-  persistent table zok_d_order_0001
+  define behavior for Z##_I_ORDER_#### alias Order
+  persistent table zok_d_order_####
   lock dependent by _Product
   authorization dependent by _Product
   etag master LocalChangedTime
@@ -70,12 +70,12 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
 4. **[Integrate Orders into the Market Entity](./02_cds.md)**:
   - Add an **composition** to the **Order** entity in `Z##_I_MARKET_####` linking it to the criticality levels.
   ```ABAP
-  define view entity ZOK_I_MARKET_0001
-    as select from zok_d_mrkt_0001
+  define view entity Z##_I_MARKET_####
+    as select from zok_d_mrkt_####
 
     " Part of code was skipped
 
-    composition [0..*] of ZOK_I_ORDER_0001 as _Orders
+    composition [0..*] of Z##_I_ORDER_#### as _Orders
 
   {
     " Part of code was skipped
@@ -114,7 +114,7 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
   ```ABAP
   @Metadata.layer: #CORE
 
-  annotate entity ZOK_C_MARKET_0001
+  annotate entity Z##_C_MARKET_####
       with
 
   {

@@ -7,7 +7,7 @@ managed;
 strict ( 2 );
 with draft;
 
-define behavior for ZOK_I_PRODUCT alias Product
+define behavior for Z##_I_PRODUCT alias Product
 implementation in class zok_cl_bp_i_product unique
 persistent table zok_d_product
 draft table zok_d_product_dt
@@ -90,7 +90,7 @@ authorization master ( instance )
     }
 }
 
-define behavior for ZOK_I_MARKET alias Market
+define behavior for Z##_I_MARKET alias Market
 implementation in class zok_cl_bp_i_market unique
 persistent table zok_d_prod_mrkt
 draft table zok_d_market_dt
@@ -137,7 +137,7 @@ etag master LocalChangedTime
     }
 }
 
-define behavior for ZOK_I_MRKT_ORDER alias Order
+define behavior for Z##_I_MRKT_ORDER alias Order
 implementation in class zok_cl_bp_i_order unique
 persistent table zok_d_mrkt_order
 draft table zok_d_order_dt

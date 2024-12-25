@@ -10,8 +10,8 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
 ---
 ### Pay Attention:
 1. **Object Naming**:
-  - Replace the `##` prefix in object names with any two meaningful characters of your choice (e.g., `OK`).
-  - Replace the `####` suffix in object names with four meaningful characters specific to your project (e.g., `0001`).
+  - Replace the `##` prefix in object names with any two meaningful characters of your choice (e.g., `##`).
+  - Replace the `####` suffix in object names with four meaningful characters specific to your project (e.g., `####`).
 2. **Package Consistency**:
   - All objects must be created within your own development package to ensure consistency and organization.
 3. **CDS Activation**:

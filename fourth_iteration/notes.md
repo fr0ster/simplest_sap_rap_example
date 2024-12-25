@@ -81,9 +81,9 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
   - Add the calculated field `PriceCriticality` to the product projection.
   - Update UI annotations to link the criticality logic to the `Price` field.
   ```ABAP
-define root view entity ZOK_C_PRODUCT_0001
+define root view entity Z##_C_PRODUCT_####
   provider contract transactional_query
-  as projection on ZOK_I_PRODUCT_0001
+  as projection on Z##_I_PRODUCT_####
 
 {
   " Part of code was skipped

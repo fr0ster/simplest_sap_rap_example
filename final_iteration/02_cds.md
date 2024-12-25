@@ -28,18 +28,20 @@ define root view entity Z##_C_PRODUCT_####
       @Search.defaultSearchElement: true
       Pgid,
 
-      _PG.Pgname        as Pgname,
+      _PG.Pgname                  as Pgname,
 
       @Search.defaultSearchElement: true
       @Semantics.amount.currencyCode: 'PriceCurrency'
       Price,
+
+      PriceCriticality,
 
       @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_PHASE_VH_####', element: 'Phaseid' } } ]
       @ObjectModel.text.element: [ 'PhaseName' ]
       @Search.defaultSearchElement: true
       Phaseid,
 
-      _PHASE.Phase      as PhaseName,
+      _PHASE.Phase                as PhaseName,
 
       @Semantics.quantity.unitOfMeasure: 'SizeUom'
       Height,
@@ -57,7 +59,7 @@ define root view entity Z##_C_PRODUCT_####
       @Semantics.unitOfMeasure: true
       SizeUom,
 
-      _UOM.Isocode      as DimName,
+      _UOM.Isocode                as DimName,
 
       @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_CURRENCY_VH_####', element: 'Currency' } } ]
       @Search.defaultSearchElement: true
@@ -70,10 +72,13 @@ define root view entity Z##_C_PRODUCT_####
       LocalChangedTime,
       /* Associations */
       _Market : redirected to composition child Z##_C_MARKET_####,
+
       _PG,
       _PHASE,
-      _UOM
+      _UOM,
+      _PriceCriticality
 }
+
 ```
 ## CDS Projection for view entity Market
 
@@ -83,7 +88,6 @@ define root view entity Z##_C_PRODUCT_####
 @EndUserText.label: 'Market data'
 
 @Metadata.allowExtensions: true
-@Metadata.ignorePropagatedAnnotations: true
 
 @Search.searchable: true
 
@@ -111,7 +115,72 @@ define view entity Z##_C_MARKET_####
       LocalChangedTime,
       /* Associations */
       _Product : redirected to parent Z##_C_PRODUCT_####,
+      _Orders : redirected to composition child Z##_C_ORDER_####,
 
       _Countries
+}
+```
+
+## CDS Projection for view entity Orders
+
+```ABAP
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+
+@EndUserText.label: 'Orders data'
+
+@Metadata.ignorePropagatedAnnotations: true
+
+@Metadata.allowExtensions: true
+define view entity Z##_C_ORDER_####
+  as projection on Z##_I_ORDER_####
+
+{
+  key ProdUuid,
+  key MrktUuid,
+  key OrderUuid,
+
+      Quantity,
+      DeliveryDate,
+
+      @Semantics.amount.currencyCode: 'Amountcurr'
+      Netamount,
+
+      @Semantics.amount.currencyCode: 'Amountcurr'
+      Grossamount,
+
+      Amountcurr,
+      CreatedBy,
+      CreationTime,
+      ChangedBy,
+      ChangedTime,
+      LocalChangedTime,
+
+      /* Associations */
+      _Market : redirected to parent Z##_C_MARKET_####,
+
+      _Product : redirected to Z##_C_PRODUCT_####
+}
+```
+
+## CDS Projection for view entity Criticality Levels
+
+```ABAP
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+
+@EndUserText.label: 'Criticality levels'
+
+@Metadata.allowExtensions: true
+
+define root view entity Z##_C_CRITICALITY_LEVELS_####
+  provider contract transactional_query
+  as projection on Z##_I_CRITICALITY_LEVELS_####
+
+{
+  key Id,
+
+      Treashhold1,
+      Treashhold2,
+      Treashhold3,
+      Treashhold4
 }
 ```
