@@ -111,7 +111,7 @@ define root view entity Z##_C_PRODUCT_####
 
 9. **[Define Projection of the Behavior Definition (BDEF)](./06_behavior_implementation.md#z##_i_criticality_levels_)**:
   - Set alias.
-  - Refer to **[06_behavior_implementation.md](./06_behavior_definition.md#z##_i_criticality_levels_)** for details.
+  - Refer to **[06_behavior_implementation.md](./06_behavior_implementation.md#z##_i_criticality_levels_)** for details.
   - Generate class implementation over **Quick Fix** in **ADT**.
 
 10. **Test the Behavior**:
