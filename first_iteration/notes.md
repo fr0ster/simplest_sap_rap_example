@@ -84,7 +84,8 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
 
 4. **[Add Metadata Extensions](./03_metadata_extension.md)**:
    - Use **Metadata Extensions** to configure annotations for the List Report and Object Page UI.
-   - Refer to [03_metadata_extension.md](./03_metadata_extension.md) for details.
+      - **[Z##_C_PRODUCT_####](./03_metadata_extension.md#Z##_C_PRODUCT_)**
+      - **[Z##_C_MARKET_####](./03_metadata_extension.md#Z##_C_MARKET_)**
 
 5. **[Create Service Definition](./04_service.md)**:
    - Define the service interface specifying the entities and operations.
