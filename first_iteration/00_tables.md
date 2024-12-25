@@ -3,7 +3,7 @@
 
 ## Table for Root View Entity Product
 
-<a name="z##_d_prod_####"></a>
+<a name="z##_d_prod_"></a>
 ### Z##_D_PROD_####
 
 ```ABAP
@@ -37,7 +37,7 @@ define table z##_d_prod_#### {
 
 ## Table for View Entity Markets Data
 
-<a name="z##_d_mrkt_####"></a>
+<a name="z##_d_mrkt_"></a>
 ### Z##_D_MRKT_####
 
 ```ABAP
@@ -65,7 +65,7 @@ define table z##_d_mrkt_#### {
 
 ## Table for View Entity Countries Dictionary
 
-<a name="z##_d_ctry_####"></a>
+<a name="z##_d_ctry_"></a>
 ### Z##_D_CTRY_####
 
 ```ABAP
@@ -87,7 +87,7 @@ define table z##_d_ctry_#### {
 
 ## Table for View Entity Product Group Dictionary
 
-<a name="zok_d_pg_####"></a>
+<a name="zok_d_pg_"></a>
 ### ZOK_D_PG_####
 
 ```ABAP
@@ -108,7 +108,7 @@ define table zok_d_pg_#### {
 
 ## Table for View Entity Phases Dictionary
 
-<a name="z##_d_phase_####"></a>
+<a name="z##_d_phase_"></a>
 ### Z##_D_PHASE_####
 
 ```ABAP
@@ -128,7 +128,7 @@ define table z##_d_phase_#### {
 
 ## Table for View Entity UOM Dictionary
 
-<a name="z##_d_uom_####"></a>
+<a name="z##_d_uom_"></a>
 ### Z##_D_UOM_####
 
 ```ABAP
