@@ -6,6 +6,7 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
 - **Business model (CDS Projection)**: To expose specific data for the application.
 - **Service Definition**: To define the service interface.
 - **Service Binding (OData V2)**: To make the service available for consumption.
+
 ---
 ### Pay Attention:
 1. **Object Naming**:

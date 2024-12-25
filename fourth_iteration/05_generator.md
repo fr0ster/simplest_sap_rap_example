@@ -20,6 +20,7 @@ CLASS z##_cl_generate_data_#### IMPLEMENTATION.
     DATA lt_phases   TYPE TABLE OF z##_d_phase_####.
     DATA lt_countries  TYPE TABLE OF z##_d_ctry_####.
     DATA lt_uom      TYPE TABLE OF z##_d_uom_####.
+    DATA lt_critically TYPE TABLE OF z##_d_crtly_####.
 
     " PRODUCT GROUPS
     " fill internal table (itab)
@@ -130,11 +131,6 @@ CLASS z##_cl_generate_data_#### IMPLEMENTATION.
     DELETE FROM z##_d_uom_####.
     " insert the new table entries
     INSERT z##_d_uom_#### FROM TABLE @lt_uom.
-
-    " check the result
-    SELECT * FROM z##_d_uom_#### INTO TABLE @lt_uom.
-    out->write( sy-dbcnt ).
-    out->write( 'uom data inserted successfully!' ).
 
     " check the result
     SELECT * FROM z##_d_uom_#### INTO TABLE @lt_uom.

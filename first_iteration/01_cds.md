@@ -40,10 +40,20 @@ define root view entity Z##_I_PRODUCT_####
       width              as Width,
 
       size_uom           as SizeUom,
-      created_by         as CreatedBy,
-      creation_time      as CreationTime,
-      changed_by         as ChangedBy,
-      changed_time       as ChangedTime,
+
+      @Semantics.user.createdBy: true
+      created_by      as CreatedBy,
+
+      @Semantics.systemDateTime.createdAt: true
+      creation_time   as CreationTime,
+
+      @Semantics.user.lastChangedBy: true
+      changed_by      as ChangedBy,
+
+      @Semantics.systemDateTime.lastChangedAt: true
+      changed_time     as ChangedTime,
+
+      @Semantics.systemDateTime.localInstanceLastChangedAt: true
       local_changed_time as LocalChangedTime,
 
       /*Associations*/
@@ -76,10 +86,20 @@ define view entity Z##_I_MARKET_####
       mrktid             as Mrktid,
       startdate          as Startdate,
       enddate            as Enddate,
-      created_by         as CreatedBy,
-      creation_time      as CreationTime,
-      changed_by         as ChangedBy,
-      changed_time       as ChangedTime,
+
+      @Semantics.user.createdBy: true
+      created_by      as CreatedBy,
+
+      @Semantics.systemDateTime.createdAt: true
+      creation_time   as CreationTime,
+
+      @Semantics.user.lastChangedBy: true
+      changed_by      as ChangedBy,
+
+      @Semantics.systemDateTime.lastChangedAt: true
+      changed_time     as ChangedTime,
+
+      @Semantics.systemDateTime.localInstanceLastChangedAt: true
       local_changed_time as LocalChangedTime,
 
       _Product,

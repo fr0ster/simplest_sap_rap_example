@@ -18,6 +18,8 @@ define root view entity Z##_I_PRODUCT_####
   association [1..1] to Z##_I_PHASE_VH_####               as _PHASE on $projection.Phaseid = _PHASE.Phaseid
   association [0..1] to Z##_I_UOM_VH_####                 as _UOM on $projection.SizeUom = _UOM.Msehi
 
+  association to Z##_I_CRITICALITY_LEVELS_#### as _PriceCriticality on _PriceCriticality.Id = 'PriceCritically'
+
 {
   key prod_uuid          as ProdUuid,
 
@@ -27,6 +29,14 @@ define root view entity Z##_I_PRODUCT_####
 
       @Semantics.amount.currencyCode: 'PriceCurrency'
       price              as Price,
+
+      case
+        when cast(price as abap.dec(15,2)) > _PriceCriticality.Treashhold1 then 1
+        when cast(price as abap.dec(15,2)) > _PriceCriticality.Treashhold2 then 2
+        when cast(price as abap.dec(15,2)) > _PriceCriticality.Treashhold3 then 3
+        when cast(price as abap.dec(15,2)) > _PriceCriticality.Treashhold4 then 4
+        else 0
+      end                as PriceCriticality,
 
       price_currency     as PriceCurrency,
 
@@ -40,17 +50,28 @@ define root view entity Z##_I_PRODUCT_####
       width              as Width,
 
       size_uom           as SizeUom,
-      created_by         as CreatedBy,
-      creation_time      as CreationTime,
-      changed_by         as ChangedBy,
-      changed_time       as ChangedTime,
+
+      @Semantics.user.createdBy: true
+      created_by      as CreatedBy,
+
+      @Semantics.systemDateTime.createdAt: true
+      creation_time   as CreationTime,
+
+      @Semantics.user.lastChangedBy: true
+      changed_by      as ChangedBy,
+
+      @Semantics.systemDateTime.lastChangedAt: true
+      changed_time     as ChangedTime,
+
+      @Semantics.systemDateTime.localInstanceLastChangedAt: true
       local_changed_time as LocalChangedTime,
 
       /*Associations*/
       _Market,
       _PG,
       _PHASE,
-      _UOM
+      _UOM,
+      _PriceCriticality
 }
 ```
 
@@ -76,10 +97,20 @@ define view entity Z##_I_MARKET_####
       mrktid             as Mrktid,
       startdate          as Startdate,
       enddate            as Enddate,
-      created_by         as CreatedBy,
-      creation_time      as CreationTime,
-      changed_by         as ChangedBy,
-      changed_time       as ChangedTime,
+
+      @Semantics.user.createdBy: true
+      created_by      as CreatedBy,
+
+      @Semantics.systemDateTime.createdAt: true
+      creation_time   as CreationTime,
+
+      @Semantics.user.lastChangedBy: true
+      changed_by      as ChangedBy,
+
+      @Semantics.systemDateTime.lastChangedAt: true
+      changed_time     as ChangedTime,
+
+      @Semantics.systemDateTime.localInstanceLastChangedAt: true
       local_changed_time as LocalChangedTime,
 
       _Product,
