@@ -1,6 +1,8 @@
 # Behaviour Implementation definition
 
 ## Behaviour Implementation for CDS Criticality Levels Interface
+<a name="z##_i_criticality_levels_"></a>
+Z##_I_CRITICALITY_LEVELS_####
 
 ```ABAP
 managed implementation in class zbp_##_i_crtlty_levels_#### unique;

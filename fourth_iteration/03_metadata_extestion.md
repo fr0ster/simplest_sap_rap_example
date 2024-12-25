@@ -1,6 +1,8 @@
 # Metadata Extension definition
 
 ## Metadata Extension for root view entity Product
+<a name="z##_c_product_"></a>
+Z##_C_PRODUCT_####
 
 ```ABAP
 @Metadata.layer: #CORE
@@ -74,6 +76,8 @@ annotate entity Z##_C_PRODUCT_####
 }
 ```
 ## Metadata Extension for view entity Critically Levels
+<a name="z##_c_criticality_levels_"></a>
+Z##_C_CRITICALITY_LEVELS_####
 
 ```ABAP
 @Metadata.layer: #CORE

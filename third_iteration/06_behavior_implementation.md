@@ -1,6 +1,8 @@
 # Behaviour Implementation definition
 
 ## Behaviour Implementation for CDS Product Interface
+<a name="z##_i_product_"></a>
+Z##_I_PRODUCT
 
 ```ABAP
 managed;

@@ -2,6 +2,10 @@
 
 ## Metadata Extension for root view entity Product
 
+<a name="z##_c_product_"></a>
+
+### Z##_C_PRODUCT_####
+
 ```ABAP
 @Metadata.layer: #CORE
 
@@ -73,7 +77,12 @@ annotate entity Z##_C_PRODUCT_####
   LocalChangedTime;
 }
 ```
+
 ## Metadata Extension for view entity Market
+
+<a name="z##_c_market_"></a>
+
+### Z##_C_MARKET_####
 
 ```ABAP
 @Metadata.layer: #CORE

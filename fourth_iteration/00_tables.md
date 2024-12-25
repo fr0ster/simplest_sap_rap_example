@@ -1,6 +1,8 @@
 # Table definition
 
 ## Table for view entity Critically levels
+<a name="z##_d_crtly_"></a>
+z##_d_crtly_####
 
 ```ABAP
 @EndUserText.label : 'Criticality levels'

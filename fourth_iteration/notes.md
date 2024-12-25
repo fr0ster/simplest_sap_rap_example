@@ -4,26 +4,26 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
 
 ---
 ### Key Objectives:
-1. Create a new **Criticality Levels Table** ([`Z##_D_CRTLY_####`](./00_tables.md)) to store criticality levels.
-2. Develop a **CDS View Entity** ([`Z##_I_CRITICALITY_LEVELS_####`](./01_cds.md)) for accessing the criticality levels.
-2. Develop a **CDS Projection** ([`Z##_C_CRITICALITY_LEVELS_####`](./02_cds.md)) for accessing the criticality levels.
+1. Create a new **[Criticality Levels Table](./00_tables.md)** to store criticality levels.
+2. Develop a **[CDS View Entity](./01_cds.md#z##_i_criticality_levels_)** for accessing the criticality levels.
+2. Develop a **[CDS Projection](./02_cds.md#z##_c_criticality_levels_)** for accessing the criticality levels.
 3. Integrate the criticality data into the product entity:
-  - Add an **association** in [`Z##_I_PRODUCT_####`](./02_cds.md) to the [`Z##_I_CRITICALITY_LEVELS_####`](./01_cds.md) view.
+  - Add an **association** in **[Z##_I_PRODUCT_####](./02_cds.md#z##_c_product_)** to the **[Z##_I_CRITICALITY_LEVELS_####](./01_cds.md#z##_c_criticality_levels_)** view.
   - Calculate a new field (`PriceCriticality`) in the product entity based on the criticality levels.
 4. Update the **Product Projection**:
-  - Expose the new `PriceCriticality` field in the projection ([`Z##_I_PRODUCT_PROJ_####`](./03_metadata_extestion.md)).
+  - Expose the new **[PriceCriticality](./03_metadata_extestion.md#z##_c_product_)** field in the projection.
   - Use the `PriceCriticality` field in **UI annotations** (`lineItem` and `identification`) to enhance the display of the `Price` field.
 5. Enhance Metadata Extensions:
-  - Add a **Metadata Extension** for the [`Z##_C_CRITICALITY_LEVELS_####`](./03_metadata_extestion.md) entity.
-  - Add a **new tab** in the product projection ([`Z##_I_PRODUCT_PROJ_####`](./03_metadata_extestion.md)) for managing criticality levels.
+  - Add a **Metadata Extension** for the **[Z##_C_CRITICALITY_LEVELS_####](./03_metadata_extestion.md#z##_c_criticality_levels_)** entity.
+  - Add a **new tab** in the product projection (**[Z##_I_PRODUCT_PROJ_####](./03_metadata_extestion.md#z##_c_product_)**) for managing criticality levels.
 
 ---
 ### Steps:
-1. **[Create the Criticality Levels Table](./00_tables.md)**:
-  - Define the table `Z##_CRTLY_####` with the necessary fields.
-  - Refer to [00_tables.md](./00_tables.md) for details.
-2. **[Update the class for data generation](./05_generator.md)**:
-  - Add cod into `Z##_CL_GENERATE_DATA_####` for recreating settings.
+1. **[Create the Criticality Levels Table](./00_tables.md#z##_d_crtly_)**:
+  - Define the table **[Z##_CRTLY_####](./00_tables.md#z##_d_crtly_)** with the necessary fields.
+
+2. **[Update the class for data generation](./05_generator.md#z##_cl_generate_data_)**:
+  - Add cod into **[Z##_CL_GENERATE_DATA_####](./05_generator.md#z##_cl_generate_data_)** for recreating settings.
   ```ABAP
     DATA lt_critically TYPE TABLE OF z##_d_crtly_####.
 
@@ -41,13 +41,14 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
     out->write( sy-dbcnt ).
     out->write( 'critically data inserted successfully!' ).
   ```
-  - Refer to [05_generator.md](./05_generator.md) for details.
-3. **[Develop the Criticality Levels View Entity](./01_cds.md)**:
-  - Create the view entity `Z##_I_CRITICALITY_LEVELS_####` to expose the criticality levels.
-  - Refer to [01_cds.md](./01_cds.md) for details.
+
+3. **[Develop the Criticality Levels View Entity](./01_cds.md#z##_i_criticality_levels_)**:
+  - Create the view entity **[Z##_I_CRITICALITY_LEVELS_####](./01_cds.md#z##_i_criticality_levels_)** to expose the criticality levels.
+
 4. **[Integrate Criticality into the Product Entity](./02_cds.md)**:
-  - Add an association to the product entity `Z##_I_PRODUCT_####` linking it to the criticality levels.
+  - Add an association to the product entity **[Z##_I_PRODUCT_####](./02_cds.md#z##_c_product_)** linking it to the criticality levels.
   - Add a calculated field `PriceCriticality` to evaluate product price against criticality thresholds.
+
   ```ABAP
   define root view entity Z##_I_PRODUCT_####
   as select from z##_d_prod_####
@@ -76,8 +77,8 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
       _PriceCriticality
 }
   ```
-  - Refer to [01_cds.md](./01_cds.md) for details.
-5. **[Update the Product Projection](./02_cds.md)**:
+
+5. **[Update the Product Projection](./02_cds.md#z##_c_product_)**:
   - Add the calculated field `PriceCriticality` to the product projection.
   - Update UI annotations to link the criticality logic to the `Price` field.
   ```ABAP
@@ -95,25 +96,28 @@ define root view entity Z##_C_PRODUCT_####
       _PriceCriticality
 }
   ```
-  - Refer to [02_cds.md](./02_cds.md) for details.
-6. **[Develop the Criticality Levels View Entity Projection](./02_cds.md)**:
-  - Create the view entity `Z##_C_CRITICALITY_LEVELS_####` to expose the criticality levels.
-  - Refer to [02_cds.md](./02_cds.md) for details.
-7. **[Add Metadata Extension for Criticality Levels](./03_metadata_extestion.md)**:
-  - Create a Metadata Extension for `Z##_C_CRITICALITY_LEVELS_####` to configure its UI.
+
+6. **[Develop the Criticality Levels View Entity Projection](./02_cds.md##z##_i_criticality_levels_)**:
+  - Create the view entity **[Z##_C_CRITICALITY_LEVELS_####](./02_cds.md#z##_i_criticality_levels_)** to expose the criticality levels.
+
+7. **[Add Metadata Extension for Criticality Levels](./03_metadata_extestion.md#z##_i_criticality_levels_)**:
+  - Create a Metadata Extension for [Z##_C_CRITICALITY_LEVELS_####](./03_metadata_extestion.md#z##_i_criticality_levels_) to configure its UI.
   - Refer to [03_metadata_extestion.md](./03_metadata_extestion.md) for details.
-8. **[Define the Behavior Definition (BDEF)](./06_behavior_implementation.md)**:
+
+8. **[Define the Behavior Definition (BDEF)](./06_behavior_implementation.md#z##_i_criticality_levels_)**:
   - Define the behavior of the business object as **Managed**.
   - Enable standard transactional operations.
-  - Refer to [06_behavior_implementation.md](./06_behavior_definition.md) for details.
   - Generate class implementation over **Quick Fix** in **ADT**.
-8. **[Define Projection of the Behavior Definition (BDEF)](./06_behavior_implementation.md)**:
+
+9. **[Define Projection of the Behavior Definition (BDEF)](./06_behavior_implementation.md#z##_i_criticality_levels_)**:
   - Set alias.
-  - Refer to [06_behavior_implementation.md](./06_behavior_definition.md) for details.
+  - Refer to **[06_behavior_implementation.md](./06_behavior_definition.md#z##_i_criticality_levels_)** for details.
   - Generate class implementation over **Quick Fix** in **ADT**.
-9. **Test the Behavior**:
+
+10. **Test the Behavior**:
   - Test the implemented behavior in the Fiori application or using the ABAP console.
   - Verify that the operations (Create, Update, Delete) and validations/determinations function as expected.
+
 ---
 ### Final Steps:
 - Activate all new and updated CDS objects.

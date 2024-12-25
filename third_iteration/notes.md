@@ -4,16 +4,17 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
 
 ---
 ### Key Objectives:
-1. Create a new **Orders Table** ([`Z##_D_ORDER_####`](./00_tables.md)) to store orders.
-2. Develop a **CDS View Entity** ([`Z##_I_ORDER_####`](./01_cds.md)) for accessing the orders.
-2. Develop a **CDS Projection** ([`Z##_C_ORDER_####`](./01_cds.md)) for accessing the orders.
+1. Create a new **Orders Table** (**[Z##_D_ORDER_####](./00_tables.md#z##_d_order_)**) to store orders.
+2. Develop a **CDS View Entity** ([Z##_I_ORDER_####](./01_cds.md#z##_i_order_)) for accessing the orders.
+2. Develop a **CDS Projection** ([Z##_C_ORDER_####](./02_cds.md#z##_c_order_)) for accessing the orders.
 3. Integrate the order data into the market entity:
-  - Add an **composition** in [`Z##_I_MARKET_####`](./02_cds.md) to the [`Z##_I_ORDER_####`](./01_cds.md) view.
-  - Add an **assotiation to parent** in [`Z##_I_ORDER_####`](./02_cds.md) to the [`Z##_I_MARKET_####`](./01_cds.md) view.
-  - Add a **redirect to child** in the product projection ([`Z##_I_MARKET_####`](./02_cds.md)) to the [`Z##_I_ORDER_####`](./02_cds.md) view.
-  - Add a **redirect to parent** in the product projection ([`Z##_I_ORDER_####`](./02_cds.md)) to the [`Z##_I_MARKET_####`](./02_cds.md) view.
+  - Add an **composition** in [Z##_I_MARKET_####](./02_cds.md#z##_i_market_) to the [Z##_I_ORDER_####](./01_cds.md#z##_i_order_) view.
+  - Add an **assotiation to parent** in [Z##_I_ORDER_####](./02_cds.md#z##_i_order_) to the [Z##_I_MARKET_####](./01_cds.md#z##_i_market_) view.
+  - Add a **redirect to child** in the product projection ([Z##_I_MARKET_####](./02_cds.md#z##_i_market_)) to the [Z##_I_ORDER_####](./02_cds.md#z##_i_order_) view.
+  - Add a **redirect to parent** in the product projection ([Z##_C_ORDER_####](./02_cds.md#z##_c_order_)) to the [Z##_C_MARKET_####](./02_cds.md#z##_c_market_) view.
 5. Enhance Metadata Extensions:
-  - Create a **Metadata Extension** for the [`Z##_I_ORDER_####`](./04_metadata_extension.md) entity.
+  - Create a **Metadata Extension** for the [Z##_C_ORDER_####](./03_metadata_extension.md#z##_c_order_) entity.
+  - Add tab into a **Metadata Extension** for the [Z##_C_MARKET_####](./03_metadata_extension.md#z##_c_market_) entity with association to [Z##_C_ORDER_####](./03_metadata_extension.md#z##_c_order_).
 
 ---
 ### Pay Attention:
@@ -87,12 +88,10 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
   }
   ```
   - Activate both **Entity** **together**
-  - Refer to [01_cds.md](./01_cds.md) for details.
-5. **[Develop the Orders View Entity Projection](./02_cds.md)**:
-  - Create the view entity `Z##_C_ORDERS_####` to expose the criticality levels.
-  - Refer to [02_cds.md](./02_cds.md) for details.
-6. **[Update the Product Projection](./02_cds.md)**:
-  - Add an **redirect to child** to the **Order** entity in `Z##_C_MARKET_####` linking it to the orders.
+5. **[Develop the Orders View Entity Projection](./02_cds.md#z##_i_order_)**:
+  - Create the view entity **[Z##_C_ORDERS_####](./02_cds.md#z##_i_order_)** to expose the criticality levels.
+6. **[Update the Product Projection](./02_cds.md#z##_c_market_)**:
+  - Add an **redirect to child** to the **Order** entity in **[Z##_C_MARKET_####](./02_cds.md#z##_c_market_)** linking it to the orders.
   ```ABAP
   define view entity Z##_C_MARKET_####
     as projection on Z##_I_MARKET_####
@@ -107,9 +106,8 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
   }
   ```
   - Activate both **projection** **together**
-  - Refer to [02_cds.md](./02_cds.md) for details.
-7. **[Add Metadata Extension for Orders](./03_metadata_extestion.md)**:
-  - Create a Metadata Extension for `Z##_C_ORDER_####` to configure its UI.
+7. **[Add Metadata Extension for Orders](./03_metadata_extension.md#z##_c_market_)**:
+  - Create a Metadata Extension for **[Z##_C_ORDER_####](./03_metadata_extension#z##_c_market_)** to configure its UI.
   - Add tab into Market Metadata Extension
   ```ABAP
   @Metadata.layer: #CORE
@@ -127,11 +125,9 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
     " Part of code was skipped
   }
   ```
-  - Refer to [03_metadata_extestion.md](./03_metadata_extestion.md) for details.
-8. **[Define the Behavior Definition (BDEF)](./06_behavior_implementation.md)**:
+8. **[Define the Behavior Definition (BDEF)](./06_behavior_implementation.md#z##_i_product_)**:
   - Define the behavior of the business object as **Managed**.
   - Add Bihavior Implementation Definition for Orders to use BDEF for Markets as template and correct it.
-  - Refer to [06_behavior_implementation.md](./06_behavior_definition.md) for details.
   - Generate class implementation over **Quick Fix** in **ADT**.
 9. **[Add expose Z##_UI_PRODUCT_O2_#### for Orders into Service Definition ](./04_service.md)**
 9. **Test the Behavior**:

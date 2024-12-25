@@ -1,6 +1,8 @@
 # CDS Interface definition
 
 ## CDS Interface for view entity Criticality Levels
+<a name="z##_i_criticality_levels_"></a>
+Z##_I_CRITICALITY_LEVELS_####
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
@@ -36,6 +38,8 @@ define root view entity Z##_I_CRITICALITY_LEVELS_####
 ```
 
 ## CDS Interface for root view entity Product
+<a name="z##_i_product_"></a>
+Z##_I_PRODUCT_####
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED

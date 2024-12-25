@@ -1,6 +1,8 @@
 # Определения CDS Projection
 
 ## CDS Projection for view entity Criticality Levels
+<a name="z##_c_criticality_levels_"></a>
+Z##_C_CRITICALITY_LEVELS_####
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
@@ -24,6 +26,8 @@ define root view entity Z##_C_CRITICALITY_LEVELS_####
 ```
 
 ## CDS Projection for root view entity Product
+<a name="z##_c_product_"></a>
+Z##_C_PRODUCT_####
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED

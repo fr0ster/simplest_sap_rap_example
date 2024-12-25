@@ -1,6 +1,8 @@
 # Определения CDS Projection
 
 ## CDS Projection for view entity Orders
+<a name="z##_i_order_"></a>
+Z##_I_ORDER_####
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
@@ -42,6 +44,8 @@ define view entity Z##_C_ORDER_####
 ```
 
 ## CDS Projection for view entity Market
+<a name="z##_c_market_"></a>
+Z##_C_MARKET_####
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED

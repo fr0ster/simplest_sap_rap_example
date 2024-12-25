@@ -1,6 +1,8 @@
 # Table definition
 
 ## Table for view entity Orders
+<a name="z##_d_order_"></a>
+z##_d_order_####
 
 ```ABAP
 @EndUserText.label : 'Orders data'
@@ -8,7 +10,7 @@
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table zok_d_order_#### {
+define table z##_d_order_#### {
 
   key client         : abap.clnt not null;
   key prod_uuid      : sysuuid_x16 not null;

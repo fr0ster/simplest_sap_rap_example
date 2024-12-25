@@ -1,6 +1,8 @@
 # Behaviour Implementation definition
 
 ## Behaviour Implementation for CDS Interface
+<a name="z##_i_product_"></a>
+Z##_I_PRODUCT_####
 
 ```ABAP
 managed implementation in class zbp_##_i_product_#### unique;
@@ -78,6 +80,8 @@ etag master LocalChangedTime
 }
 ```
 ## Behaviour Implementation for CDS Projection
+<a name="z##_c_product_"></a>
+Z##_C_PRODUCT_####
 
 ```ABAP
 projection;
