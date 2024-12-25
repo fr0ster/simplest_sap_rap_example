@@ -58,29 +58,29 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
 
 1. **[Create Tables](./00_tables.md)**:
    - Define the database tables required for the application.
-      - **[z##_d_prod_####](./01_cds.md#z##_d_prod_####)**
-      - **[z##_d_mrkt_####](./01_cds.md#z##_d_mrkt_####)**
-      - **[z##_d_ctry_####](./01_cds.md#z##_d_ctry_####)**
-      - **[z##_d_pg_####](./01_cds.md#z##_d_pg_####)**
-      - **[z##_d_phase_####](./01_cds.md#z##_d_phase_####)**
-      - **[z##_d_uom_####](./01_cds.md#z##_d_uom_####)**
+      - **[z##_d_prod_####](./00_tables.md#z##_d_prod_)**
+      - **[z##_d_mrkt_####](./00_tables.md#z##_d_mrkt_)**
+      - **[z##_d_ctry_####](./00_tables.md#z##_d_ctry_)**
+      - **[z##_d_pg_####](./00_tables.md#z##_d_pg_)**
+      - **[z##_d_phase_####](./00_tables.md#z##_d_phase_)**
+      - **[z##_d_uom_####](./00_tables.md#z##_d_uom_)**
 
 2. **[Define CDS Interfaces](./01_cds.md)**:
    - Create CDS views for the **data model**.
-      - **[Z##_I_PRODUCT_####](./01_cds.md#Z##_I_PRODUCT_####)**
-      - **[Z##_I_MARKET_####](./01_cds.md#Z##_I_MARKET_####)**
-      - **[Z##_I_COUNTRY_####](./01_cds.md#Z##_I_COUNTRY_####)**
-      - **[Z##_I_COUNTRY_VH_####](./01_cds.md#Z##_I_COUNTRY_VH_####)**
-      - **[Z##_I_PRODUCT_VH_####](./01_cds.md#Z##_I_PRODUCT_VH_####)**
-      - **[Z##_I_CURRENCY_VH_####](./01_cds.md#Z##_I_CURRENCY_VH_####)**
-      - **[Z##_I_PG_VH_####](./01_cds.md#Z##_I_PG_VH_####)**
-      - **[Z##_I_PHASE_VH_####](./01_cds.md#Z##_I_PHASE_VH_####)**
-      - **[Z##_I_UOM_VH_####](./01_cds.md#Z##_I_UOM_VH_####)**
+      - **[Z##_I_PRODUCT_####](./01_cds.md#Z##_I_PRODUCT_)**
+      - **[Z##_I_MARKET_####](./01_cds.md#Z##_I_MARKET_)**
+      - **[Z##_I_COUNTRY_####](./01_cds.md#Z##_I_COUNTRY_)**
+      - **[Z##_I_COUNTRY_VH_####](./01_cds.md#Z##_I_COUNTRY_VH_)**
+      - **[Z##_I_PRODUCT_VH_####](./01_cds.md#Z##_I_PRODUCT_VH_)**
+      - **[Z##_I_CURRENCY_VH_####](./01_cds.md#Z##_I_CURRENCY_VH_)**
+      - **[Z##_I_PG_VH_####](./01_cds.md#Z##_I_PG_VH_)**
+      - **[Z##_I_PHASE_VH_####](./01_cds.md#Z##_I_PHASE_VH_)**
+      - **[Z##_I_UOM_VH_####](./01_cds.md#Z##_I_UOM_VH_)**
 
 3. **[Create CDS Projections](./02_cds.md)**:
    - Develop the CDS views for the **business model**.
-   - Ensure only necessary fields are exposed.
-   - Refer to [02_cds.md](./02_cds.md) for details.
+      - **[Z##_C_PRODUCT_####](./02_cds.md#Z##_C_PRODUCT_)**
+      - **[Z##_C_MARKET_####](./02_cds.md#Z##_C_MARKET_)**
 
 4. **[Add Metadata Extensions](./03_metadata_extension.md)**:
    - Use **Metadata Extensions** to configure annotations for the List Report and Object Page UI.

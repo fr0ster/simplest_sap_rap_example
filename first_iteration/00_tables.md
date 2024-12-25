@@ -1,6 +1,8 @@
-# Table definition
+# Table Definition
 
-## Table for root view entity Product
+## Table for Root View Entity Product
+
+### Z##_D_PROD_####
 
 ```ABAP
 @EndUserText.label : 'Product data'
@@ -31,7 +33,9 @@ define table z##_d_prod_#### {
 }
 ```
 
-## Table for view entity Markets data
+## Table for View Entity Markets Data
+
+### Z##_D_MRKT_####
 
 ```ABAP
 @EndUserText.label : 'Markets data'
@@ -56,7 +60,9 @@ define table z##_d_mrkt_#### {
 }
 ```
 
-## Table for view entity Countries dictionary
+## Table for View Entity Countries Dictionary
+
+### Z##_D_CTRY_####
 
 ```ABAP
 @EndUserText.label : 'Countries dict'
@@ -75,7 +81,9 @@ define table z##_d_ctry_#### {
 }
 ```
 
-## Table for view entity Product Group dictionary
+## Table for View Entity Product Group Dictionary
+
+### ZOK_D_PG_####
 
 ```ABAP
 @EndUserText.label : 'Product group dict'
@@ -93,7 +101,9 @@ define table zok_d_pg_#### {
 }
 ```
 
-## Table for view entity Phases dictionary
+## Table for View Entity Phases Dictionary
+
+### Z##_D_PHASE_####
 
 ```ABAP
 @EndUserText.label : 'Phases dict'
@@ -110,7 +120,9 @@ define table z##_d_phase_#### {
 }
 ```
 
-## Table for view entity UOM dictionary
+## Table for View Entity UOM Dictionary
+
+### Z##_D_UOM_####
 
 ```ABAP
 @EndUserText.label : 'UOM dict'

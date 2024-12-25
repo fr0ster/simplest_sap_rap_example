@@ -1,6 +1,8 @@
-# Определения CDS Projection
+# CDS Projection Definitions
 
-## CDS Projection for root view entity Product
+## CDS Projection for Root View Entity Product
+
+### Z##_C_PRODUCT_####
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
@@ -75,7 +77,10 @@ define root view entity Z##_C_PRODUCT_####
       _UOM
 }
 ```
-## CDS Projection for view entity Market
+
+## CDS Projection for View Entity Market
+
+### Z##_C_MARKET_####
 
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
