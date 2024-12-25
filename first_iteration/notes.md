@@ -14,7 +14,34 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
   - Replace the `####` suffix in object names with four meaningful characters specific to your project (e.g., `####`).
 2. **Package Consistency**:
   - All objects must be created within your own development package to ensure consistency and organization.
-3. **CDS Activation**:
+3. **Annotation for service fields**
+  - For correct seting service field wich are neded for correct work of BO needed add to tables of entities filds with correct type and annotation
+    - **Table definition**
+    ```ABAP
+      created_by         : abp_creation_user;
+      creation_time      : abp_creation_tstmpl;
+      changed_by         : abp_lastchange_user;
+      changed_time       : abp_lastchange_tstmpl;
+      local_changed_time : abp_locinst_lastchange_tstmpl;
+    ```
+    - **CDS definition**
+    ```ABAP
+      @Semantics.user.createdBy: true
+      created_by      as CreatedBy,
+
+      @Semantics.systemDateTime.createdAt: true
+      creation_time   as CreationTime,
+
+      @Semantics.user.lastChangedBy: true
+      changed_by      as ChangedBy,
+
+      @Semantics.systemDateTime.lastChangedAt: true
+      changed_time     as ChangedTime,
+
+      @Semantics.systemDateTime.localInstanceLastChangedAt: true
+      local_changed_time as LocalChangedTime,
+    ```
+4. **CDS Activation**:
   - CDS views that are connected via **composition associations** (e.g., `association [1..*]`) must be activated **together**.
   - This applies to:
     - **Creating new CDS views** that include compositions.
