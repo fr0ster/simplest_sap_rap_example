@@ -4,7 +4,7 @@ This guide provides a systematic and iterative process for building a robust SAP
 
 ---
 
-## [Iteration 1: Read-Only Application](./first_iteration/notes.md)
+## [Iteration 1: Read-Only Application](./1st_iteration/notes.md)
 
 The first iteration establishes the foundation of the application:
 
@@ -16,7 +16,7 @@ The first iteration establishes the foundation of the application:
 
 ---
 
-## [Iteration 2: Behavior Implementation](./second_iteration/notes.md)
+## [Iteration 2: Behavior Implementation](./2ond_iteration/notes.md)
 
 This iteration introduces transaction capabilities to the business object:
 
@@ -29,7 +29,7 @@ This iteration introduces transaction capabilities to the business object:
 
 ---
 
-## [Iteration 3: Third-Level Composition](./third_iteration/notes.md)
+## [Iteration 3: Third-Level Composition](./3rd_iteration/notes.md)
 
 This iteration extends the data model by incorporating hierarchical relationships:
 
@@ -38,7 +38,7 @@ This iteration extends the data model by incorporating hierarchical relationship
 
 ---
 
-## [Iteration 4: Data Model Refinements](./fourth_iteration/notes.md)
+## [Iteration 4: Data Model Refinements](./4th_iteration/notes.md)
 
 Refinements to the data model are the focus of this iteration:
 
@@ -48,7 +48,7 @@ Refinements to the data model are the focus of this iteration:
 
 ---
 
-## [Iteration 5: Business Model Enhancements](./fifth_iteration/notes.md)
+## [Iteration 5: Business Model Enhancements](./5th_iteration/notes.md)
 
 This iteration focuses on improving the business model:
 
@@ -57,7 +57,7 @@ This iteration focuses on improving the business model:
 
 ---
 
-## [Iteration 6: UI Enhancements and Annotations](./sixth_iteration/notes.md)
+## [Iteration 6: UI Enhancements and Annotations](./6th_iteration/notes.md)
 
 User interface improvements are prioritized in this iteration:
 
@@ -70,7 +70,7 @@ User interface improvements are prioritized in this iteration:
 
 ---
 
-## [Iteration 7: Draft Handling](./seventh_iteration/notes.md)
+## [Iteration 7: Draft Handling](./7th_iteration/notes.md)
 
 Draft Handling is introduced to manage intermediate data states:
 
@@ -80,7 +80,7 @@ Draft Handling is introduced to manage intermediate data states:
 
 ---
 
-## [Iteration 8: Side-by-Side Extension with OData V4 Service](./eighth_iteration/notes.md)
+## [Iteration 8: Side-by-Side Extension with OData V4 Service](./8th_iteration/notes.md)
 
 The final iteration integrates a side-by-side extension using an **OData V4 service**:
 
@@ -94,7 +94,7 @@ The final iteration integrates a side-by-side extension using an **OData V4 serv
 
 ---
 
-## [Iteration 9: Debugging and Performance Optimization](./ninth_iteration/notes.md)
+## [Iteration 9: Debugging and Performance Optimization](./9th_iteration/notes.md)
 
 This iteration focuses on improving application performance and resolving issues:
 
