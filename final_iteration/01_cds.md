@@ -5,30 +5,27 @@
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Product data'
-
-@Metadata.ignorePropagatedAnnotations: true
+@EndUserText.label: 'Product Interface'
 
 define root view entity Z##_I_PRODUCT_####
   as select from z##_d_prod_####
 
-  composition [0..*] of Z##_I_MARKET_#### as _Market
+  composition [0..*] of Z##_I_MARKET_####           as _Market
+  association [1..1] to Z##_I_PG_VH_####            as _PG on $projection.Pgid = _PG.Pgid
+  association [1..1] to Z##_I_PHASE_VH_####         as _PHASE on $projection.Phaseid = _PHASE.Phaseid
+  association [0..1] to Z##_I_UOM_VH_####           as _UOM on $projection.SizeUom = _UOM.Msehi
 
-  association [1..1] to Z##_I_PG_VH_####                  as _PG on $projection.Pgid = _PG.Pgid
-  association [1..1] to Z##_I_PHASE_VH_####               as _PHASE on $projection.Phaseid = _PHASE.Phaseid
-  association [0..1] to Z##_I_UOM_VH_####                 as _UOM on $projection.SizeUom = _UOM.Msehi
-
-  association to Z##_I_CRITICALITY_LEVELS_#### as _PriceCriticality on _PriceCriticality.Id = 'PriceCritically'
+  association [1..1] to Z##_I_CRITICALITY_LEVELS_#### as _PriceCriticality on _PriceCriticality.Id = 'PriceCritically'
 
 {
-  key prod_uuid          as ProdUuid,
+  key prod_uuid       as ProdUuid,
 
-      prodid             as Prodid,
-      pgid               as Pgid,
-      phaseid            as Phaseid,
+      prodid          as Prodid,
+      pgid            as Pgid,
+      phaseid         as Phaseid,
 
       @Semantics.amount.currencyCode: 'PriceCurrency'
-      price              as Price,
+      price           as Price,
 
       case
         when cast(price as abap.dec(15,2)) > _PriceCriticality.Treashhold1 then 1
@@ -36,20 +33,22 @@ define root view entity Z##_I_PRODUCT_####
         when cast(price as abap.dec(15,2)) > _PriceCriticality.Treashhold3 then 3
         when cast(price as abap.dec(15,2)) > _PriceCriticality.Treashhold4 then 4
         else 0
-      end                as PriceCriticality,
+      end             as PriceCriticality,
 
-      price_currency     as PriceCurrency,
-
-      @Semantics.quantity.unitOfMeasure: 'SizeUom'
-      height             as Height,
+      price_currency  as PriceCurrency,
 
       @Semantics.quantity.unitOfMeasure: 'SizeUom'
-      depth              as Depth,
+      height          as Height,
 
       @Semantics.quantity.unitOfMeasure: 'SizeUom'
-      width              as Width,
+      depth           as Depth,
 
-      size_uom           as SizeUom,
+      @Semantics.quantity.unitOfMeasure: 'SizeUom'
+      width           as Width,
+
+      size_uom        as SizeUom,
+      
+      '' as Measure,
 
       @Semantics.user.createdBy: true
       created_by      as CreatedBy,
@@ -252,7 +251,7 @@ define view entity Z##_I_PRODUCT_VH_####
 
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Currency Search Help'
+@EndUserText.label: 'Currency Interface'
 
 @Metadata.ignorePropagatedAnnotations: true
 
@@ -281,7 +280,7 @@ define view entity Z##_I_CURRENCY_VH_####
 
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Product Group Search Help'
+@EndUserText.label: 'Product Group Interface'
 
 @Metadata.ignorePropagatedAnnotations: true
 
@@ -311,7 +310,7 @@ define view entity Z##_I_PG_VH_####
 
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Phase Search Help'
+@EndUserText.label: 'Phase Interface'
 
 @Metadata.ignorePropagatedAnnotations: true
 
@@ -340,7 +339,7 @@ define view entity Z##_I_PHASE_VH_####
 
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'UOM Search Help'
+@EndUserText.label: 'VH UOM'
 
 @Metadata.ignorePropagatedAnnotations: true
 
@@ -379,7 +378,7 @@ define root view entity Z##_I_CRITICALITY_LEVELS_####
       treashhold1 as Treashhold1,
       treashhold2 as Treashhold2,
       treashhold3 as Treashhold3,
-      treashhold4 as Treashhold4
+      treashhold4 as Treashhold4,
 
       @Semantics.user.createdBy: true
       created_by      as CreatedBy,
@@ -394,6 +393,6 @@ define root view entity Z##_I_CRITICALITY_LEVELS_####
       changed_time     as ChangedTime,
 
       @Semantics.systemDateTime.localInstanceLastChangedAt: true
-      local_changed_time as LocalChangedTime,
+      local_changed_time as LocalChangedTime
 }
 ```

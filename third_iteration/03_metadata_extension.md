@@ -124,5 +124,5 @@ annotate entity Z##_C_ORDER_####
 
   @UI.hidden: true
   _Product;
-}s
+}
 ```

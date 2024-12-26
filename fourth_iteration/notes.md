@@ -79,7 +79,7 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
    - Add the calculated field `PriceCriticality` to the product projection.
    - Update UI annotations to link the criticality logic to the `Price` field.
    ```ABAP
-define root view entity Z##_C_PRODUCT_####
+   define root view entity Z##_C_PRODUCT_####
    provider contract transactional_query
    as projection on Z##_I_PRODUCT_####
 
@@ -94,27 +94,43 @@ define root view entity Z##_C_PRODUCT_####
    }
    ```
 
-6. **[Develop the Criticality Levels View Entity Projection](./02_cds.md#z##_i_criticality_levels_)**:
+6. **[Update the Product Metadata Extension](./03_metadata_extestion.md#z##_c_product_)**:
+   - Use the calculated field `PriceCriticality` in Criticality for annotation.
+   ```ABAP
+   @Metadata.layer: #CORE
+
+   annotate entity Z##_C_PRODUCT_####
+      with
+
+   {
+      " Part of code was skipped
+   @UI.identification: [ { position: 60, label: 'Price', criticality: 'PriceCriticality' } ]
+   @UI.lineItem: [ { position: 70, criticality: 'PriceCriticality' } ]
+   Price;
+      " Part of code was skipped
+   }
+   ```
+
+7. **[Develop the Criticality Levels View Entity Projection](./02_cds.md#z##_i_criticality_levels_)**:
    - Create the view entity **[Z##_C_CRITICALITY_LEVELS_####](./02_cds.md#z##_i_criticality_levels_)** to expose the criticality levels.
 
-7. **[Add Metadata Extension for Criticality Levels](./03_metadata_extestion.md#z##_i_criticality_levels_)**:
+8. **[Add Metadata Extension for Criticality Levels](./03_metadata_extestion.md#z##_i_criticality_levels_)**:
    - Create a Metadata Extension for [Z##_C_CRITICALITY_LEVELS_####](./03_metadata_extestion.md#z##_i_criticality_levels_) to configure its UI.
-   - Refer to [03_metadata_extestion.md](./03_metadata_extestion.md) for details.
 
-8. **[Define the Behavior Definition (BDEF)](./06_behavior_implementation.md#z##_i_criticality_levels_)**:
+9. **[Define the Behavior Definition (BDEF)](./06_behavior_implementation.md#z##_i_criticality_levels_)**:
    - Define the behavior of the business object as **Managed**.
    - Enable standard transactional operations.
    - Generate class implementation over **Quick Fix** in **ADT**.
 
-9. **[Define Projection of the Behavior Definition (BDEF)](./06_behavior_implementation.md#z##_i_criticality_levels_)**:
+10. **[Define Projection of the Behavior Definition (BDEF)](./06_behavior_implementation.md#z##_i_criticality_levels_)**:
    - Set alias.
    - Refer to **[06_behavior_implementation.md](./06_behavior_implementation.md#z##_i_criticality_levels_)** for details.
    - Generate class implementation over **Quick Fix** in **ADT**.
 
-10. **[Expose Criticality Levels Project as Service](./04_service.md)**:
+11. **[Expose Criticality Levels Project as Service](./04_service.md)**:
     - Add expose **[Z##_C_CRITICALITY_LEVELS_####](./04_service.md)** as PriceCritically into Service Definition.
 
-11. **Test the Behavior**:
+12. **Test the Behavior**:
     - Test the implemented behavior in the Fiori application or using the ABAP console.
     - Verify that the operations (Create, Update, Delete) and validations/determinations function as expected.
 

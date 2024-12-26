@@ -58,8 +58,6 @@ Z##_C_MARKET_####
 
 @Metadata.allowExtensions: true
 
-@Search.searchable: true
-
 define view entity Z##_C_MARKET_####
   as projection on Z##_I_MARKET_####
 
@@ -67,11 +65,7 @@ define view entity Z##_C_MARKET_####
   key ProdUuid,
   key MrktUuid,
 
-      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_COUNTRY_VH_####', element: 'Id' } } ]
-      @ObjectModel.text.element: [ 'Country' ]
-      @Search.defaultSearchElement: true
       Mrktid,
-
       _Countries.Code     as Code,
       _Countries.Country  as Country,
       _Countries.Imageurl as ImageUrl,

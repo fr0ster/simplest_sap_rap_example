@@ -54,10 +54,10 @@ define root view entity Z##_C_PRODUCT_####
 
       @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_UOM_VH_####', element: 'Msehi' } } ]
       @EndUserText.label: 'Units'
-      @ObjectModel.text.element: [ 'DimName' ]
-      @Search.defaultSearchElement: true
       @Semantics.unitOfMeasure: true
       SizeUom,
+      
+      Measure,
 
       _UOM.Isocode                as DimName,
 
@@ -78,7 +78,6 @@ define root view entity Z##_C_PRODUCT_####
       _UOM,
       _PriceCriticality
 }
-
 ```
 ## CDS Projection for view entity Market
 
@@ -128,9 +127,10 @@ define view entity Z##_C_MARKET_####
 
 @EndUserText.label: 'Orders data'
 
-@Metadata.ignorePropagatedAnnotations: true
-
 @Metadata.allowExtensions: true
+
+@Search.searchable: true
+
 define view entity Z##_C_ORDER_####
   as projection on Z##_I_ORDER_####
 
@@ -148,7 +148,10 @@ define view entity Z##_C_ORDER_####
       @Semantics.amount.currencyCode: 'Amountcurr'
       Grossamount,
 
+      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_CURRENCY_VH_####', element: 'Currency' } } ]
+      @Search.defaultSearchElement: true
       Amountcurr,
+
       CreatedBy,
       CreationTime,
       ChangedBy,
