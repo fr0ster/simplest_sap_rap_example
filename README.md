@@ -39,7 +39,8 @@ This iteration focuses on extending the data model with deeper hierarchical rela
 ## [Iteration 4: Data Model Refinements](./fourth_iteration/notes.md)
 
 Here, we enhance the data model with advanced refinements:
-- Add **associations in the data model layer** for context-specific navigation.
+- Add **associations in the data model layer** to Criticality Thresholds for calculating Criticality Levels to separate settings tables.
+- Add a service for editing Criticality Thresholds setting data.
 - Introduce **calculated fields** for derived values where needed.
 - Adjust existing associations for **value help** or dependent relationships.
 
