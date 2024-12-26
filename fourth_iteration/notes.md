@@ -7,15 +7,10 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
 1. Create a new **[Criticality Levels Table](./00_tables.md)** to store criticality levels.
 2. Develop a **[CDS View Entity](./01_cds.md#z##_i_criticality_levels_)** for accessing the criticality levels.
 2. Develop a **[CDS Projection](./02_cds.md#z##_c_criticality_levels_)** for accessing the criticality levels.
-3. Integrate the criticality data into the product entity:
-  - Add an **association** in **[Z##_I_PRODUCT_####](./02_cds.md#z##_c_product_)** to the **[Z##_I_CRITICALITY_LEVELS_####](./01_cds.md#z##_c_criticality_levels_)** view.
-  - Calculate a new field (`PriceCriticality`) in the product entity based on the criticality levels.
-4. Update the **Product Projection**:
-  - Expose the new **[PriceCriticality](./03_metadata_extestion.md#z##_c_product_)** field in the projection.
-  - Use the `PriceCriticality` field in **UI annotations** (`lineItem` and `identification`) to enhance the display of the `Price` field.
-5. Enhance Metadata Extensions:
-  - Add a **Metadata Extension** for the **[Z##_C_CRITICALITY_LEVELS_####](./03_metadata_extestion.md#z##_c_criticality_levels_)** entity.
-  - Add a **new tab** in the product projection (**[Z##_I_PRODUCT_PROJ_####](./03_metadata_extestion.md#z##_c_product_)**) for managing criticality levels.
+3. Integrate the criticality data into the product entity.
+4. Update the **Product Projection**.
+5. Enhance Metadata Extensions.
+6. Create Sevice for modification **Criticality Levels** datas
 
 ---
 ### Steps:
@@ -114,6 +109,9 @@ define root view entity Z##_C_PRODUCT_####
   - Refer to **[06_behavior_implementation.md](./06_behavior_implementation.md#z##_i_criticality_levels_)** for details.
   - Generate class implementation over **Quick Fix** in **ADT**.
 
+10. **[Expose Criticality Levels Project as service](./04_service.md)**:
+  - Add expose **[Z##_C_CRITICALITY_LEVELS_####](./04_service.md)** as PriceCritically into Service Definition.
+
 10. **Test the Behavior**:
   - Test the implemented behavior in the Fiori application or using the ABAP console.
   - Verify that the operations (Create, Update, Delete) and validations/determinations function as expected.
@@ -122,6 +120,31 @@ define root view entity Z##_C_PRODUCT_####
 ### Final Steps:
 - Activate all new and updated CDS objects.
 - Test the updated service in the Fiori application to ensure the criticality handling works as expected.
+
+---
+### Possible Issues and Solutions:
+#### 1. **Columns Missing in Preview**
+  **Problem**:
+   - CDS views/projection fail to activate, particularly those with **composition associations**.
+   **Solution**:
+   - Activate all CDS views connected through composition **together**, especially:
+     - When creating a new CDS view with a composition.
+     - When modifying an existing composition that introduces or changes associations.
+   - Always activate both the root view and any dependent views linked by the composition. Use the activation tool to ensure all dependencies are resolved.
+#### 2. **Criticality Service Preview doesn't show**
+  **Problem**:
+   - You just see blank page by Criticality Levels Service.
+   **Solution**:
+   - Check Metadata Extension for Orders, there should be annotation for all needed fields.
+   - Check Service Definition, there should be exposed Order Project.
+#### 3. **Orders entity doesn't have transactional behavior**
+  **Problem**:
+   - don't see Create/Dlete buttons for Orders entity.
+   **Solution**:
+   - Check there exists BDEF for Interface and Projection and class behavior implementation
+   - Check you modificated Interface Behaviour Implementation and Projection Behaviour Implementation exists and all objects are activated witout any error.
+
+
 ---
 ### Summary:
 This iteration enhances the data model by introducing criticality levels, integrating them into product data, and updating the UI to reflect criticality-based calculations. The new tab for managing criticality levels provides flexibility for maintaining the criticality values directly in the Fiori application.

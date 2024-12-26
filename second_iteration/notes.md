@@ -8,6 +8,7 @@ In this iteration, we implement the behavior for our business object, enabling t
 2. Define **determinations** and **validations** to ensure data consistency.
 3. Add logic for actions and associations to the **Behavior Implementation Class**.
 4. Activate and test the behavior in the Fiori UI.
+
 ---
 ### Steps:
 1. **[Define the Behavior Definition (BDEF)](./06_behavior_implementation.md#z##_i_product_)**:
@@ -18,23 +19,20 @@ In this iteration, we implement the behavior for our business object, enabling t
 3. **Test the Behavior**:
   - Test the implemented behavior in the Fiori application or using the ABAP console.
   - Verify that the operations (Create, Update, Delete) and validations/determinations function as expected.
+
 ---
 ### Final Steps:
 - Activate all new and updated objects (BDEF, ABAP class, and associations).
 - Test the Fiori application to ensure the behavior implementation works correctly.
+
 ---
 ### Possible Issues and Solutions:
-#### 1. **Errors in Behavior Definition Activation**
+#### 1. **Problem with transactional behavior**
   **Problem**:
-  - Errors occur when activating the Behavior Definition (BDEF).
+  - Apllication is read-only anyway and you don't see Create and Delete buttons.
   **Solution**:
-  - Check the syntax and ensure all required elements (actions, determinations, validations) are defined correctly.
-#### 2. **Issues with Determinations or Validations**
-  **Problem**:
-  - Determinations or validations are not triggered as expected.
-  **Solution**:
-  - Verify that the logic is correctly implemented in the Behavior Implementation Class.
-  - Ensure that the triggering conditions are properly configured in the BDEF.
+  - Check the syntax and ensure all required objects (Interface BDEF, Projection BDEF, inmplementation class) are defined correctly and activated without errors.
+
 ---
 ### Summary:
-This iteration adds transactional capabilities to the business object by implementing behavior definitions and logic. At the end of this iteration, the application will support **Create**, **Update**, and **Delete** operations, as well as custom determinations and validations.
+This iteration adds transactional capabilities to the business object by implementing behavior definitions and logic. At the end of this iteration, the application will support **Create**, **Update**, and **Delete** operations.

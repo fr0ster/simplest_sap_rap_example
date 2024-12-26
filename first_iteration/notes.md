@@ -109,9 +109,9 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
 
 ### Possible Issues and Solutions:
 
-#### 1. **CDS Views Not Activating**
+#### 1. **CDS Views/Projectons Not Activating**
    **Problem**:
-   - CDS views fail to activate, particularly those with **composition associations**.
+   - CDS views/projection fail to activate, particularly those with **composition associations**.
    **Solution**:
    - Activate all CDS views connected through composition **together**, especially:
      - When creating a new CDS view with a composition.
