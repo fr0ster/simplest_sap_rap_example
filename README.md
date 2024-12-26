@@ -45,7 +45,6 @@ Refinements to the data model are the focus of this iteration:
 - Add **associations** to connect Criticality Thresholds for calculating Criticality Levels via separate settings tables.
 - Develop a service to manage Criticality Thresholds data.
 - Include **calculated fields** to dynamically derive values based on existing data.
-- Enhance existing associations to support **value help** and dependent relationships.
 
 ---
 
