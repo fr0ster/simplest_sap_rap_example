@@ -1,4 +1,4 @@
-# Определения CDS Projection
+# CDS Projection Definitions
 
 ## CDS Projection for root view entity Product
 

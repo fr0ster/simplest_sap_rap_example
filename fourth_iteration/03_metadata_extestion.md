@@ -1,4 +1,4 @@
-# Metadata Extension definition
+# Metadata Extension definitions
 
 ## Metadata Extension for root view entity Product
 <a name="z##_c_product_"></a>
@@ -21,7 +21,7 @@ annotate entity Z##_C_PRODUCT_####
                  purpose: #STANDARD,
                  type: #LINEITEM_REFERENCE,
                  label: 'Market info',
-                 position: 30,
+                 position: 20,
                  targetElement: '_Market' } ]
 
   @UI.hidden: true

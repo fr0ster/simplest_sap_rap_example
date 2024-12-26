@@ -1,4 +1,4 @@
-# Table definition
+# Table definitions
 
 ## Table for view entity Critically levels
 <a name="z##_d_crtly_"></a>

@@ -1,4 +1,4 @@
-# Table definition
+# Table definitions
 
 ## Table for view entity Orders
 <a name="z##_d_order_"></a>

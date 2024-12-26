@@ -1,4 +1,4 @@
-# Определения CDS Projection
+# CDS Projection Definitions
 
 ## CDS Projection for view entity Criticality Levels
 <a name="z##_c_criticality_levels_"></a>

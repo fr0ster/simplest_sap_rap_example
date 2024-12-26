@@ -1,5 +1,5 @@
 
-# Table Definition
+# Table Definitions
 
 ## Table for Root View Entity Product
 

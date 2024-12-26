@@ -1,4 +1,4 @@
-# Table definition
+# Table definitions
 
 ## Table for root view entity Product
 

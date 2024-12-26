@@ -1,4 +1,4 @@
-0001# Service definition
+# Service definition
 
 ## CDS Interface for root view entity Product
 

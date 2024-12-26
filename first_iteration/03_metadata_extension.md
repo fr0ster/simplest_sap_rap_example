@@ -1,4 +1,4 @@
-# Metadata Extension definition
+# Metadata Extension definitions
 
 ## Metadata Extension for root view entity Product
 

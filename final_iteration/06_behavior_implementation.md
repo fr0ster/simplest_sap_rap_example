@@ -1,4 +1,4 @@
-# Behaviour Implementation definition
+# Behaviour Implementation definitions
 
 ## Behaviour Implementation for CDS Interface
 

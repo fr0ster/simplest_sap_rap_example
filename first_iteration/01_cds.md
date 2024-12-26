@@ -1,5 +1,5 @@
 
-# CDS Interface Definition
+# CDS Interface Definitions
 
 ## CDS Interface for Root View Entity Product
 

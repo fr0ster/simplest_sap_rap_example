@@ -1,4 +1,4 @@
-# CDS Interface definition
+# CDS Interface definitions
 
 ## CDS Interface for view entity Criticality Levels
 <a name="z##_i_criticality_levels_"></a>
