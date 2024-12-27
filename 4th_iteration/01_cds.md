@@ -46,8 +46,6 @@ Z##_I_PRODUCT_####
 
 @EndUserText.label: 'Product data'
 
-@Metadata.ignorePropagatedAnnotations: true
-
 define root view entity Z##_I_PRODUCT_####
   as select from z##_d_prod_####
 

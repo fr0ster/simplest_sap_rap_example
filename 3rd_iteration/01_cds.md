@@ -9,14 +9,13 @@ Z##_I_ORDER_####
 
 @EndUserText.label: 'Orders data'
 
-@Metadata.ignorePropagatedAnnotations: true
 
-define view entity ZOK_I_ORDER_0001
-  as select from zok_d_order_0001
+define view entity Z##_I_ORDER_####
+  as select from z##_d_order_####
 
-  association to parent ZOK_I_MARKET_0001 as _Market on $projection.ProdUuid = _Market.ProdUuid and $projection.MrktUuid = _Market.MrktUuid
+  association to parent Z##_I_MARKET_#### as _Market on $projection.ProdUuid = _Market.ProdUuid and $projection.MrktUuid = _Market.MrktUuid
 
-  association [1..1] to ZOK_I_PRODUCT_0001 as _Product
+  association [1..1] to Z##_I_PRODUCT_#### as _Product
     on $projection.ProdUuid = _Product.ProdUuid
 
 {

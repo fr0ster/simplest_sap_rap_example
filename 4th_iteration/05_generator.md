@@ -39,7 +39,7 @@ CLASS z##_cl_generate_data_#### IMPLEMENTATION.
           pgname   = 'Blender'
           imageurl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSLnFTOSs5ZV0d8pwhPzs4KANsvq1oZ7hyrg&usqp=CAU' )
         ( pgid     = '5'
-          pgname   = 'Cooker'
+          pgname   = 'Co##er'
           imageurl = 'https://st4.depositphotos.com/18657574/22404/v/1600/depositphotos_224044856-stock-illustration-stove-concept-vector-linear-icon.jpg' ) ).
 
     " Delete the possible entries in the database table - in case it was already filled

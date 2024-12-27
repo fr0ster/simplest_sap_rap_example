@@ -10,9 +10,9 @@ strict ( 2 );
 with draft;
 
 define behavior for Z##_I_PRODUCT alias Product
-implementation in class zok_cl_bp_i_product unique
-persistent table zok_d_product
-draft table zok_d_product_dt
+implementation in class z##_cl_bp_i_product unique
+persistent table z##_d_product
+draft table z##_d_product_dt
 lock master total etag ChangedTime
 etag master LocalChangedTime
 authorization master ( instance )
@@ -68,10 +68,10 @@ authorization master ( instance )
     validation Order~validateDeliveryDate;
   }
 
-  factory action ( features : instance ) make_copy parameter zok_s_product [1];
+  factory action ( features : instance ) make_copy parameter z##_s_product [1];
   action ( features : instance ) move_to_next_phase result [1] $self;
 
-  mapping for zok_d_product
+  mapping for z##_d_product
     {
       ProdUUID         = prod_uuid;
       ProdID           = prodid;
@@ -93,9 +93,9 @@ authorization master ( instance )
 }
 
 define behavior for Z##_I_MARKET alias Market
-implementation in class zok_cl_bp_i_market unique
-persistent table zok_d_prod_mrkt
-draft table zok_d_market_dt
+implementation in class z##_cl_bp_i_market unique
+persistent table z##_d_prod_mrkt
+draft table z##_d_market_dt
 lock dependent by _Product
 authorization dependent by _Product
 etag master LocalChangedTime
@@ -123,7 +123,7 @@ etag master LocalChangedTime
   validation validateEndDate on save { create; field Enddate; }
   validation validateMarketDupl on save { create; field Mrktid; }
 
-  mapping for zok_d_prod_mrkt
+  mapping for z##_d_prod_mrkt
     {
       ProdUuid         = prod_uuid;
       MrktUuid         = mrkt_uuid;
@@ -140,9 +140,9 @@ etag master LocalChangedTime
 }
 
 define behavior for Z##_I_MRKT_ORDER alias Order
-implementation in class zok_cl_bp_i_order unique
-persistent table zok_d_mrkt_order
-draft table zok_d_order_dt
+implementation in class z##_cl_bp_i_order unique
+persistent table z##_d_mrkt_order
+draft table z##_d_order_dt
 lock dependent by _Product
 etag master LocalChangedTime
 authorization dependent by _Product
@@ -170,7 +170,7 @@ authorization dependent by _Product
 
   validation validateDeliveryDate on save { create; field DeliveryDate; }
 
-  mapping for zok_d_mrkt_order
+  mapping for z##_d_mrkt_order
     {
       ProdUuid         = prod_uuid;
       MrktUuid         = mrkt_uuid;

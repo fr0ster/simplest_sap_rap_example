@@ -35,7 +35,6 @@ Z##_C_PRODUCT_####
 @EndUserText.label: 'Product data'
 
 @Metadata.allowExtensions: true
-@Metadata.ignorePropagatedAnnotations: true
 
 @Search.searchable: true
 

@@ -83,7 +83,7 @@ define table z##_d_ctry_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table zok_d_pg_#### {
+define table z##_d_pg_#### {
 
   key client : abap.clnt not null;
   key pgid   : abap.char(3) not null;
@@ -135,7 +135,7 @@ define table z##_d_uom_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table zok_d_order_#### {
+define table z##_d_order_#### {
 
   key client         : abap.clnt not null;
   key prod_uuid      : sysuuid_x16 not null;
@@ -143,9 +143,9 @@ define table zok_d_order_#### {
   key order_uuid     : sysuuid_x16 not null;
   quantity           : abap.int2;
   delivery_date      : abap.dats;
-  @Semantics.amount.currencyCode : 'zok_d_order_####.amountcurr'
+  @Semantics.amount.currencyCode : 'z##_d_order_####.amountcurr'
   netamount          : abap.curr(15,2);
-  @Semantics.amount.currencyCode : 'zok_d_order_####.amountcurr'
+  @Semantics.amount.currencyCode : 'z##_d_order_####.amountcurr'
   grossamount        : abap.curr(15,2);
   amountcurr         : waers_curc;
   created_by         : abp_creation_user;

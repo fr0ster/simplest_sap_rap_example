@@ -8,7 +8,6 @@
 @EndUserText.label: 'Product data'
 
 @Metadata.allowExtensions: true
-@Metadata.ignorePropagatedAnnotations: true
 
 @Search.searchable: true
 

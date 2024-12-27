@@ -11,8 +11,6 @@ Z##_I_ORDER_####
 
 @Metadata.allowExtensions: true
 
-@Search.searchable: true
-
 define view entity Z##_C_ORDER_####
   as projection on Z##_I_ORDER_####
 
@@ -30,10 +28,7 @@ define view entity Z##_C_ORDER_####
       @Semantics.amount.currencyCode: 'Amountcurr'
       Grossamount,
 
-      @Consumption.valueHelpDefinition: [ { entity: { name: 'Z##_I_CURRENCY_VH_####', element: 'Currency' } } ]
-      @Search.defaultSearchElement: true
       Amountcurr,
-
       CreatedBy,
       CreationTime,
       ChangedBy,

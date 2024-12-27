@@ -87,8 +87,8 @@ define table z##_d_ctry_#### {
 
 ## Table for View Entity Product Group Dictionary
 
-<a name="zok_d_pg_"></a>
-### ZOK_D_PG_####
+<a name="z##_d_pg_"></a>
+### Z##_D_PG_####
 
 ```ABAP
 @EndUserText.label : 'Product group dict'
@@ -96,7 +96,7 @@ define table z##_d_ctry_#### {
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table zok_d_pg_#### {
+define table z##_d_pg_#### {
 
   key client : abap.clnt not null;
   key pgid   : abap.char(3) not null;

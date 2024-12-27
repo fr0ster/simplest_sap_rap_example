@@ -52,8 +52,8 @@ Refinements to the data model are the focus of this iteration:
 
 This iteration focuses on improving the business model:
 
-- Introduce **associations** for more effective navigation within the business context.
-- Add **charts** for analytics and data visualization, offering deeper insights into market data.
+- Enable **search functionality** within the **List Report**.
+- Enchance data model over ValueHelper annotations
 
 ---
 
@@ -61,10 +61,9 @@ This iteration focuses on improving the business model:
 
 User interface improvements are prioritized in this iteration:
 
-- Enable **search functionality** within the **List Report**.
 - Customize the **Object Page** header to display critical details.
 - Utilize **FieldGroup** annotations to logically group related fields.
-- Add **Facets** for better organization and layout of the UI.
+- Add more complicated **Facets** for better organization and layout of the UI.
 - Implement **field-level annotations** for labels, tooltips, and formatting.
 - Configure **dynamic visibility** and field controls to enhance the user experience.
 

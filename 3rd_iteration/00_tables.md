@@ -18,9 +18,9 @@ define table z##_d_order_#### {
   key order_uuid     : sysuuid_x16 not null;
   quantity           : abap.int2;
   delivery_date      : abap.dats;
-  @Semantics.amount.currencyCode : 'zok_d_order_####.amountcurr'
+  @Semantics.amount.currencyCode : 'z##_d_order_####.amountcurr'
   netamount          : abap.curr(15,2);
-  @Semantics.amount.currencyCode : 'zok_d_order_####.amountcurr'
+  @Semantics.amount.currencyCode : 'z##_d_order_####.amountcurr'
   grossamount        : abap.curr(15,2);
   amountcurr         : waers_curc;
   created_by         : abp_creation_user;

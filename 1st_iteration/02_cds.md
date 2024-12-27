@@ -11,9 +11,6 @@
 @EndUserText.label: 'Product data'
 
 @Metadata.allowExtensions: true
-@Metadata.ignorePropagatedAnnotations: true
-
-@Search.searchable: true
 
 define root view entity Z##_C_PRODUCT_####
   provider contract transactional_query
@@ -28,7 +25,6 @@ define root view entity Z##_C_PRODUCT_####
 
       _PG.Pgname        as Pgname,
 
-      @Search.defaultSearchElement: true
       @Semantics.amount.currencyCode: 'PriceCurrency'
       Price,
 
@@ -75,9 +71,6 @@ define root view entity Z##_C_PRODUCT_####
 @EndUserText.label: 'Market data'
 
 @Metadata.allowExtensions: true
-@Metadata.ignorePropagatedAnnotations: true
-
-@Search.searchable: true
 
 define view entity Z##_C_MARKET_####
   as projection on Z##_I_MARKET_####

@@ -126,7 +126,6 @@ define view entity Z##_I_MARKET_####
 
 @EndUserText.label: 'Orders data'
 
-@Metadata.ignorePropagatedAnnotations: true
 
 define view entity Z##_I_ORDER_####
   as select from z##_d_order_####
@@ -253,7 +252,6 @@ define view entity Z##_I_PRODUCT_VH_####
 
 @EndUserText.label: 'Currency Interface'
 
-@Metadata.ignorePropagatedAnnotations: true
 
 @ObjectModel.resultSet.sizeCategory: #XS
 @ObjectModel.usageType: { serviceQuality: #X, sizeCategory: #S, dataClass: #MIXED }
@@ -282,7 +280,6 @@ define view entity Z##_I_CURRENCY_VH_####
 
 @EndUserText.label: 'Product Group Interface'
 
-@Metadata.ignorePropagatedAnnotations: true
 
 @ObjectModel.resultSet.sizeCategory: #XS
 @ObjectModel.usageType: { serviceQuality: #X, sizeCategory: #S, dataClass: #MIXED }
@@ -312,7 +309,6 @@ define view entity Z##_I_PG_VH_####
 
 @EndUserText.label: 'Phase Interface'
 
-@Metadata.ignorePropagatedAnnotations: true
 
 @ObjectModel.resultSet.sizeCategory: #XS
 @ObjectModel.usageType: { serviceQuality: #X, sizeCategory: #S, dataClass: #MIXED }
@@ -341,7 +337,6 @@ define view entity Z##_I_PHASE_VH_####
 
 @EndUserText.label: 'VH UOM'
 
-@Metadata.ignorePropagatedAnnotations: true
 
 @ObjectModel.resultSet.sizeCategory: #XS
 @ObjectModel.usageType: { serviceQuality: #X, sizeCategory: #S, dataClass: #MIXED }

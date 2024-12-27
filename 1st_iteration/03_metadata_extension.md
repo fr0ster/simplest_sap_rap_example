@@ -31,18 +31,15 @@ annotate entity Z##_C_PRODUCT_####
 
   @UI.identification: [ { position: 10, label: 'Prod Id' } ]
   @UI.lineItem: [ { position: 10 } ]
-  @UI.selectionField: [ { position: 10 } ]
   Prodid;
 
   @UI.identification: [ { position: 20, label: 'ProdGroup Id' } ]
   @UI.lineItem: [ { position: 20 } ]
-  @UI.selectionField: [ { position: 15 } ]
   Pgid;
 
   @UI.dataPoint: { qualifier: 'idFilter', title: 'PHASE' }
   @UI.identification: [ { position: 40 } ]
   @UI.lineItem: [ { position: 30 } ]
-  @UI.selectionField: [ { position: 25 } ]
   Phaseid;
 
   @UI.identification: [ { position: 30 } ]
