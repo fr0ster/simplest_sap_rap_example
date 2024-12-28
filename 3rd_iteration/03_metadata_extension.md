@@ -99,10 +99,6 @@ annotate entity Z##_C_ORDER_####
   @UI.lineItem: [ { position: 40 } ]
   Grossamount;
 
-  @UI.identification: [ { position: 50, label: 'Amountcurr' } ]
-  @UI.lineItem: [ { position: 50 } ]
-  Amountcurr;
-
   @UI.hidden: true
   CreatedBy;
 

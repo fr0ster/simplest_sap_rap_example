@@ -17,6 +17,7 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
 
 2. **Package Consistency**:
    - All objects must be created within your own development package to ensure consistency and organization.
+   - If you are going to use **AbapGit**, create **Service Binding** in a separated package, outside from the **main package**.
 
 3. **Annotations for Service Fields**:
    - To ensure proper operation of the Business Object (BO), include service-related fields in the tables with the appropriate data types and annotations:
@@ -46,11 +47,14 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
        local_changed_time as LocalChangedTime,
        ```
 
-4. **Projection type**:
+4. **Currency fields** in **Metadata Extension**:
+   - The annotation **@Semantics.amount.currencyCode annotation**, among other thinhs, causes the curency code to appear next to the field to wich annotation is applied. However, if we apply the annotation **@UI.hidden: true** to field with the currency code, it will not appear next to the field annotaded with **@Semantics.amount.currencyCode annotation**.
+
+5. **Projection type**:
    - Use **Projection** type in wizard
    - Add **provider contract transactional_query** into definition over **Quick Fix** or manually, now empty provider contract is obsoleted.
 
-5. **CDS Activation**:
+6. **CDS Activation**:
    - CDS views that are connected via **composition associations** (e.g., `association [1..*]`) must be activated **together**. This applies to:
      - **Creating new CDS views** that include compositions.
      - **Modifying existing compositions**, where associations are added or changed.

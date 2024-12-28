@@ -227,4 +227,3 @@ authorization dependent by _Product
 
 }
 ```
-

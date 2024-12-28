@@ -27,23 +27,16 @@ CLASS lhc_order IMPLEMENTATION.
   METHOD setAmountcurr.
     READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
     ENTITY Order FIELDS ( Amountcurr )
-    WITH CORRESPONDING #( keys ) RESULT DATA(lt_orders)
-    ENTITY Product FIELDS ( PriceCurrency )
-    WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
+    WITH CORRESPONDING #( keys ) RESULT DATA(lt_orders).
     DELETE lt_orders WHERE Amountcurr IS NOT INITIAL.
     IF lt_orders IS INITIAL.
       RETURN.
     ENDIF.
-    DELETE lt_products WHERE PriceCurrency IS NOT INITIAL.
-    IF lt_products IS INITIAL.
-      RETURN.
-    ENDIF.
-    DAtA(ls_product) = lt_products[ 1 ].
     MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Order
            UPDATE FIELDS ( Amountcurr )
            WITH VALUE #( FOR product IN lt_orders
-                         ( %tky = product-%tky Amountcurr = ls_product-PriceCurrency ) )
+                         ( %tky = product-%tky Amountcurr = 'USD' ) )
            REPORTED DATA(lt_update_reported).
     reported = CORRESPONDING #( DEEP lt_update_reported ).
   ENDMETHOD.
@@ -79,14 +72,11 @@ CLASS lhc_market IMPLEMENTATION.
     IF lt_markets IS INITIAL.
       RETURN.
     ENDIF.
-    DATA lv_timestamp type string.
-    lv_timestamp = cl_abap_context_info=>get_system_date(  ) + 366.
-    lv_timestamp = |{ lv_timestamp(6) }01|.
     MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Market
            UPDATE FIELDS ( Enddate )
            WITH VALUE #( FOR product IN lt_markets
-                         ( %tky = product-%tky Enddate = cl_abap_context_info=>get_system_date(  ) ) )
+                         ( %tky = product-%tky Enddate = cl_abap_context_info=>get_system_date(  ) + 366 ) )
            REPORTED DATA(lt_update_reported).
     reported = CORRESPONDING #( DEEP lt_update_reported ).
   ENDMETHOD.
@@ -108,8 +98,16 @@ CLASS lhc_market IMPLEMENTATION.
 
 ENDCLASS.
 
+
 CLASS lhc_Product DEFINITION INHERITING FROM cl_abap_behavior_handler.
   PRIVATE SECTION.
+    CONSTANTS:
+      BEGIN OF phase_id,
+        plan TYPE int1 VALUE 1,
+        dev  TYPE int1 VALUE 2,
+        prod TYPE int1 VALUE 3,
+        out  TYPE int1 VALUE 4,
+      END OF phase_id.
 
     METHODS get_instance_authorizations FOR INSTANCE AUTHORIZATION
       IMPORTING keys REQUEST requested_authorizations FOR Product RESULT result.
@@ -130,17 +128,23 @@ CLASS lhc_Product DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS checkwidth FOR VALIDATE ON SAVE
       IMPORTING keys FOR product~checkwidth.
+
     METHODS setsizeuom FOR DETERMINE ON SAVE
       IMPORTING keys FOR product~setsizeuom.
+
     METHODS setpricecurrency FOR DETERMINE ON SAVE
       IMPORTING keys FOR product~setpricecurrency.
+
     METHODS setphaseid FOR DETERMINE ON SAVE
       IMPORTING keys FOR product~setphaseid.
 
+    METHODS nextphase FOR MODIFY
+      IMPORTING keys FOR ACTION product~nextphase RESULT result.
+
 ENDCLASS.
 
-CLASS lhc_Product IMPLEMENTATION.
 
+CLASS lhc_Product IMPLEMENTATION.
   METHOD get_instance_authorizations.
   ENDMETHOD.
 
@@ -243,25 +247,46 @@ CLASS lhc_Product IMPLEMENTATION.
     reported = CORRESPONDING #( DEEP lt_update_reported ).
   ENDMETHOD.
 
-ENDCLASS.
-```
+  METHOD nextPhase.
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
+         ENTITY Product
+         FIELDS ( Phaseid )
+         WITH CORRESPONDING #( keys )
+         RESULT DATA(lt_product)
+         FAILED failed.
 
-## Behaviour Implementation for CDS Criticality Levels Interface
-<a name="z##_i_criticality_levels_"></a>
+    LOOP AT lt_product ASSIGNING FIELD-SYMBOL(<ls_product>).
+      DATA(lv_phase_id) = phase_id-plan.
+      CASE <ls_product>-Phaseid.
+        WHEN phase_id-plan.
+          lv_phase_id = phase_id-dev.
+        WHEN phase_id-dev.
+          lv_phase_id = phase_id-prod.
+        WHEN phase_id-prod.
+          lv_phase_id = phase_id-out.
+        WHEN phase_id-out.
+          lv_phase_id = phase_id-plan.
+        WHEN OTHERS.
+          lv_phase_id = phase_id-plan.
+      ENDCASE.
 
-```ABAP
-CLASS lhc_Levels DEFINITION INHERITING FROM cl_abap_behavior_handler.
-  PRIVATE SECTION.
-
-    METHODS get_instance_authorizations FOR INSTANCE AUTHORIZATION
-      IMPORTING keys REQUEST requested_authorizations FOR CriticalityLevels RESULT result.
-
-ENDCLASS.
-
-CLASS lhc_Levels IMPLEMENTATION.
-
-  METHOD get_instance_authorizations.
+      MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
+             ENTITY Product
+             UPDATE
+             FIELDS ( Phaseid )
+             WITH VALUE #( FOR key IN keys
+                           ( %tky    = key-%tky
+                             Phaseid = lv_phase_id ) )
+             FAILED   failed
+             REPORTED reported.
+      READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
+           ENTITY Product
+           ALL FIELDS WITH CORRESPONDING #( keys )
+           RESULT DATA(ls_result).
+      result = VALUE #( FOR ls_product_result IN ls_result
+                        ( %tky   = ls_product_result-%tky
+                          %param = ls_product_result ) ).
+    ENDLOOP.
   ENDMETHOD.
-
 ENDCLASS.
 ```

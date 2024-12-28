@@ -56,6 +56,7 @@ This iteration focuses on improving the business model:
 - Get **Projection Transacional Interface** out from **Projection Transacional Query**.
 - Enable **search functionality** within the **List Report**.
 - Enhance the data model with ValueHelper annotations.
+- Add **actions**
 
 ---
 

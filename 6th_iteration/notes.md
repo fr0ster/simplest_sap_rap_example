@@ -1,18 +1,14 @@
 # Notes
 
-## Fifth Iteration: Business Model Enhancements
+## Sixth Iteration: UI Enhancements and Annotations
 
-In this iteration, we enhance the business model by introducing **Value Helpers** in **Projection**.
+In this iteration, we enhance the User interface.
 
 ---
 
 ### Key Objectives:
-1. Create **Projection Transacional Interface**, change projected CDS in **Projection Transacional Query** to new **Projection Transacional Interface**. 
-2. Add **Value Helpers** into **[Z##_CI_PRODUCT_####](./02_cds.md#z##_ci_product_)**.
-3. Add **Value Helpers** into **[Z##_CI_MARKET_####](./02_cds.md#z##_ci_market_)**.
-4. Add **Value Helpers** into **[Z##_CI_ORDER_####](./02_cds.md#z##_ci_order_)**.
-5. Add **needed fields** into the **SearchField Area** and enable standard search functionality in **[Metadata Extension](03_metadata_extension.md)**.
-6. Add **actions**
+1. Add auxillary field to **[Data Model](./01_cds.md)** and *[Busines Model](./02_cds.md)*. 
+2. Enchance **[Metadata Extensions](./03_metadata_extestion.md)**.
 
 ---
 
@@ -21,7 +17,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 1. **Value Helpers**:
    - Use the *@Consumption.valueHelpDefinition* annotation to define **Value Helpers**.
    ```ABAP
-   define root view entity Z##_CI_PRODUCT_####
+   define root view entity Z##_C_PRODUCT_####
    provider contract transactional_query
    as projection on Z##_I_PRODUCT_####
    {
@@ -36,7 +32,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 2. **Standard SearchField**:
    - Use *@Search.defaultSearchElement: true* for enabling default search functionality.
    ```ABAP
-   define root view entity Z##_CI_PRODUCT_####
+   define root view entity Z##_C_PRODUCT_####
    provider contract transactional_query
    as projection on Z##_I_PRODUCT_####
    {
@@ -50,7 +46,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 3. **Text Instead of ID**:
    - Use *@ObjectModel.text.element* to display text fields instead of IDs.
    ```ABAP
-   define root view entity Z##_CI_PRODUCT_####
+   define root view entity Z##_C_PRODUCT_####
    provider contract transactional_query
    as projection on Z##_I_PRODUCT_####
    {
@@ -79,7 +75,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 3. **Behavior Definition**
    - Create BDEF for **[Z##_CI_PRODUCT_####](./06_behavior_definition.md#z##_ci_product_)**
 
-4. **[Add Value Helpers into Product](./02_cds.md#z##_ci_product_)**:
+1. **[Add Value Helpers into Product](./02_cds.md#z##_ci_product_)**:
    - Annotate **[Z##_CI_PRODUCT_####](./02_cds.md#z##_ci_product_)** with the necessary fields.
    ```ABAP
    define root view entity Z##_CI_PRODUCT_####
@@ -121,7 +117,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
    }
    ```
 
-5. **[Add Value Helpers into Market](./02_cds.md#z##_ci_market_)**:
+2. **[Add Value Helpers into Market](./02_cds.md#z##_ci_market_)**:
    - Annotate **[Z##_CI_MARKET_####](./02_cds.md#z##_ci_market_)** with the necessary fields.
    ```ABAP
    define view entity Z##_C_MARKET_####
@@ -139,7 +135,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
    }
    ```
 
-6. **[Add Value Helpers into Order](./02_cds.md#z##_ci_order_)**:
+3. **[Add Value Helpers into Order](./02_cds.md#z##_ci_order_)**:
    - Annotate **[Z##_CI_ORDER_####](./02_cds.md#z##_ci_order_)** with the necessary fields.
    ```ABAP
    define view entity Z##_C_ORDER_####
@@ -151,7 +147,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
    }
    ```
 
-7. **[Add SearchField](./03_metadata_extension.md)**:
+4. **[Add SearchField](./03_metadata_extension.md)**:
    - Add SearchField for **[Z##_C_PRODUCT_####](./03_metadata_extension.md#z##_c_product_)** with the necessary fields.
    ```ABAP
    @Metadata.layer: #CORE
@@ -168,111 +164,6 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
          @UI.selectionField: [ { position: 25 } ]
          Phaseid;
    }
-   ```
-
-8. **[Add action into Behavior Definition](./06_behavior_definition.md)**:
-   - Add action for **[Z##_I_PRODUCT_####](./06_behavior_definition.md#z##_i_product_)**.
-   ```ABAP
-     " Part of code was skipped
-
-      define behavior for Z##_I_PRODUCT_#### alias Product
-      persistent table z##_d_prod_####
-      lock master
-      authorization master ( instance )
-      etag master LocalChangedTime
-      {
-     " Part of code was skipped
-
-      action nextPhase result [1] $self;
-
-
-     " Part of code was skipped
-      }
-   ```
-   - Add [action implementation](./07_behavior_implementation.md#z##_i_product_) over **Quick Fix**.
-   ```ABAP
-      METHOD nextPhase.
-         READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
-               ENTITY Product
-               FIELDS ( Phaseid )
-               WITH CORRESPONDING #( keys )
-               RESULT DATA(lt_product)
-               FAILED failed.
-
-         LOOP AT lt_product ASSIGNING FIELD-SYMBOL(<ls_product>).
-            DATA(lv_phase_id) = phase_id-plan.
-            CASE <ls_product>-Phaseid.
-            WHEN phase_id-plan.
-               lv_phase_id = phase_id-dev.
-            WHEN phase_id-dev.
-               lv_phase_id = phase_id-prod.
-            WHEN phase_id-prod.
-               lv_phase_id = phase_id-out.
-            WHEN phase_id-out.
-               lv_phase_id = phase_id-plan.
-            WHEN OTHERS.
-               lv_phase_id = phase_id-plan.
-            ENDCASE.
-
-            MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
-                  ENTITY Product
-                  UPDATE
-                  FIELDS ( Phaseid )
-                  WITH VALUE #( FOR key IN keys
-                                 ( %tky    = key-%tky
-                                 Phaseid = lv_phase_id ) )
-                  FAILED   failed
-                  REPORTED reported.
-            READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
-               ENTITY Product
-               ALL FIELDS WITH CORRESPONDING #( keys )
-               RESULT DATA(ls_result).
-            result = VALUE #( FOR ls_product_result IN ls_result
-                              ( %tky   = ls_product_result-%tky
-                              %param = ls_product_result ) ).
-         ENDLOOP.
-      ENDMETHOD.
-   ```
-   - Use action in CDS Projection BDEF [Transactional Interface](./06_behavior_definition.md) and Transactional Query
-   ```ABAP
-      interface;
-
-      define behavior for Z##_C_PRODUCT_#### alias _Product
-      {
-     " Part of code was skipped
-
-      use association _Market { create; }
-      use action nextPhase;
-      }
-   ```
-   ```ABAP
-      projection;
-      strict ( 2 );
-
-      define behavior for Z##_C_PRODUCT_#### alias _Product
-      {
-     " Part of code was skipped
-
-      use association _Market { create; }
-      use action nextPhase;
-      }
-   ```
-   - Add action by annotation into [Metadata Extensions](./03_metadata_extestion.md)
-   ```ABAP
-      @Metadata.layer: #CORE
-
-      annotate entity Z##_C_PRODUCT_####
-         with
-
-      {
-      " Part of code was skipped
-
-         @UI.lineItem: [ { type: #FOR_ACTION, dataAction: 'nextPhase', label: 'Next Phase', position: 10 } ]
-         @UI.identification: [ { type: #FOR_ACTION, dataAction: 'nextPhase', label: 'Next Phase', position: 10 } ]
-         ProdUuid;
-
-      " Part of code was skipped
-      }
    ```
 
 ---
