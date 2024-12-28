@@ -51,7 +51,7 @@ CLASS lhc_order IMPLEMENTATION.
     LOOP AT lt_marketdate ASSIGNING FIELD-SYMBOL(<ls_marketdate>).
       READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Market BY \_Orders
-           FIELDS ( DeliveryDate ) WITH VALUE #( ( %tky = <ls_marketdate>-%tky )  )
+           FIELDS ( Grossamount ) WITH VALUE #( ( %tky = <ls_marketdate>-%tky )  )
            RESULT DATA(lt_orderdate).
 
       LOOP AT lt_orderdate ASSIGNING FIELD-SYMBOL(<ls_orderdate>).
@@ -68,7 +68,7 @@ CLASS lhc_order IMPLEMENTATION.
         APPEND VALUE #( %tky                  = <ls_orderdate>-%tky
                         %state_area           = 'CHECKQGROSSAMOUNT'
                         %msg                  = new_message_with_text( severity = if_abap_behv_message=>severity-error text = 'Grossamount less than zero' )
-                        %element-DeliveryDate = if_abap_behv=>mk-on )
+                        %element-Grossamount = if_abap_behv=>mk-on )
                TO reported-order.
       ENDLOOP.
     ENDLOOP.
@@ -84,7 +84,7 @@ CLASS lhc_order IMPLEMENTATION.
     LOOP AT lt_marketdate ASSIGNING FIELD-SYMBOL(<ls_marketdate>).
       READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Market BY \_Orders
-           FIELDS ( DeliveryDate ) WITH VALUE #( ( %tky = <ls_marketdate>-%tky )  )
+           FIELDS ( Netamount ) WITH VALUE #( ( %tky = <ls_marketdate>-%tky )  )
            RESULT DATA(lt_orderdate).
 
       LOOP AT lt_orderdate ASSIGNING FIELD-SYMBOL(<ls_orderdate>).
@@ -101,7 +101,7 @@ CLASS lhc_order IMPLEMENTATION.
         APPEND VALUE #( %tky                  = <ls_orderdate>-%tky
                         %state_area           = 'CHECKNETAMOUNT'
                         %msg                  = new_message_with_text( severity = if_abap_behv_message=>severity-error text = 'Netamount less than zero' )
-                        %element-DeliveryDate = if_abap_behv=>mk-on )
+                        %element-Netamount = if_abap_behv=>mk-on )
                TO reported-order.
       ENDLOOP.
     ENDLOOP.
@@ -117,7 +117,7 @@ CLASS lhc_order IMPLEMENTATION.
     LOOP AT lt_marketdate ASSIGNING FIELD-SYMBOL(<ls_marketdate>).
       READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Market BY \_Orders
-           FIELDS ( DeliveryDate ) WITH VALUE #( ( %tky = <ls_marketdate>-%tky )  )
+           FIELDS ( Quantity ) WITH VALUE #( ( %tky = <ls_marketdate>-%tky )  )
            RESULT DATA(lt_orderdate).
 
       LOOP AT lt_orderdate ASSIGNING FIELD-SYMBOL(<ls_orderdate>).
@@ -131,11 +131,11 @@ CLASS lhc_order IMPLEMENTATION.
 
         APPEND VALUE #( %tky = <ls_orderdate>-%tky ) TO failed-order.
 
-        APPEND VALUE #( %tky                  = <ls_orderdate>-%tky
-                        %state_area           = 'CHECKQUANTITY'
-                        %msg                  = new_message_with_text( severity = if_abap_behv_message=>severity-error
-                                                                       text     = 'Quantity less than zero' )
-                        %element-DeliveryDate = if_abap_behv=>mk-on )
+        APPEND VALUE #( %tky              = <ls_orderdate>-%tky
+                        %state_area       = 'CHECKQUANTITY'
+                        %msg              = new_message_with_text( severity = if_abap_behv_message=>severity-error
+                                                                   text     = 'Quantity less than zero' )
+                        %element-Quantity = if_abap_behv=>mk-on )
                TO reported-order.
       ENDLOOP.
     ENDLOOP.
