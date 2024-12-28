@@ -71,13 +71,12 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
    - **[Z##_CI_ORDER_####](./02_cds.md#z##_ci_order_)**
 
 2. **Modificate Projection Transacional Query**
-   - **[Z##_CI_PRODUCT_####](./02_cds.md#z##_c_product_)**
-   - **[Z##_CI_PRODUCT_####](./02_cds.md#z##_c_market_)**
-   - **[Z##_CI_PRODUCT_####](./02_cds.md#z##_c_order_)**
+   - **[Z##_C_PRODUCT_####](./02_cds.md#z##_c_product_)**
+   - **[Z##_C_MARKET_####](./02_cds.md#z##_c_market_)**
+   - **[Z##_C_ORDER_####](./02_cds.md#z##_c_order_)**
 
 3. **Behavior Definition**
    - Create BDEF for **[Z##_CI_PRODUCT_####](./06_behavior_definition.md#z##_ci_product_)**
-   - Modificate BDEF for **[Z##_C_PRODUCT_####](./06_behavior_definition.md#z##_c_product_)**
 
 1. **[Add Value Helpers into Product](./02_cds.md#z##_ci_product_)**:
    - Annotate **[Z##_CI_PRODUCT_####](./02_cds.md#z##_ci_product_)** with the necessary fields.
