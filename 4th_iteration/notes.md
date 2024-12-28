@@ -188,6 +188,25 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
        /* Part of code was skipped */
       }
    ```
+   - Create implementation of **validations and determinations** in **[Class Behavior Implementation](./07_behavior_implementation.md#z##_i_product_)**
+   - Pay attention, **%state_area** it's name of validation, **%element-Netamount = if_abap_behv=>mk-on** it's checked field.
+   ```ABAP
+           APPEND VALUE #( %tky        = <ls_orderdate>-%tky
+                        %state_area = 'CHECKNETAMOUNT' )
+               TO reported-order.
+
+        IF     <ls_orderdate>-Netamount >= 0.
+          CONTINUE.
+        ENDIF.
+
+        APPEND VALUE #( %tky = <ls_orderdate>-%tky ) TO failed-order.
+
+        APPEND VALUE #( %tky                  = <ls_orderdate>-%tky
+                        %state_area           = 'CHECKNETAMOUNT'
+                        %msg                  = new_message_with_text( severity = if_abap_behv_message=>severity-error text = 'Netamount less than zero' )
+                        %element-Netamount = if_abap_behv=>mk-on )
+               TO reported-order.
+   ```
 
 ---
 
