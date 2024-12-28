@@ -432,3 +432,75 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 ENDCLASS.
 ```
+
+
+## Behaviour Implementation for CDS Product Projection Transactional Query
+<a name="z##_c_product_"></a>
+
+```ABAP
+CLASS lhc_product DEFINITION INHERITING FROM cl_abap_behavior_handler.
+
+  PRIVATE SECTION.
+    CONSTANTS:
+      BEGIN OF phase_id,
+        plan TYPE int1 VALUE 1,
+        dev  TYPE int1 VALUE 2,
+        prod TYPE int1 VALUE 3,
+        out  TYPE int1 VALUE 4,
+      END OF phase_id.
+
+    METHODS priorPhase FOR MODIFY
+      IMPORTING keys FOR ACTION Product~priorPhase RESULT result.
+
+ENDCLASS.
+
+CLASS lhc_product IMPLEMENTATION.
+
+  METHOD priorPhase.
+    READ ENTITIES OF z##_c_product_#### IN LOCAL MODE
+         ENTITY Product
+         FIELDS ( Phaseid )
+         WITH CORRESPONDING #( keys )
+         RESULT DATA(lt_product)
+         FAILED failed.
+
+    LOOP AT lt_product ASSIGNING FIELD-SYMBOL(<ls_product>).
+      DATA(lv_phase_id) = phase_id-plan.
+      CASE <ls_product>-Phaseid.
+        WHEN phase_id-plan.
+          lv_phase_id = phase_id-out.
+        WHEN phase_id-dev.
+          lv_phase_id = phase_id-plan.
+        WHEN phase_id-prod.
+          lv_phase_id = phase_id-dev.
+        WHEN phase_id-out.
+          lv_phase_id = phase_id-prod.
+        WHEN OTHERS.
+          lv_phase_id = phase_id-plan.
+      ENDCASE.
+
+      MODIFY ENTITIES OF z##_c_product_#### IN LOCAL MODE
+             ENTITY Product
+             UPDATE
+             FIELDS ( Phaseid )
+             WITH VALUE #( FOR key IN keys
+                           ( %tky    = key-%tky
+                             Phaseid = lv_phase_id ) )
+             FAILED   failed
+             REPORTED reported.
+      READ ENTITIES OF z##_c_product_#### IN LOCAL MODE
+           ENTITY Product
+           ALL FIELDS WITH CORRESPONDING #( keys )
+           RESULT DATA(ls_result).
+      result = VALUE #( FOR ls_product_result IN ls_result
+                        ( %tky   = ls_product_result-%tky
+                          %param = ls_product_result ) ).
+    ENDLOOP.
+  ENDMETHOD.
+
+ENDCLASS.
+
+*"* use this source file for the definition and implementation of
+*"* local helper classes, interface definitions and type
+*"* declarations
+```

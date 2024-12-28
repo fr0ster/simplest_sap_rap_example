@@ -188,7 +188,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
      " Part of code was skipped
       }
    ```
-   - Add [action implementation](./07_behavior_implementation.md#z##_i_product_) over **Quick Fix**.
+   - Add **[action implementation](./07_behavior_implementation.md#z##_i_product_)** over **Quick Fix**.
    ```ABAP
       METHOD nextPhase.
          READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
@@ -255,6 +255,60 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
       use association _Market { create; }
       use action nextPhase;
       }
+   ```
+   - Create new action in **[Z##_C_PRODUCT_####](./06_behavior_definition.md#z##_c_product_)**.
+   ```ABAP
+      define behavior for Z##_C_PRODUCT_#### alias Product
+      implementation in class zbp_##_c_product_#### unique
+      {
+     " Part of code was skipped
+      use action nextPhase;
+      action priorPhase result [1] $self;
+      }
+   ```
+   - Create class implementation **zbp_##_c_product_####** and add **[action implementation](./07_behavior_implementation.md#z##_c_product_)** over **Quick Fix**.
+   ```ABAP
+      METHOD priorPhase.
+         READ ENTITIES OF z##_c_product_#### IN LOCAL MODE
+               ENTITY Product
+               FIELDS ( Phaseid )
+               WITH CORRESPONDING #( keys )
+               RESULT DATA(lt_product)
+               FAILED failed.
+
+         LOOP AT lt_product ASSIGNING FIELD-SYMBOL(<ls_product>).
+            DATA(lv_phase_id) = phase_id-plan.
+            CASE <ls_product>-Phaseid.
+            WHEN phase_id-plan.
+               lv_phase_id = phase_id-out.
+            WHEN phase_id-dev.
+               lv_phase_id = phase_id-plan.
+            WHEN phase_id-prod.
+               lv_phase_id = phase_id-dev.
+            WHEN phase_id-out.
+               lv_phase_id = phase_id-prod.
+            WHEN OTHERS.
+               lv_phase_id = phase_id-plan.
+            ENDCASE.
+
+            MODIFY ENTITIES OF z##_c_product_#### IN LOCAL MODE
+                  ENTITY Product
+                  UPDATE
+                  FIELDS ( Phaseid )
+                  WITH VALUE #( FOR key IN keys
+                                 ( %tky    = key-%tky
+                                 Phaseid = lv_phase_id ) )
+                  FAILED   failed
+                  REPORTED reported.
+            READ ENTITIES OF z##_c_product_#### IN LOCAL MODE
+               ENTITY Product
+               ALL FIELDS WITH CORRESPONDING #( keys )
+               RESULT DATA(ls_result).
+            result = VALUE #( FOR ls_product_result IN ls_result
+                              ( %tky   = ls_product_result-%tky
+                              %param = ls_product_result ) ).
+         ENDLOOP.
+      ENDMETHOD.
    ```
    - Add action by annotation into [Metadata Extensions](./03_metadata_extestion.md)
    ```ABAP
