@@ -25,14 +25,14 @@ ENDCLASS.
 CLASS lhc_order IMPLEMENTATION.
 
   METHOD setAmountcurr.
-    READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
     ENTITY Order FIELDS ( Amountcurr )
     WITH CORRESPONDING #( keys ) RESULT DATA(lt_orders).
     DELETE lt_orders WHERE Amountcurr IS NOT INITIAL.
     IF lt_orders IS INITIAL.
       RETURN.
     ENDIF.
-    MODIFY ENTITIES OF zok_i_product_0001 IN LOCAL MODE
+    MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Order
            UPDATE FIELDS ( Amountcurr )
            WITH VALUE #( FOR product IN lt_orders
@@ -42,21 +42,21 @@ CLASS lhc_order IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD checkGrossamount.
-    READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
          ENTITY Market
          FIELDS ( Startdate
                   Enddate ) WITH CORRESPONDING #( keys )
          RESULT DATA(lt_marketdate).
 
     LOOP AT lt_marketdate ASSIGNING FIELD-SYMBOL(<ls_marketdate>).
-      READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE
+      READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Market BY \_Orders
            FIELDS ( DeliveryDate ) WITH VALUE #( ( %tky = <ls_marketdate>-%tky )  )
            RESULT DATA(lt_orderdate).
 
       LOOP AT lt_orderdate ASSIGNING FIELD-SYMBOL(<ls_orderdate>).
         APPEND VALUE #( %tky        = <ls_orderdate>-%tky
-                        %state_area = 'VALIDATE_AMOUNT' )
+                        %state_area = 'CHECKQGROSSAMOUNT' )
                TO reported-order.
 
         IF     <ls_orderdate>-Grossamount >= 0.
@@ -66,7 +66,7 @@ CLASS lhc_order IMPLEMENTATION.
         APPEND VALUE #( %tky = <ls_orderdate>-%tky ) TO failed-order.
 
         APPEND VALUE #( %tky                  = <ls_orderdate>-%tky
-                        %state_area           = 'VALIDATE_AMOUNT'
+                        %state_area           = 'CHECKQGROSSAMOUNT'
                         %msg                  = new_message_with_text( severity = if_abap_behv_message=>severity-error text = 'Grossamount less than zero' )
                         %element-DeliveryDate = if_abap_behv=>mk-on )
                TO reported-order.
@@ -75,21 +75,21 @@ CLASS lhc_order IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD checkNetamount.
-    READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
          ENTITY Market
          FIELDS ( Startdate
                   Enddate ) WITH CORRESPONDING #( keys )
          RESULT DATA(lt_marketdate).
 
     LOOP AT lt_marketdate ASSIGNING FIELD-SYMBOL(<ls_marketdate>).
-      READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE
+      READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Market BY \_Orders
            FIELDS ( DeliveryDate ) WITH VALUE #( ( %tky = <ls_marketdate>-%tky )  )
            RESULT DATA(lt_orderdate).
 
       LOOP AT lt_orderdate ASSIGNING FIELD-SYMBOL(<ls_orderdate>).
         APPEND VALUE #( %tky        = <ls_orderdate>-%tky
-                        %state_area = 'VALIDATE_AMOUNT' )
+                        %state_area = 'CHECKNETAMOUNT' )
                TO reported-order.
 
         IF     <ls_orderdate>-Netamount >= 0.
@@ -99,7 +99,7 @@ CLASS lhc_order IMPLEMENTATION.
         APPEND VALUE #( %tky = <ls_orderdate>-%tky ) TO failed-order.
 
         APPEND VALUE #( %tky                  = <ls_orderdate>-%tky
-                        %state_area           = 'VALIDATE_AMOUNT'
+                        %state_area           = 'CHECKNETAMOUNT'
                         %msg                  = new_message_with_text( severity = if_abap_behv_message=>severity-error text = 'Netamount less than zero' )
                         %element-DeliveryDate = if_abap_behv=>mk-on )
                TO reported-order.
@@ -108,21 +108,21 @@ CLASS lhc_order IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD checkQuantity.
-    READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
          ENTITY Market
          FIELDS ( Startdate
                   Enddate ) WITH CORRESPONDING #( keys )
          RESULT DATA(lt_marketdate).
 
     LOOP AT lt_marketdate ASSIGNING FIELD-SYMBOL(<ls_marketdate>).
-      READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE
+      READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Market BY \_Orders
            FIELDS ( DeliveryDate ) WITH VALUE #( ( %tky = <ls_marketdate>-%tky )  )
            RESULT DATA(lt_orderdate).
 
       LOOP AT lt_orderdate ASSIGNING FIELD-SYMBOL(<ls_orderdate>).
         APPEND VALUE #( %tky        = <ls_orderdate>-%tky
-                        %state_area = 'VALIDATE_QUANTITY' )
+                        %state_area = 'CHECKQUANTITY' )
                TO reported-order.
 
         IF <ls_orderdate>-Quantity >= 0.
@@ -132,7 +132,7 @@ CLASS lhc_order IMPLEMENTATION.
         APPEND VALUE #( %tky = <ls_orderdate>-%tky ) TO failed-order.
 
         APPEND VALUE #( %tky                  = <ls_orderdate>-%tky
-                        %state_area           = 'VALIDATE_QUANTITY'
+                        %state_area           = 'CHECKQUANTITY'
                         %msg                  = new_message_with_text( severity = if_abap_behv_message=>severity-error
                                                                        text     = 'Quantity less than zero' )
                         %element-DeliveryDate = if_abap_behv=>mk-on )
@@ -158,12 +158,12 @@ ENDCLASS.
 CLASS lhc_market IMPLEMENTATION.
 
   METHOD setEnddate.
-    READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE ENTITY Market FIELDS ( Enddate ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_markets).
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE ENTITY Market FIELDS ( Enddate ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_markets).
     DELETE lt_markets WHERE Enddate IS NOT INITIAL.
     IF lt_markets IS INITIAL.
       RETURN.
     ENDIF.
-    MODIFY ENTITIES OF zok_i_product_0001 IN LOCAL MODE
+    MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Market
            UPDATE FIELDS ( Enddate )
            WITH VALUE #( FOR product IN lt_markets
@@ -173,12 +173,12 @@ CLASS lhc_market IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD setStartdate.
-    READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE ENTITY Market FIELDS ( Startdate ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_markets).
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE ENTITY Market FIELDS ( Startdate ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_markets).
     DELETE lt_markets WHERE Startdate IS NOT INITIAL.
     IF lt_markets IS INITIAL.
       RETURN.
     ENDIF.
-    MODIFY ENTITIES OF zok_i_product_0001 IN LOCAL MODE
+    MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Market
            UPDATE FIELDS ( Startdate )
            WITH VALUE #( FOR product IN lt_markets
@@ -237,12 +237,12 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD setDepth.
-    READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE ENTITY Product FIELDS ( Depth ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( Depth ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
     DELETE lt_products WHERE Depth IS NOT INITIAL.
     IF lt_products IS INITIAL.
       RETURN.
     ENDIF.
-    MODIFY ENTITIES OF zok_i_product_0001 IN LOCAL MODE
+    MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Product
            UPDATE FIELDS ( Depth )
            WITH VALUE #( FOR product IN lt_products
@@ -252,12 +252,12 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD setHeight.
-    READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE ENTITY Product FIELDS ( Height ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( Height ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
     DELETE lt_products WHERE Height IS NOT INITIAL.
     IF lt_products IS INITIAL.
       RETURN.
     ENDIF.
-    MODIFY ENTITIES OF zok_i_product_0001 IN LOCAL MODE
+    MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Product
            UPDATE FIELDS ( Height )
            WITH VALUE #( FOR product IN lt_products
@@ -267,12 +267,12 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD setWidth.
-    READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE ENTITY Product FIELDS ( Width ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( Width ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
     DELETE lt_products WHERE Width IS NOT INITIAL.
     IF lt_products IS INITIAL.
       RETURN.
     ENDIF.
-    MODIFY ENTITIES OF zok_i_product_0001 IN LOCAL MODE
+    MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Product
            UPDATE FIELDS ( Width )
            WITH VALUE #( FOR product IN lt_products
@@ -282,11 +282,11 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD checkDepth.
-    READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE ENTITY Product FIELDS ( Depth ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( Depth ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
 
     LOOP AT lt_products INTO DATA(ls_product).
       APPEND VALUE #( %tky        = ls_product-%tky
-                      %state_area = 'VALIDATE_DIMENSION' ) TO reported-product.
+                      %state_area = 'CHECKDEPTH' ) TO reported-product.
       IF ls_product-Depth >= 0.
         CONTINUE.
       ENDIF.
@@ -294,7 +294,7 @@ CLASS lhc_Product IMPLEMENTATION.
       APPEND VALUE #( %tky = ls_product-%tky ) TO failed-product.
 
       APPEND VALUE #( %tky          = ls_product-%tky
-                      %state_area   = 'VALIDATE_DIMENSION'
+                      %state_area   = 'CHECKDEPTH'
                       %msg          = new_message_with_text( severity = if_abap_behv_message=>severity-error text = 'Depth less than zero' )
                       %element-Pgid = if_abap_behv=>mk-on )
              TO reported-product.
@@ -302,11 +302,11 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD checkHeight.
-    READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE ENTITY Product FIELDS ( Height ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( Height ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
 
     LOOP AT lt_products INTO DATA(ls_product).
       APPEND VALUE #( %tky        = ls_product-%tky
-                      %state_area = 'VALIDATE_DIMENSION' ) TO reported-product.
+                      %state_area = 'CHECKHEIGHT' ) TO reported-product.
       IF ls_product-Height >= 0.
         CONTINUE.
       ENDIF.
@@ -314,7 +314,7 @@ CLASS lhc_Product IMPLEMENTATION.
       APPEND VALUE #( %tky = ls_product-%tky ) TO failed-product.
 
       APPEND VALUE #( %tky          = ls_product-%tky
-                      %state_area   = 'VALIDATE_DIMENSION'
+                      %state_area   = 'CHECKHEIGHT'
                       %msg          = new_message_with_text( severity = if_abap_behv_message=>severity-error text = 'Height less than zero' )
                       %element-Pgid = if_abap_behv=>mk-on )
              TO reported-product.
@@ -322,11 +322,11 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD checkWidth.
-    READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE ENTITY Product FIELDS ( Width ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( Width ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
 
     LOOP AT lt_products INTO DATA(ls_product).
       APPEND VALUE #( %tky        = ls_product-%tky
-                      %state_area = 'VALIDATE_DIMENSION' ) TO reported-product.
+                      %state_area = 'CHECKQWIDTH' ) TO reported-product.
       IF ls_product-Width >= 0.
         CONTINUE.
       ENDIF.
@@ -334,7 +334,7 @@ CLASS lhc_Product IMPLEMENTATION.
       APPEND VALUE #( %tky = ls_product-%tky ) TO failed-product.
 
       APPEND VALUE #( %tky          = ls_product-%tky
-                      %state_area   = 'VALIDATE_DIMENSION'
+                      %state_area   = 'CHECKQWIDTH'
                       %msg          = new_message_with_text( severity = if_abap_behv_message=>severity-error text = 'Width less than zero' )
                       %element-Pgid = if_abap_behv=>mk-on )
              TO reported-product.
@@ -342,12 +342,12 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD setSizeUom.
-    READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE ENTITY Product FIELDS ( SizeUom ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( SizeUom ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
     DELETE lt_products WHERE SizeUom IS NOT INITIAL.
     IF lt_products IS INITIAL.
       RETURN.
     ENDIF.
-    MODIFY ENTITIES OF zok_i_product_0001 IN LOCAL MODE
+    MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Product
            UPDATE FIELDS ( SizeUom )
            WITH VALUE #( FOR product IN lt_products
@@ -357,12 +357,12 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD setPriceCurrency.
-    READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE ENTITY Product FIELDS ( PriceCurrency ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( PriceCurrency ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
     DELETE lt_products WHERE PriceCurrency IS NOT INITIAL.
     IF lt_products IS INITIAL.
       RETURN.
     ENDIF.
-    MODIFY ENTITIES OF zok_i_product_0001 IN LOCAL MODE
+    MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Product
            UPDATE FIELDS ( PriceCurrency )
            WITH VALUE #( FOR product IN lt_products
@@ -372,12 +372,12 @@ CLASS lhc_Product IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD setPhaseid.
-    READ ENTITIES OF zok_i_product_0001 IN LOCAL MODE ENTITY Product FIELDS ( Phaseid ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
+    READ ENTITIES OF z##_i_product_#### IN LOCAL MODE ENTITY Product FIELDS ( Phaseid ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_products).
     DELETE lt_products WHERE Phaseid IS NOT INITIAL.
     IF lt_products IS INITIAL.
       RETURN.
     ENDIF.
-    MODIFY ENTITIES OF zok_i_product_0001 IN LOCAL MODE
+    MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Product
            UPDATE FIELDS ( Phaseid )
            WITH VALUE #( FOR product IN lt_products
