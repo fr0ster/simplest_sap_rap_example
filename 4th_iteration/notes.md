@@ -189,7 +189,7 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
       }
    ```
    - Create implementation of **validations and determinations** in **[Class Behavior Implementation](./07_behavior_implementation.md#z##_i_product_)**
-   - Pay attention, **%state_area** it's name of validation, **%element-Netamount = if_abap_behv=>mk-on** it's checked field.
+   - Pay attention, **%state_area** it's name of validation, **%element-Netamount = if_abap_behv=>mk-on**, here Netamount is a checked field.
    ```ABAP
            APPEND VALUE #( %tky        = <ls_orderdate>-%tky
                         %state_area = 'CHECKNETAMOUNT' )
