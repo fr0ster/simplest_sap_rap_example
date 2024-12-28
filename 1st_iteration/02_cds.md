@@ -1,6 +1,6 @@
 # CDS Projection Definitions
 
-## CDS Projection for Root View Entity Product
+## CDS Projection Transacional Query for Root View Entity Product
 
 <a name="z##_c_product_"></a>
 ### Z##_C_PRODUCT_####
@@ -20,39 +20,23 @@ define root view entity Z##_C_PRODUCT_####
   key ProdUuid,
 
       Prodid,
-
       Pgid,
-
       _PG.Pgname        as Pgname,
-
-      @Semantics.amount.currencyCode: 'PriceCurrency'
       Price,
-
       Phaseid,
-
       _PHASE.Phase      as PhaseName,
-
-      @Semantics.quantity.unitOfMeasure: 'SizeUom'
       Height,
-
-      @Semantics.quantity.unitOfMeasure: 'SizeUom'
       Depth,
-
-      @Semantics.quantity.unitOfMeasure: 'SizeUom'
       Width,
-
-      @Semantics.unitOfMeasure: true
       SizeUom,
-
       _UOM.Isocode      as DimName,
-
       PriceCurrency,
-
       CreatedBy,
       CreationTime,
       ChangedBy,
       ChangedTime,
       LocalChangedTime,
+
       /* Associations */
       _Market : redirected to composition child Z##_C_MARKET_####,
       _PG,

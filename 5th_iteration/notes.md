@@ -7,10 +7,11 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 ---
 
 ### Key Objectives:
-1. Add **Value Helpers** into **[Z##_C_PRODUCT_####](./02_cds.md#z##_c_product_)**.
-2. Add **Value Helpers** into **[Z##_C_MARKET_####](./02_cds.md#z##_c_market_)**.
-3. Add **Value Helpers** into **[Z##_C_ORDER_####](./02_cds.md#z##_c_order_)**.
-4. Add **needed fields** into the **SearchField Area** and enable standard search functionality in **[Metadata Extension](03_metadata_extension.md)**.
+1. Create **Projection Transacional Interface**, change projected CDS in **Projection Transacional Query** to new **Projection Transacional Interface**. 
+2. Add **Value Helpers** into **[Z##_CI_PRODUCT_####](./02_cds.md#z##_ci_product_)**.
+3. Add **Value Helpers** into **[Z##_CI_MARKET_####](./02_cds.md#z##_ci_market_)**.
+4. Add **Value Helpers** into **[Z##_CI_ORDER_####](./02_cds.md#z##_ci_order_)**.
+5. Add **needed fields** into the **SearchField Area** and enable standard search functionality in **[Metadata Extension](03_metadata_extension.md)**.
 
 ---
 
@@ -64,10 +65,24 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 
 ### Steps:
 
-1. **[Add Value Helpers into Product](./02_cds.md#z##_c_product_)**:
-   - Annotate **[Z##_C_PRODUCT_####](./02_cds.md#z##_c_product_)** with the necessary fields.
+1. **Create Projection Transacional Interface**
+   - **[Z##_CI_PRODUCT_####](./02_cds.md#z##_ci_product_)**
+   - **[Z##_CI_MARKET_####](./02_cds.md#z##_ci_market_)**
+   - **[Z##_CI_ORDER_####](./02_cds.md#z##_ci_order_)**
+
+2. **Modificate Projection Transacional Query**
+   - **[Z##_CI_PRODUCT_####](./02_cds.md#z##_c_product_)**
+   - **[Z##_CI_PRODUCT_####](./02_cds.md#z##_c_market_)**
+   - **[Z##_CI_PRODUCT_####](./02_cds.md#z##_c_order_)**
+
+3. **Behavior Definition**
+   - Create BDEF for **[Z##_CI_PRODUCT_####](./06_behavior_definition.md#z##_ci_product_)**
+   - Modificate BDEF for **[Z##_C_PRODUCT_####](./06_behavior_definition.md#z##_c_product_)**
+
+1. **[Add Value Helpers into Product](./02_cds.md#z##_ci_product_)**:
+   - Annotate **[Z##_CI_PRODUCT_####](./02_cds.md#z##_ci_product_)** with the necessary fields.
    ```ABAP
-   define root view entity Z##_C_PRODUCT_####
+   define root view entity Z##_CI_PRODUCT_####
    provider contract transactional_query
    as projection on Z##_I_PRODUCT_####
    {
@@ -106,8 +121,8 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
    }
    ```
 
-2. **[Add Value Helpers into Market](./02_cds.md#z##_c_market_)**:
-   - Annotate **[Z##_C_MARKET_####](./02_cds.md#z##_c_market_)** with the necessary fields.
+2. **[Add Value Helpers into Market](./02_cds.md#z##_ci_market_)**:
+   - Annotate **[Z##_CI_MARKET_####](./02_cds.md#z##_ci_market_)** with the necessary fields.
    ```ABAP
    define view entity Z##_C_MARKET_####
    as projection on Z##_I_MARKET_####
@@ -124,8 +139,8 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
    }
    ```
 
-3. **[Add Value Helpers into Order](./02_cds.md#z##_c_order_)**:
-   - Annotate **[Z##_C_ORDER_####](./02_cds.md#z##_c_order_)** with the necessary fields.
+3. **[Add Value Helpers into Order](./02_cds.md#z##_ci_order_)**:
+   - Annotate **[Z##_CI_ORDER_####](./02_cds.md#z##_ci_order_)** with the necessary fields.
    ```ABAP
    define view entity Z##_C_ORDER_####
    as projection on Z##_I_ORDER_####

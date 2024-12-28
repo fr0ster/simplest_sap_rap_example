@@ -1,6 +1,42 @@
-# Behaviour Implementation definition
+# Behaviour Definitions
 
-## Behaviour Implementation for CDS Product Interface
+## Behaviour Definition for CDS Criticality Levels BO Interface
+<a name="z##_i_criticality_levels_"></a>
+Z##_I_CRITICALITY_LEVELS_####
+
+```ABAP
+managed implementation in class zbp_##_i_crtlty_levels_#### unique;
+strict ( 2 );
+
+define behavior for Z##_I_CRITICALITY_LEVELS_#### alias CriticalityLevels
+persistent table z##_d_crtly_####
+lock master
+authorization master ( instance )
+etag master LocalChangedTime
+{
+  create;
+  update;
+  delete;
+
+  field ( readonly ) Id;
+
+  mapping for z##_d_crtly_####
+    {
+      Id               = id;
+      Treashhold1      = treashhold1;
+      Treashhold2      = treashhold2;
+      Treashhold3      = treashhold3;
+      Treashhold4      = treashhold4;
+      CreatedBy        = created_by;
+      CreationTime     = creation_time;
+      ChangedBy        = changed_by;
+      ChangedTime      = changed_time;
+      LocalChangedTime = local_changed_time;
+    }
+}
+```
+
+## Behaviour Definition for CDS Product BO Interface
 <a name="z##_i_product_"></a>
 Z##_I_PRODUCT
 
@@ -192,7 +228,7 @@ authorization dependent by _Product
 }
 ```
 
-## Behaviour Implementation for CDS Product Projection
+## Behaviour Definition for CDS Product BO Projection Transaction Query
 
 ```ABAP
 projection;
@@ -224,3 +260,4 @@ define behavior for Z##_C_ORDER_#### alias _Order
   use association _Market;
 }
 ```
+

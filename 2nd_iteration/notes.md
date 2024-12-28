@@ -13,11 +13,11 @@ In this iteration, we implement the behavior for our business object, enabling t
 ---
 
 ### Steps:
-1. **[Define the Behavior Definition (BDEF)](./06_behavior_implementation.md#z##_i_product_)**:
+1. **[Define the Behavior Definition (BDEF)](./06_behavior_definition.md#z##_i_product_)**:
    - Define the behavior of the business object as **Managed**.
    - Generate class implementation using **Quick Fix** in **ADT**.
 
-2. **[Project the Behavior Definition (BDEF)](./06_behavior_implementation.md#z##_c_product_)**:
+2. **[Project the Behavior Definition (BDEF)](./06_behavior_definition.md#z##_c_product_)**:
    - Define the projection behavior of the business object as **Managed**.
 
 3. **Test the Behavior**:

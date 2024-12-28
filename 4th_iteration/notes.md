@@ -12,6 +12,7 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
 5. Update the **Product Projection**.
 6. Enhance Metadata Extensions.
 7. Create a Service for modifying **Criticality Levels** data.
+8. Create **validations** and **determinations** for **CDS Product BO Interface**
 
 ---
 
@@ -130,9 +131,63 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
 11. **[Expose Criticality Levels Project as Service](./04_service.md)**:
     - Add expose **[Z##_C_CRITICALITY_LEVELS_####](./04_service.md)** as PriceCritically into Service Definition.
 
-12. **Test the Behavior**:
-    - Test the implemented behavior in the Fiori application or using the ABAP console.
-    - Verify that the operations (Create, Update, Delete) and validations/determinations function as expected.
+12. **[Create validations and determinations Definition ](./06_behavior_definition.md#z##_i_product_)**
+   - Add validation and determination into **[Behaviour Definition for CDS Product BO Interface](./06_behavior_definition.md#z##_i_product_)**
+   ```ABAP
+      managed implementation in class zbp_##_i_product_#### unique;
+      strict ( 2 );
+
+      define behavior for Z##_I_PRODUCT_#### alias Product
+      persistent table z##_d_prod_####
+      lock master
+      authorization master ( instance )
+      etag master LocalChangedTime
+      {
+       /* Part of code was skipped */
+
+      determination setPhaseid on save { create; field Phaseid; }
+      determination setPriceCurrency on save { create; field PriceCurrency; }
+      determination setHeight on save { create; field Height; }
+      determination setDepth on save { create; field Depth; }
+      determination setWidth on save { create; field Width; }
+      determination setSizeUom on save { create; field SizeUom; }
+      validation checkHeight on save { field Height; }
+      validation checkDepth on save { field Depth; }
+      validation checkWidth on save { field Width; }
+
+       /* Part of code was skipped */
+      }
+
+      define behavior for Z##_I_MARKET_#### alias Market
+      persistent table z##_d_mrkt_####
+      lock dependent by _Product
+      authorization dependent by _Product
+      etag master LocalChangedTime
+      {
+       /* Part of code was skipped */
+       
+      determination setStartdate on save { create; field Startdate; }
+      determination setEnddate on save { create; field Enddate; }
+
+       /* Part of code was skipped */
+      }
+
+      define behavior for Z##_I_ORDER_#### alias Order
+      persistent table z##_d_order_####
+      lock dependent by _Product
+      authorization dependent by _Product
+      etag master LocalChangedTime
+      {
+       /* Part of code was skipped */
+
+      determination setAmountcurr on save { create; field Amountcurr; }
+      validation checkQuantity on save { field Quantity; }
+      validation checkNetamount on save { field Netamount; }
+      validation checkGrossamount on save { field Grossamount; }
+
+       /* Part of code was skipped */
+      }
+   ```
 
 ---
 

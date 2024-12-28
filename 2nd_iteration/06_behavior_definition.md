@@ -1,6 +1,6 @@
-# Behaviour Implementation definition
+# Behaviour Definitions
 
-## Behaviour Implementation for CDS Interface
+## Behaviour Definitions for CDS Product BO Interface
 <a name="z##_i_product_"></a>
 Z##_I_PRODUCT_####
 
@@ -79,7 +79,7 @@ etag master LocalChangedTime
     }
 }
 ```
-## Behaviour Implementation for CDS Projection
+## Behaviour Definitions for CDS Product BO Projection Transaction Query
 <a name="z##_c_product_"></a>
 Z##_C_PRODUCT_####
 

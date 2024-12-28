@@ -45,6 +45,7 @@ Refinements to the data model are the focus of this iteration:
 - Add **associations** to connect Criticality Thresholds for calculating Criticality Levels via separate settings tables.
 - Develop a service to manage Criticality Thresholds data.
 - Include **calculated fields** to dynamically derive values based on existing data.
+- Add **determinations** and **validations**
 
 ---
 
@@ -52,8 +53,10 @@ Refinements to the data model are the focus of this iteration:
 
 This iteration focuses on improving the business model:
 
+- Get **Projection Transacional Interface** out from **Projection Transacional Query**.
 - Enable **search functionality** within the **List Report**.
 - Enhance the data model with ValueHelper annotations.
+- Add **actions**
 
 ---
 

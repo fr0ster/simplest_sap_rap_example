@@ -46,7 +46,11 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
        local_changed_time as LocalChangedTime,
        ```
 
-4. **CDS Activation**:
+4. **Projection type**:
+   - Use **Projection** type in wizard
+   - Add **provider contract transactional_query** into definition over **Quick Fix** or manually, now empty provider contract is obsoleted.
+
+5. **CDS Activation**:
    - CDS views that are connected via **composition associations** (e.g., `association [1..*]`) must be activated **together**. This applies to:
      - **Creating new CDS views** that include compositions.
      - **Modifying existing compositions**, where associations are added or changed.

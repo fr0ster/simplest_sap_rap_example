@@ -25,7 +25,7 @@ define root view entity Z##_C_CRITICALITY_LEVELS_####
 }
 ```
 
-## CDS Projection for root view entity Product
+## CDS Projection Transacional Query for root view entity Product
 <a name="z##_c_product_"></a>
 Z##_C_PRODUCT_####
 
@@ -48,26 +48,15 @@ define root view entity Z##_C_PRODUCT_####
       Prodid,
       Pgid,
       _PG.Pgname                  as Pgname,
-
-      @Semantics.amount.currencyCode: 'PriceCurrency'
       Price,
 
       PriceCriticality,
       Phaseid,
       _PHASE.Phase                as PhaseName,
-
-      @Semantics.quantity.unitOfMeasure: 'SizeUom'
       Height,
-
-      @Semantics.quantity.unitOfMeasure: 'SizeUom'
       Depth,
-
-      @Semantics.quantity.unitOfMeasure: 'SizeUom'
       Width,
-
-      @Semantics.unitOfMeasure: true
       SizeUom,
-
       _UOM.Isocode                as DimName,
       PriceCurrency,
       CreatedBy,
@@ -75,6 +64,7 @@ define root view entity Z##_C_PRODUCT_####
       ChangedBy,
       ChangedTime,
       LocalChangedTime,
+
       /* Associations */
       _Market : redirected to composition child Z##_C_MARKET_####,
 
@@ -83,5 +73,4 @@ define root view entity Z##_C_PRODUCT_####
       _UOM,
       _PriceCriticality
 }
-
 ```

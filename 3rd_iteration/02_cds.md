@@ -21,13 +21,8 @@ define view entity Z##_C_ORDER_####
 
       Quantity,
       DeliveryDate,
-
-      @Semantics.amount.currencyCode: 'Amountcurr'
       Netamount,
-
-      @Semantics.amount.currencyCode: 'Amountcurr'
       Grossamount,
-
       Amountcurr,
       CreatedBy,
       CreationTime,
