@@ -199,7 +199,7 @@ define view entity Z##_I_PRODUCT_VH_####
 
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Currency Interface'
+@EndUserText.label: 'Currency Search Help'
 
 @ObjectModel.resultSet.sizeCategory: #XS
 @ObjectModel.usageType: { serviceQuality: #X, sizeCategory: #S, dataClass: #MIXED }
@@ -229,7 +229,7 @@ define view entity Z##_I_CURRENCY_VH_####
 
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Product Group Interface'
+@EndUserText.label: 'Product Group Search Help'
 
 
 @ObjectModel.resultSet.sizeCategory: #XS
@@ -261,7 +261,7 @@ define view entity Z##_I_PG_VH_####
 
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Phase Interface'
+@EndUserText.label: 'Phase Search Help'
 
 
 @ObjectModel.resultSet.sizeCategory: #XS
@@ -292,7 +292,7 @@ define view entity Z##_I_PHASE_VH_####
 
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'VH UOM'
+@EndUserText.label: 'UOM Search Help'
 
 
 @ObjectModel.resultSet.sizeCategory: #XS
