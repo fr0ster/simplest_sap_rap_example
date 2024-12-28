@@ -1,5 +1,7 @@
 # Notes
+
 ## Second Iteration: Implementing Behavior for Managed Business Objects
+
 In this iteration, we implement the behavior for our business object, enabling transactional operations such as **Create**, **Update**, and **Delete** (CUD). This also involves defining behavior in the **Behavior Definition (BDEF)** and implementing logic in the corresponding **ABAP class**.
 
 ---
@@ -13,6 +15,7 @@ In this iteration, we implement the behavior for our business object, enabling t
 ---
 
 ### Steps:
+
 1. **[Define the Behavior Definition (BDEF)](./06_behavior_definition.md#z##_i_product_)**:
    - Define the behavior of the business object as **Managed**.
    - Generate class implementation using **Quick Fix** in **ADT**.
@@ -33,6 +36,7 @@ In this iteration, we implement the behavior for our business object, enabling t
 ---
 
 ### Possible Issues and Solutions:
+
 #### 1. **Problem with transactional behavior**
    **Problem**:
    - The application remains read-only, and the **Create** and **Delete** buttons are not visible.

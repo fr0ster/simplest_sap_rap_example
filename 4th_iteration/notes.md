@@ -1,5 +1,7 @@
 # Notes
+
 ## Fourth Iteration: Enhancing the Data Model and Metadata Extensions
+
 In this iteration, we enhance the data model by introducing a **Criticality Levels** table and integrating it with the product data. Additionally, we update the Metadata Extension and projections to support new functionality, including criticality handling and UI improvements.
 
 ---
@@ -12,11 +14,12 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
 5. Update the **Product Projection**.
 6. Enhance Metadata Extensions.
 7. Create a Service for modifying **Criticality Levels** data.
-8. Create **validations** and **determinations** for **CDS Product BO Interface**
+8. Create **validations** and **determinations** for **CDS Product BO Interface**.
 
 ---
 
 ### Steps:
+
 1. **[Create the Criticality Levels Table](./00_tables.md#z##_d_crtly_)**:
    - Define the table **[Z##_CRTLY_####](./00_tables.md#z##_d_crtly_)** with the necessary fields.
 
@@ -217,6 +220,7 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
 ---
 
 ### Possible Issues and Solutions:
+
 #### 1. **Columns Missing in Preview**
    **Problem**:
    - CDS views/projection fail to activate, particularly those with **composition associations**.

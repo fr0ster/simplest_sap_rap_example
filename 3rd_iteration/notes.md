@@ -1,5 +1,7 @@
 # Notes
+
 ## Third Iteration: Add Third Level of Composition
+
 In this iteration, we enhance the data model by introducing a **Criticality Levels** table and integrating it with the product data. Additionally, we update the Metadata Extension and projections to support new functionality, including criticality handling and UI improvements.
 
 ---
@@ -10,7 +12,7 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
 3. Develop a **CDS Projection** (**[Z##_C_ORDER_####](./02_cds.md#z##_c_order_)**) for accessing the orders.
 4. Integrate the order data into the market entity.
 5. Enhance Metadata Extensions.
-6. Modificate **Behafior definition** for **Product BO**
+6. Modificate **Behavior definition** for **Product BO**.
 
 ---
 
@@ -114,15 +116,15 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
    - Add a Behavior Implementation Definition for Orders, using the BDEF for Markets as a template and correcting it.
    - Generate the class implementation using **Quick Fix** in **ADT**.
 
-7. **[Modificate the Behavior Definition (BDEF) Transactional Query](./06_behavior_definition.md#z##_c_product_)**:
+8. **[Modificate the Behavior Definition (BDEF) Transactional Query](./06_behavior_definition.md#z##_c_product_)**:
    - Define the behavior of the business object as **Managed**.
    - Add a Behavior Implementation Definition for Orders, using the BDEF for Markets as a template and correcting it.
 
-8. **[Expose Z##_UI_PRODUCT_O2_#### for Orders in the Service Definition](./04_service.md)**.
+9. **[Expose Z##_UI_PRODUCT_O2_#### for Orders in the Service Definition](./04_service.md)**.
 
-9. **Test the Behavior**:
-   - Test the implemented behavior in the Fiori application or using the ABAP console.
-   - Verify that the operations (Create, Update, Delete) function as expected.
+10. **Test the Behavior**:
+    - Test the implemented behavior in the Fiori application or using the ABAP console.
+    - Verify that the operations (Create, Update, Delete) function as expected.
 
 ---
 
@@ -133,6 +135,7 @@ In this iteration, we enhance the data model by introducing a **Criticality Leve
 ---
 
 ### Possible Issues and Solutions:
+
 #### 1. **CDS Views/Projections Not Activating**
    **Problem**:
    - CDS views or projections fail to activate, particularly those with **composition associations**.

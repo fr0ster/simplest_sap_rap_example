@@ -7,12 +7,12 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 ---
 
 ### Key Objectives:
-1. Create **Projection Transacional Interface**, change projected CDS in **Projection Transacional Query** to new **Projection Transacional Interface**. 
+1. Create **Projection Transactional Interface**, change projected CDS in **Projection Transactional Query** to new **Projection Transactional Interface**.
 2. Add **Value Helpers** into **[Z##_CI_PRODUCT_####](./02_cds.md#z##_ci_product_)**.
 3. Add **Value Helpers** into **[Z##_CI_MARKET_####](./02_cds.md#z##_ci_market_)**.
 4. Add **Value Helpers** into **[Z##_CI_ORDER_####](./02_cds.md#z##_ci_order_)**.
 5. Add **needed fields** into the **SearchField Area** and enable standard search functionality in **[Metadata Extension](03_metadata_extension.md)**.
-6. Add **actions**
+6. Add **actions**.
 
 ---
 
@@ -66,12 +66,12 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 
 ### Steps:
 
-1. **Create Projection Transacional Interface**
+1. **Create Projection Transactional Interface**
    - **[Z##_CI_PRODUCT_####](./02_cds.md#z##_ci_product_)**
    - **[Z##_CI_MARKET_####](./02_cds.md#z##_ci_market_)**
    - **[Z##_CI_ORDER_####](./02_cds.md#z##_ci_order_)**
 
-2. **Modificate Projection Transacional Query**
+2. **Modify Projection Transactional Query**
    - **[Z##_C_PRODUCT_####](./02_cds.md#z##_c_product_)**
    - **[Z##_C_MARKET_####](./02_cds.md#z##_c_market_)**
    - **[Z##_C_ORDER_####](./02_cds.md#z##_c_order_)**
@@ -184,7 +184,6 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
      " Part of code was skipped
 
       action nextPhase result [1] $self;
-
 
      " Part of code was skipped
       }

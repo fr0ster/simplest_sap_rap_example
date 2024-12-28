@@ -1,4 +1,5 @@
 # Notes
+
 ## First Iteration: Creating a Fiori Read-Only Application
 
 In this iteration, we will create back-end objects for a **Fiori read-only application**, focusing on the following key components:
@@ -17,7 +18,7 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
 
 2. **Package Consistency**:
    - All objects must be created within your own development package to ensure consistency and organization.
-   - If you are going to use **AbapGit**, create **Service Binding** in a separated package, outside from the **main package**.
+   - If you are going to use **AbapGit**, create **Service Binding** in a separate package, outside the **main package**.
 
 3. **Annotations for Service Fields**:
    - To ensure proper operation of the Business Object (BO), include service-related fields in the tables with the appropriate data types and annotations:
@@ -48,11 +49,11 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
        ```
 
 4. **Currency fields** in **Metadata Extension**:
-   - The annotation **@Semantics.amount.currencyCode annotation**, among other thinhs, causes the curency code to appear next to the field to wich annotation is applied. However, if we apply the annotation **@UI.hidden: true** to field with the currency code, it will not appear next to the field annotaded with **@Semantics.amount.currencyCode annotation**.
+   - The annotation **@Semantics.amount.currencyCode** causes the currency code to appear next to the field to which the annotation is applied. However, if the annotation **@UI.hidden: true** is applied to the field with the currency code, it will not appear next to the field annotated with **@Semantics.amount.currencyCode**.
 
 5. **Projection type**:
-   - Use **Projection** type in wizard
-   - Add **provider contract transactional_query** into definition over **Quick Fix** or manually, now empty provider contract is obsoleted.
+   - Use the **Projection** type in the wizard.
+   - Add **provider contract transactional_query** to the definition via **Quick Fix** or manually, as an empty provider contract is now obsolete.
 
 6. **CDS Activation**:
    - CDS views that are connected via **composition associations** (e.g., `association [1..*]`) must be activated **together**. This applies to:
@@ -117,7 +118,7 @@ In this iteration, we will create back-end objects for a **Fiori read-only appli
 
 ### Possible Issues and Solutions:
 
-#### 1. **CDS Views/Projectons Not Activating**
+#### 1. **CDS Views/Projections Not Activating**
    **Problem**:
    - CDS views/projection fail to activate, particularly those with **composition associations**.
    **Solution**:
