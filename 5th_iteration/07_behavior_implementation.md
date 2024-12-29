@@ -424,8 +424,8 @@ CLASS lhc_Product IMPLEMENTATION.
       READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Product
            ALL FIELDS WITH CORRESPONDING #( keys )
-           RESULT DATA(ls_result).
-      result = VALUE #( FOR ls_product_result IN ls_result
+           RESULT DATA(lt_result).
+      result = VALUE #( FOR ls_product_result IN lt_result
                         ( %tky   = ls_product_result-%tky
                           %param = ls_product_result ) ).
     ENDLOOP.
@@ -491,8 +491,8 @@ CLASS lhc_product IMPLEMENTATION.
       READ ENTITIES OF z##_c_product_#### IN LOCAL MODE
            ENTITY Product
            ALL FIELDS WITH CORRESPONDING #( keys )
-           RESULT DATA(ls_result).
-      result = VALUE #( FOR ls_product_result IN ls_result
+           RESULT DATA(lt_result).
+      result = VALUE #( FOR ls_product_result IN lt_result
                         ( %tky   = ls_product_result-%tky
                           %param = ls_product_result ) ).
     ENDLOOP.

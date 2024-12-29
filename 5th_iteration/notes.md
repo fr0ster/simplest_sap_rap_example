@@ -225,8 +225,8 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
             READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
                ENTITY Product
                ALL FIELDS WITH CORRESPONDING #( keys )
-               RESULT DATA(ls_result).
-            result = VALUE #( FOR ls_product_result IN ls_result
+               RESULT DATA(lt_result).
+            result = VALUE #( FOR ls_product_result IN lt_result
                               ( %tky   = ls_product_result-%tky
                               %param = ls_product_result ) ).
          ENDLOOP.
@@ -303,8 +303,8 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
             READ ENTITIES OF z##_c_product_#### IN LOCAL MODE
                ENTITY Product
                ALL FIELDS WITH CORRESPONDING #( keys )
-               RESULT DATA(ls_result).
-            result = VALUE #( FOR ls_product_result IN ls_result
+               RESULT DATA(lt_result).
+            result = VALUE #( FOR ls_product_result IN lt_result
                               ( %tky   = ls_product_result-%tky
                               %param = ls_product_result ) ).
          ENDLOOP.
