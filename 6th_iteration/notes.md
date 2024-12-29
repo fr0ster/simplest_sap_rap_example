@@ -15,12 +15,12 @@ In this iteration, we enhance the User interface.
 ### Steps:
 1. **[Add auxillary field to Data Model](./01_cds.md#z##_i_product_)**:
     ```ABAP
-    define root view entity ZOK_I_PRODUCT_0001
-    as select from zok_d_prod_0001
+    define root view entity Z##_I_PRODUCT_####
+    as select from z##_d_prod_####
 
      " Part of code was skipped
 
-    association [1..1] to ZOK_I_CRITICALITY_LEVELS_0001 as _PriceCriticality on _PriceCriticality.Id = 'PriceCritically'
+    association [1..1] to Z##_I_CRITICALITY_LEVELS_#### as _PriceCriticality on _PriceCriticality.Id = 'PriceCritically'
 
     {
     key prod_uuid          as ProdUuid,
