@@ -357,7 +357,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
      " Part of code was skipped
    }
    ```
-   - Create **class implementation** of **save handler class**
+   - Create **[class implementation](./07_behavior_implementation.md#lsc_z##_i_product_)** of **save handler class**
    ```ABAP
    CLASS lsc_z##_i_product_#### DEFINITION INHERITING FROM cl_abap_behavior_saver.
 
@@ -378,11 +378,6 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
       ENDIF.
 
       IF update-product IS NOT INITIAL.
-         " TODO: variable is assigned but never used (ABAP cleaner)
-         DATA lt_records TYPE TABLE FOR EVENT z##_i_product_####~testEvent.
-         lt_records = VALUE #( FOR <upd1> IN update-product
-                              ( %key   = VALUE #( ProdUuid = <upd1>-ProdUuid )
-                                 %param = VALUE #( p_1 = '001' ) ) ).
          " Event defined in BDEF: event updated parameter some_abstract_entity;
          RAISE ENTITY EVENT z##_i_product_####~testEvent
                FROM VALUE #( FOR <upd> IN update-product
@@ -401,7 +396,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 
    ENDCLASS.
    ```
-   - create **entity event handler class** for test
+   - create **[entity event handler class](./07_behavior_implementation.md#lcl_local_event_consumption)** for test
    ```ABAP
    CLASS z##_cl_event_handler_#### DEFINITION
    PUBLIC

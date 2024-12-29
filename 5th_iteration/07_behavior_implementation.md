@@ -504,9 +504,62 @@ ENDCLASS.
 *"* declarations
 ```
 
-
 ## Behaviour Implementation for CDS Product Projection Transactional Query
-<a name="z##_c_product_"></a>
+<a name="lsc_z##_i_product_"></a>
+lsc_z##_i_product_####
 
 ```ABAP
+CLASS lsc_z##_i_product_#### DEFINITION INHERITING FROM cl_abap_behavior_saver.
+
+  PROTECTED SECTION.
+
+    METHODS save_modified REDEFINITION.
+
+ENDCLASS.
+
+CLASS lsc_z##_i_product_#### IMPLEMENTATION.
+  METHOD save_modified.
+    IF create-product IS NOT INITIAL.
+      " Event defined in BDEF: event created;
+      RAISE ENTITY EVENT z##_i_product_####~testEvent
+            FROM VALUE #( FOR <cr> IN create-product
+                          ( %key   = VALUE #( ProdUuid = <cr>-ProdUuid )
+                            %param = VALUE #( p_1 = '001' )  ) ).
+    ENDIF.
+
+    IF update-product IS NOT INITIAL.
+      " Event defined in BDEF: event updated parameter some_abstract_entity;
+      RAISE ENTITY EVENT z##_i_product_####~testEvent
+            FROM VALUE #( FOR <upd> IN update-product
+                          ( %key   = VALUE #( ProdUuid = <upd>-ProdUuid )
+                            %param = VALUE #( p_1 = '001' ) ) ).
+    ENDIF.
+
+    IF delete-product IS NOT INITIAL.
+      " Event defined in BDEF: event deleted parameter some_abstract_entity;
+      RAISE ENTITY EVENT z##_i_product_####~testEvent
+            FROM VALUE #( FOR <del> IN delete-product
+                          ( %key   = VALUE #( ProdUuid = <del>-ProdUuid )
+                            %param = VALUE #( p_1 = '001' ) ) ).
+    ENDIF.
+  ENDMETHOD.
+
+ENDCLASS.
+```
+## Behaviour Implementation for CDS Product Projection Transactional Query
+<a name="lcl_local_event_consumption"></a>
+lcl_local_event_consumption
+
+```ABAP
+CLASS lcl_local_event_consumption DEFINITION INHERITING FROM cl_abap_behavior_event_handler.
+  PRIVATE SECTION.
+    METHODS consume_event_1 FOR ENTITY EVENT IMPORTING params FOR Product~testEvent.
+ENDCLASS.
+
+
+CLASS lcl_local_event_consumption IMPLEMENTATION.
+  METHOD consume_event_1.
+    CHECK params IS NOT INITIAL.
+  ENDMETHOD.
+ENDCLASS.
 ```
