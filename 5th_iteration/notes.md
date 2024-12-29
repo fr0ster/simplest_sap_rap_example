@@ -336,7 +336,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
    - Create **abstract entity** for event parameters
    ```ABAP
    @EndUserText.label: 'Abstract parameters'
-   define abstract entity ZOK_A_PARAMS_0001
+   define abstract entity Z##_A_PARAMS_####
 
    {
       p_1 : abap.int1;
@@ -359,7 +359,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
    ```
    - Create **class implementation** of **save handler class**
    ```ABAP
-   CLASS lsc_zok_i_product_0001 DEFINITION INHERITING FROM cl_abap_behavior_saver.
+   CLASS lsc_z##_i_product_#### DEFINITION INHERITING FROM cl_abap_behavior_saver.
 
    PROTECTED SECTION.
 
@@ -367,11 +367,11 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 
    ENDCLASS.
 
-   CLASS lsc_zok_i_product_0001 IMPLEMENTATION.
+   CLASS lsc_z##_i_product_#### IMPLEMENTATION.
    METHOD save_modified.
       IF create-product IS NOT INITIAL.
          " Event defined in BDEF: event created;
-         RAISE ENTITY EVENT zok_i_product_0001~testEvent
+         RAISE ENTITY EVENT z##_i_product_####~testEvent
                FROM VALUE #( FOR <cr> IN create-product
                            ( %key   = VALUE #( ProdUuid = <cr>-ProdUuid )
                               %param = VALUE #( p_1 = '001' )  ) ).
@@ -379,12 +379,12 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 
       IF update-product IS NOT INITIAL.
          " TODO: variable is assigned but never used (ABAP cleaner)
-         DATA lt_records TYPE TABLE FOR EVENT zok_i_product_0001~testEvent.
+         DATA lt_records TYPE TABLE FOR EVENT z##_i_product_####~testEvent.
          lt_records = VALUE #( FOR <upd1> IN update-product
                               ( %key   = VALUE #( ProdUuid = <upd1>-ProdUuid )
                                  %param = VALUE #( p_1 = '001' ) ) ).
          " Event defined in BDEF: event updated parameter some_abstract_entity;
-         RAISE ENTITY EVENT zok_i_product_0001~testEvent
+         RAISE ENTITY EVENT z##_i_product_####~testEvent
                FROM VALUE #( FOR <upd> IN update-product
                            ( %key   = VALUE #( ProdUuid = <upd>-ProdUuid )
                               %param = VALUE #( p_1 = '001' ) ) ).
@@ -392,7 +392,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 
       IF delete-product IS NOT INITIAL.
          " Event defined in BDEF: event deleted parameter some_abstract_entity;
-         RAISE ENTITY EVENT zok_i_product_0001~testEvent
+         RAISE ENTITY EVENT z##_i_product_####~testEvent
                FROM VALUE #( FOR <del> IN delete-product
                            ( %key   = VALUE #( ProdUuid = <del>-ProdUuid )
                               %param = VALUE #( p_1 = '001' ) ) ).
@@ -403,11 +403,11 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
    ```
    - create **entity event handler class** for test
    ```ABAP
-   CLASS zok_cl_event_handler_0001 DEFINITION
+   CLASS z##_cl_event_handler_#### DEFINITION
    PUBLIC
    ABSTRACT
    FINAL
-   FOR EVENTS OF ZOK_I_PRODUCT_0001 .
+   FOR EVENTS OF Z##_I_PRODUCT_#### .
 
    PUBLIC SECTION.
    PROTECTED SECTION.
@@ -416,7 +416,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 
 
 
-   CLASS zok_cl_event_handler_0001 IMPLEMENTATION.
+   CLASS z##_cl_event_handler_#### IMPLEMENTATION.
    ENDCLASS.
    ```
    ```ABAP
