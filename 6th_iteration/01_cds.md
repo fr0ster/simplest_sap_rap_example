@@ -1,42 +1,5 @@
 # CDS Interface definitions
 
-## CDS Interface for view entity Criticality Levels
-<a name="z##_i_criticality_levels_"></a>
-Z##_I_CRITICALITY_LEVELS_####
-
-```ABAP
-@AccessControl.authorizationCheck: #NOT_REQUIRED
-
-@EndUserText.label: 'Criticality levels'
-
-define root view entity Z##_I_CRITICALITY_LEVELS_####
-  as select from z##_d_crtly_####
-
-{
-  key id          as Id,
-
-      treashhold1 as Treashhold1,
-      treashhold2 as Treashhold2,
-      treashhold3 as Treashhold3,
-      treashhold4 as Treashhold4
-
-      @Semantics.user.createdBy: true
-      created_by      as CreatedBy,
-
-      @Semantics.systemDateTime.createdAt: true
-      creation_time   as CreationTime,
-
-      @Semantics.user.lastChangedBy: true
-      changed_by      as ChangedBy,
-
-      @Semantics.systemDateTime.lastChangedAt: true
-      changed_time     as ChangedTime,
-
-      @Semantics.systemDateTime.localInstanceLastChangedAt: true
-      local_changed_time as LocalChangedTime,
-}
-```
-
 ## CDS Interface for root view entity Product
 <a name="z##_i_product_"></a>
 Z##_I_PRODUCT_####
@@ -44,18 +7,17 @@ Z##_I_PRODUCT_####
 ```ABAP
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 
-@EndUserText.label: 'Product data'
+@EndUserText.label: 'Product Interface'
 
 define root view entity Z##_I_PRODUCT_####
   as select from z##_d_prod_####
 
-  composition [0..*] of Z##_I_MARKET_#### as _Market
+  composition [0..*] of Z##_I_MARKET_####           as _Market
+  association [1..1] to Z##_I_PG_VH_####            as _PG on $projection.Pgid = _PG.Pgid
+  association [1..1] to Z##_I_PHASE_VH_####         as _PHASE on $projection.Phaseid = _PHASE.Phaseid
+  association [0..1] to Z##_I_UOM_VH_####           as _UOM on $projection.SizeUom = _UOM.Msehi
 
-  association [1..1] to Z##_I_PG_VH_####                  as _PG on $projection.Pgid = _PG.Pgid
-  association [1..1] to Z##_I_PHASE_VH_####               as _PHASE on $projection.Phaseid = _PHASE.Phaseid
-  association [0..1] to Z##_I_UOM_VH_####                 as _UOM on $projection.SizeUom = _UOM.Msehi
-
-  association to Z##_I_CRITICALITY_LEVELS_#### as _PriceCriticality on _PriceCriticality.Id = 'PriceCritically'
+  association [1..1] to Z##_I_CRITICALITY_LEVELS_#### as _PriceCriticality on _PriceCriticality.Id = 'PriceCritically'
 
 {
   key prod_uuid          as ProdUuid,
@@ -63,6 +25,14 @@ define root view entity Z##_I_PRODUCT_####
       prodid             as Prodid,
       pgid               as Pgid,
       phaseid            as Phaseid,
+
+      case phaseid
+      when 1 then 1
+      when 2 then 2
+      when 3 then 3
+      when 4 then 4
+      else 0
+      end                as PhaseCritically,
 
       @Semantics.amount.currencyCode: 'PriceCurrency'
       price              as Price,
@@ -87,10 +57,22 @@ define root view entity Z##_I_PRODUCT_####
       width              as Width,
 
       size_uom           as SizeUom,
+
+      ''                 as Measure,
+
+      @Semantics.user.createdBy: true
       created_by         as CreatedBy,
+
+      @Semantics.systemDateTime.createdAt: true
       creation_time      as CreationTime,
+
+      @Semantics.user.lastChangedBy: true
       changed_by         as ChangedBy,
+
+      @Semantics.systemDateTime.lastChangedAt: true
       changed_time       as ChangedTime,
+
+      @Semantics.systemDateTime.localInstanceLastChangedAt: true
       local_changed_time as LocalChangedTime,
 
       /*Associations*/
