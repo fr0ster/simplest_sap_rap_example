@@ -433,7 +433,6 @@ CLASS lhc_Product IMPLEMENTATION.
 ENDCLASS.
 ```
 
-
 ## Behaviour Implementation for CDS Product Projection Transactional Query
 <a name="z##_c_product_"></a>
 
@@ -503,4 +502,11 @@ ENDCLASS.
 *"* use this source file for the definition and implementation of
 *"* local helper classes, interface definitions and type
 *"* declarations
+```
+
+
+## Behaviour Implementation for CDS Product Projection Transactional Query
+<a name="z##_c_product_"></a>
+
+```ABAP
 ```

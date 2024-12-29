@@ -57,6 +57,7 @@ This iteration focuses on improving the business model:
 - Enable **search functionality** within the **List Report**.
 - Enhance the data model with ValueHelper annotations.
 - Add **actions** at both the **Data Model level** and the **Business Model level**.
+- Add **events** at the **Data Model level** and local handler for testing.
 
 ---
 

@@ -13,6 +13,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 4. Add **Value Helpers** into **[Z##_CI_ORDER_####](./02_cds.md#z##_ci_order_)**.
 5. Add **needed fields** into the **SearchField Area** and enable standard search functionality in **[Metadata Extension](03_metadata_extension.md)**.
 6. Add **actions**.
+6. Add **events**.
 
 ---
 
@@ -326,6 +327,114 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 
       " Part of code was skipped
       }
+   ```
+9. **[Add events into Behavior Definition](./06_behavior_definition.md)**:
+   - Add **additional save**
+   ```ABAP
+   managed with additional save implementation in class zbp_##_i_product_#### unique;
+   ```
+   - Create **abstract entity** for event parameters
+   ```ABAP
+   @EndUserText.label: 'Abstract parameters'
+   define abstract entity ZOK_A_PARAMS_0001
+
+   {
+      p_1 : abap.int1;
+   }
+   ```
+   - Add **event**
+   ```ABAP
+   define behavior for Z##_I_PRODUCT_#### alias Product
+   persistent table z##_d_prod_####
+   lock master
+   authorization master ( instance )
+   etag master LocalChangedTime
+   {
+     " Part of code was skipped
+
+        event testEvent parameter Z##_A_PARAMS_####;
+
+     " Part of code was skipped
+   }
+   ```
+   - Create **class implementation** of **save handler class**
+   ```ABAP
+   CLASS lsc_zok_i_product_0001 DEFINITION INHERITING FROM cl_abap_behavior_saver.
+
+   PROTECTED SECTION.
+
+      METHODS save_modified REDEFINITION.
+
+   ENDCLASS.
+
+   CLASS lsc_zok_i_product_0001 IMPLEMENTATION.
+   METHOD save_modified.
+      IF create-product IS NOT INITIAL.
+         " Event defined in BDEF: event created;
+         RAISE ENTITY EVENT zok_i_product_0001~testEvent
+               FROM VALUE #( FOR <cr> IN create-product
+                           ( %key   = VALUE #( ProdUuid = <cr>-ProdUuid )
+                              %param = VALUE #( p_1 = '001' )  ) ).
+      ENDIF.
+
+      IF update-product IS NOT INITIAL.
+         " TODO: variable is assigned but never used (ABAP cleaner)
+         DATA lt_records TYPE TABLE FOR EVENT zok_i_product_0001~testEvent.
+         lt_records = VALUE #( FOR <upd1> IN update-product
+                              ( %key   = VALUE #( ProdUuid = <upd1>-ProdUuid )
+                                 %param = VALUE #( p_1 = '001' ) ) ).
+         " Event defined in BDEF: event updated parameter some_abstract_entity;
+         RAISE ENTITY EVENT zok_i_product_0001~testEvent
+               FROM VALUE #( FOR <upd> IN update-product
+                           ( %key   = VALUE #( ProdUuid = <upd>-ProdUuid )
+                              %param = VALUE #( p_1 = '001' ) ) ).
+      ENDIF.
+
+      IF delete-product IS NOT INITIAL.
+         " Event defined in BDEF: event deleted parameter some_abstract_entity;
+         RAISE ENTITY EVENT zok_i_product_0001~testEvent
+               FROM VALUE #( FOR <del> IN delete-product
+                           ( %key   = VALUE #( ProdUuid = <del>-ProdUuid )
+                              %param = VALUE #( p_1 = '001' ) ) ).
+      ENDIF.
+   ENDMETHOD.
+
+   ENDCLASS.
+   ```
+   - create **entity event handler class** for test
+   ```ABAP
+   CLASS zok_cl_event_handler_0001 DEFINITION
+   PUBLIC
+   ABSTRACT
+   FINAL
+   FOR EVENTS OF ZOK_I_PRODUCT_0001 .
+
+   PUBLIC SECTION.
+   PROTECTED SECTION.
+   PRIVATE SECTION.
+   ENDCLASS.
+
+
+
+   CLASS zok_cl_event_handler_0001 IMPLEMENTATION.
+   ENDCLASS.
+   ```
+   ```ABAP
+   *"* use this source file for the definition and implementation of
+   *"* local helper classes, interface definitions and type
+   *"* declarations
+
+   CLASS lcl_local_event_consumption DEFINITION INHERITING FROM cl_abap_behavior_event_handler.
+   PRIVATE SECTION.
+      METHODS consume_event_1 FOR ENTITY EVENT IMPORTING params FOR Product~testEvent.
+   ENDCLASS.
+
+
+   CLASS lcl_local_event_consumption IMPLEMENTATION.
+   METHOD consume_event_1.
+      CHECK params IS NOT INITIAL.
+   ENDMETHOD.
+   ENDCLASS.
    ```
 
 ---

@@ -75,7 +75,8 @@ define behavior for Z##_C_ORDER_#### alias _Order
 <a name="z##_i_product_"></a>
 Z##_I_PRODUCT
 
-```ABAPmanaged implementation in class zbp_##_i_product_#### unique;
+```ABAP
+managed with additional save implementation in class zbp_##_i_product_#### unique;
 strict ( 2 );
 
 define behavior for Z##_I_PRODUCT_#### alias Product
