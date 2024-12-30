@@ -67,6 +67,30 @@ In this iteration, we enhance the User interface.
      " Part of code was skipped
     }
     ```
+4. **[Modificate Z##_C_PRODUCT_#### Metadata Extension](./03_metadata_extestion.md#z##_c_product_)**
+    - Add headerinfo and presentationVariant
+    ```ABAP
+    @Metadata.layer: #CORE
+
+    @UI.headerInfo: { typeName: 'Kitchen Appliances',
+                    typeNamePlural: 'Kitchen Appliances',
+                    imageUrl: 'Imageurl',
+                    title: { type: #STANDARD, label: 'Product', value: 'Prodid' },
+                    description: { value: 'Pgname', type: #STANDARD } }
+
+    @UI.presentationVariant: [ { sortOrder: [ { by: 'Prodid', direction: #ASC },
+                                            { by: 'PGNAME', direction: #ASC } ] } ]
+
+    annotate entity Z##_C_PRODUCT_####
+        with
+
+    {
+     " Part of code was skipped
+    }
+    ```
+    - Add facets
+5. **[Modificate Z##_C_MARKET_#### Metadata Extension](./03_metadata_extestion.md#z##_c_market_)**
+6. **[Modificate Z##_C_ORDER_#### Metadata Extension](./03_metadata_extestion.md#z##_c_order_)**
 
 ---
 

@@ -83,17 +83,12 @@ Draft Handling is introduced to manage intermediate data states:
 
 ---
 
-## [Iteration 8: Side-by-Side Extension with OData V4 Service](./8th_iteration/notes.md)
+## [Iteration 8: Side-by-Side Extension](./8th_iteration/notes.md)
 
-The final iteration integrates a side-by-side extension using an **OData V4 service**:
-
-- **OData V4 Service Binding**:
-  - Create a service for the extended projection of the business object.
-  - Include relevant fields, actions, and associations.
-- **UI V4 Annotations**:
-  - Define annotations for the list view, object page, and other sections in the consuming application.
-- **Integration**:
-  - Ensure seamless connectivity between the new service and external systems.
+The eigth iteration integrates a side-by-side extension:
+- Extension Market data table.
+- Extension Market CDS Projection Transactional Query.
+- Extension Market BDEF.
 
 ---
 
