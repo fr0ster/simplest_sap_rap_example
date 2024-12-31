@@ -13,6 +13,13 @@ In this iteration, we enhance the User interface.
 
 ---
 
+### Pay Attention:
+1. **By manage do our scenario more like to real life we do several presumtions**:
+  - All modification for adding extensibility we create in main package
+  - All extentions we create in separate package .
+
+---
+
 ### Steps:
 1. **[Create Dummy append Structure for Product data table in main package](./00_tables.md#z##_s_ext_incl_prod_)**
 ```ABAP
@@ -119,7 +126,7 @@ define table z##_dt_ordr_#### {
 
 }
 ```
-4. **[Create new package for Extension and create there Append structure for Market data table](./08_extensions.md#z##_s_ext_market_status_)**
+4. **[Create new package for Extension and create there Append structure for Market data table in other package](./08_extensions.md#z##_s_ext_market_status_)**
 ```ABAP
 @EndUserText.label : 'Extension include for Market Status'
 @AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
@@ -129,7 +136,7 @@ extend type z##_s_ext_incld_mrkt_#### with z##_s_ext_market_status_#### {
 
 }
 ```
-5. **Create extension for [CDS Interface](./06_behavior_definition.md#z##_i_ext_market_), [CDS Projection Transactional Interface](./06_behavior_definition.md#z##_ci_ext_market_), [CDS projection transaqtionsl Query](./06_behavior_definition.md#z##_c_ext_market_) Market entity**
+5. **Create extension for [CDS Interface](./06_behavior_definition.md#z##_i_ext_market_), [CDS Projection Transactional Interface](./06_behavior_definition.md#z##_ci_ext_market_), [CDS projection transaqtionsl Query](./06_behavior_definition.md#z##_c_ext_market_) Market entity in other package**
 ```ABAP
 extend view entity Z##_I_MARKET_#### with {
    Market.zz_status_zmr
@@ -251,7 +258,7 @@ extensible
      " Part of code was skipped
 }
 ```
-8. **Create extension for Behaviour Implementation**
+8. **Create extension for Behaviour Implementation in other package**
 - **[Create extension for CDS Interface, here you should use CDS Projection Transactional Interface or not.
   But we can't create extension for CDS Projection Transactional Interface only(./08_extensions.md#zbp_##_i_ext_product_####)]**
   ```ABAP
