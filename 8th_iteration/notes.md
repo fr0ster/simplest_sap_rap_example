@@ -303,37 +303,156 @@ extensible
 
 8. **Create extension for Behaviour Implementation in other package**
 
-- **[Create extension for CDS Interface, here you should use CDS Projection Transactional Interface or not.
+- **[Create extension for CDS Interface, here you should use CDS Projection Transactional Interface or not](./08_extensions.md#z##_##_i_ext_product_)**
 
-  But we can't create extension for CDS Projection Transactional Interface only(./08_extensions.md#zbp_##_i_ext_product_####)]**
+```ABAP
+extension using interface z##_ci_product_####
+implementation in class zbp_##_i_ext_product_#### unique;
 
-  ```ABAP
-  extension using interface z##_ci_product_####
-  implementation in class zbp_##_i_ext_product_#### unique;
+extend behavior for Product
+with additional save
+{
+action ( authorization : instance ) zz_tester result [1] $self;
+event zz_testEvent2 parameter Z##_A_PARAMS_####;
+}
 
-  extend behavior for Market
-  {
-      determination zz_setStatus on save { create; field zz_status_zmr; }
-  }
-  ```
+extend behavior for Market
+{
+determination zz_setStatus on save { create; field zz_status_zmr; }
+}
+```
 
-- [Create extension for CDS Projection Transactional Query](./08_extensions.md#zbp_##_c_ext_product_####)
+- **[Create class implementation for extension](./08_extensions.md#zbp_##_i_ext_product_)**
+Create global table, which are used for passing info from action to saver class
+```ABAP
+CLASS zbp_##_i_ext_product_#### DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF z##_i_product_####.
+  PUBLIC SECTION.
+    CLASS-DATA mt_products TYPE TABLE OF sysuuid_x16.
+ENDCLASS.
+```
+Create class for events raising
+```ABAP
+CLASS lsc_z##_i_ext_product_#### DEFINITION INHERITING FROM cl_abap_behavior_saver.
 
-  ```ABAP
-  extension for projection;
+  PROTECTED SECTION.
 
-  extend behavior for Product
-  {
-  }
+    METHODS save_modified REDEFINITION.
 
-  extend behavior for Market
-  {
-  }
+ENDCLASS.
 
-  extend behavior for Order
-  {
-  }
-  ```
+CLASS lsc_z##_i_ext_product_#### IMPLEMENTATION.
+  METHOD save_modified.
+    CHECK zbp_##_i_ext_product_####=>mt_products IS NOT INITIAL.
+    IF create-product IS NOT INITIAL.
+      " Event defined in BDEF: event created;
+      RAISE ENTITY EVENT z##_ci_product_####~zz_testEvent2
+            FROM VALUE #( FOR <cr> IN create-product
+                          ( %key   = VALUE #( ProdUuid = <cr>-ProdUuid )
+                            %param = VALUE #( p_1 = '001' )  ) ).
+    ELSEIF update-product IS NOT INITIAL.
+      " Event defined in BDEF: event updated parameter some_abstract_entity;
+      RAISE ENTITY EVENT z##_ci_product_####~zz_testEvent2
+            FROM VALUE #( FOR <upd> IN update-product
+                          ( %key   = VALUE #( ProdUuid = <upd>-ProdUuid )
+                            %param = VALUE #( p_1 = '002' ) ) ).
+    ELSEIF delete-product IS NOT INITIAL.
+      " Event defined in BDEF: event deleted parameter some_abstract_entity;
+      RAISE ENTITY EVENT z##_ci_product_####~zz_testEvent2
+            FROM VALUE #( FOR <del> IN delete-product
+                          ( %key   = VALUE #( ProdUuid = <del>-ProdUuid )
+                            %param = VALUE #( p_1 = '003' ) ) ).
+    ELSE.
+      RAISE ENTITY EVENT z##_ci_product_####~zz_testEvent2
+            FROM VALUE #( FOR lv_key IN zbp_##_i_ext_product_####=>mt_products[]
+                          ( %key   = VALUE #( ProdUuid = lv_key )
+                            %param = VALUE #( p_1 = '004' ) ) ).
+    ENDIF.
+    CLEAR zbp_##_i_ext_product_####=>mt_products[].
+  ENDMETHOD.
+
+ENDCLASS.
+```
+Create class for new determination
+```ABAP
+CLASS lhc_market DEFINITION INHERITING FROM cl_abap_behavior_handler.
+
+  PRIVATE SECTION.
+
+    METHODS zz_setStatus FOR DETERMINE ON SAVE
+      IMPORTING keys FOR Market~zz_setStatus.
+
+ENDCLASS.
+
+CLASS lhc_market IMPLEMENTATION.
+
+  METHOD zz_setStatus.
+    READ ENTITIES OF z##_i_product_#### ENTITY Market FIELDS ( zz_status_zmr ) WITH CORRESPONDING #( keys ) RESULT DATA(lt_markets).
+    DELETE lt_markets WHERE zz_status_zmr IS NOT INITIAL.
+    IF lt_markets IS INITIAL.
+      RETURN.
+    ENDIF.
+    MODIFY ENTITIES OF z##_i_product_####
+           ENTITY Market
+           UPDATE FIELDS ( zz_status_zmr )
+           WITH VALUE #( FOR ls_market IN lt_markets
+                         ( %tky = ls_market-%tky zz_status_zmr = '12345' ) )
+           REPORTED DATA(lt_update_reported).
+    reported = CORRESPONDING #( DEEP lt_update_reported ).
+  ENDMETHOD.
+
+ENDCLASS.
+```
+And finally class for new action
+```ABAP
+CLASS lhc_product DEFINITION INHERITING FROM cl_abap_behavior_handler.
+
+  PRIVATE SECTION.
+
+    METHODS get_instance_authorizations FOR INSTANCE AUTHORIZATION
+      IMPORTING keys REQUEST requested_authorizations FOR Product RESULT result.
+
+    METHODS zz_tester FOR MODIFY
+      IMPORTING keys FOR ACTION Product~zz_tester RESULT result.
+
+ENDCLASS.
+
+CLASS lhc_product IMPLEMENTATION.
+
+  METHOD get_instance_authorizations.
+  ENDMETHOD.
+
+  METHOD zz_tester.
+    READ ENTITIES OF z##_ci_product_#### IN LOCAL MODE
+         ENTITY Product
+         ALL FIELDS WITH CORRESPONDING #( keys )
+         RESULT DATA(lt_result).
+    zbp_##_i_ext_product_####=>mt_products[] = VALUE #( FOR ls_result IN lt_result
+                                                        (  ls_result-ProdUuid ) ).
+    result = VALUE #( FOR ls_product_result IN lt_result
+                      ( %tky   = ls_product_result-%tky
+                        %param = ls_product_result ) ).
+  ENDMETHOD.
+
+ENDCLASS.
+```
+
+- **[Create extension for CDS Projection Transactional Query](./08_extensions.md#z##_c_ext_product_)**
+
+```ABAP
+extension for projection;
+
+extend behavior for Product
+{
+}
+
+extend behavior for Market
+{
+}
+
+extend behavior for Order
+{
+}
+```
 
 ---
 
