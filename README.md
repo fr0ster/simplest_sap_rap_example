@@ -118,3 +118,8 @@ This iteration focuses on improving application performance and resolving issues
 5. **Optimization and Debugging**: Iteration 9 ensures the application is robust, efficient, and scalable.
 
 By following this step-by-step process, the application matures into a full-featured SAP RAP solution, capable of handling complex requirements and external integrations with ease.
+
+
+### Useful links
+1. [ABAP - Keyword Documentation](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/ABENABAP.html).
+2. [ABAP Cheat Sheets](https://github.com/SAP-samples/abap-cheat-sheets.git).

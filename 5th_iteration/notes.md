@@ -13,7 +13,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 4. Add **Value Helpers** into **[Z##_CI_ORDER_####](./02_cds.md#z##_ci_order_)**.
 5. Add **needed fields** into the **SearchField Area** and enable standard search functionality in **[Metadata Extension](03_metadata_extension.md)**.
 6. Add **actions**.
-6. Add **events**.
+7. Add **events**.
 
 ---
 
@@ -301,14 +301,14 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
                                  Phaseid = lv_phase_id ) )
                   FAILED   failed
                   REPORTED reported.
-            READ ENTITIES OF z##_c_product_#### IN LOCAL MODE
-               ENTITY Product
-               ALL FIELDS WITH CORRESPONDING #( keys )
-               RESULT DATA(lt_result).
-            result = VALUE #( FOR ls_product_result IN lt_result
-                              ( %tky   = ls_product_result-%tky
-                              %param = ls_product_result ) ).
          ENDLOOP.
+         READ ENTITIES OF z##_c_product_#### IN LOCAL MODE
+            ENTITY Product
+            ALL FIELDS WITH CORRESPONDING #( keys )
+            RESULT DATA(lt_result).
+         result = VALUE #( FOR ls_product_result IN lt_result
+                           ( %tky   = ls_product_result-%tky
+                           %param = ls_product_result ) ).
       ENDMETHOD.
    ```
    - Add action by annotation into [Metadata Extensions](./03_metadata_extestion.md)

@@ -4,6 +4,43 @@
 <a name="z##_i_product_"></a>
 
 ```ABAP
+CLASS lsc_z##_i_product_#### DEFINITION INHERITING FROM cl_abap_behavior_saver.
+
+  PROTECTED SECTION.
+
+    METHODS save_modified REDEFINITION.
+
+ENDCLASS.
+
+CLASS lsc_z##_i_product_#### IMPLEMENTATION.
+  METHOD save_modified.
+    IF create-product IS NOT INITIAL.
+      " Event defined in BDEF: event created;
+      RAISE ENTITY EVENT z##_i_product_####~testEvent
+            FROM VALUE #( FOR <cr> IN create-product
+                          ( %key   = VALUE #( ProdUuid = <cr>-ProdUuid )
+                            %param = VALUE #( p_1 = '001' )  ) ).
+    ENDIF.
+
+    IF update-product IS NOT INITIAL.
+      " Event defined in BDEF: event updated parameter some_abstract_entity;
+      RAISE ENTITY EVENT z##_i_product_####~testEvent
+            FROM VALUE #( FOR <upd> IN update-product
+                          ( %key   = VALUE #( ProdUuid = <upd>-ProdUuid )
+                            %param = VALUE #( p_1 = '001' ) ) ).
+    ENDIF.
+
+    IF delete-product IS NOT INITIAL.
+      " Event defined in BDEF: event deleted parameter some_abstract_entity;
+      RAISE ENTITY EVENT z##_i_product_####~testEvent
+            FROM VALUE #( FOR <del> IN delete-product
+                          ( %key   = VALUE #( ProdUuid = <del>-ProdUuid )
+                            %param = VALUE #( p_1 = '001' ) ) ).
+    ENDIF.
+  ENDMETHOD.
+
+ENDCLASS.
+
 CLASS lhc_order DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
   PRIVATE SECTION.
@@ -232,6 +269,7 @@ CLASS lhc_Product DEFINITION INHERITING FROM cl_abap_behavior_handler.
     METHODS nextphase FOR MODIFY
       IMPORTING keys FOR ACTION product~nextphase RESULT result.
 
+    METHODS getNextPhase IMPORTING i_phaseid type int1 RETURNING VALUE(r_out) type int1.
 ENDCLASS.
 
 
@@ -392,44 +430,37 @@ CLASS lhc_Product IMPLEMENTATION.
   METHOD nextPhase.
     READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
          ENTITY Product
-         FIELDS ( Phaseid )
-         WITH CORRESPONDING #( keys )
-         RESULT DATA(lt_product)
-         FAILED failed.
-
-    LOOP AT lt_product ASSIGNING FIELD-SYMBOL(<ls_product>).
-      DATA(lv_phase_id) = phase_id-plan.
-      CASE <ls_product>-Phaseid.
-        WHEN phase_id-plan.
-          lv_phase_id = phase_id-dev.
-        WHEN phase_id-dev.
-          lv_phase_id = phase_id-prod.
-        WHEN phase_id-prod.
-          lv_phase_id = phase_id-out.
-        WHEN phase_id-out.
-          lv_phase_id = phase_id-plan.
-        WHEN OTHERS.
-          lv_phase_id = phase_id-plan.
-      ENDCASE.
-
-      MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
-             ENTITY Product
-             UPDATE
-             FIELDS ( Phaseid )
-             WITH VALUE #( FOR key IN keys
-                           ( %tky    = key-%tky
-                             Phaseid = lv_phase_id ) )
-             FAILED   failed
-             REPORTED reported.
-      READ ENTITIES OF z##_i_product_#### IN LOCAL MODE
+         FIELDS ( Phaseid ) WITH CORRESPONDING #( keys )
+         RESULT DATA(lt_result).
+    MODIFY ENTITIES OF z##_i_product_#### IN LOCAL MODE
            ENTITY Product
-           ALL FIELDS WITH CORRESPONDING #( keys )
-           RESULT DATA(lt_result).
-      result = VALUE #( FOR ls_product_result IN lt_result
-                        ( %tky   = ls_product_result-%tky
-                          %param = ls_product_result ) ).
-    ENDLOOP.
+           UPDATE
+           FIELDS ( Phaseid )
+           WITH VALUE #( FOR ls_result IN lt_result
+                         ( %tky    = ls_result-%tky
+                           Phaseid = getnextphase( ls_result-Phaseid ) ) )
+           FAILED   failed
+           REPORTED reported.
+    result = VALUE #( FOR ls_product_result IN lt_result
+                      ( %tky   = ls_product_result-%tky
+                        %param = ls_product_result ) ).
   ENDMETHOD.
+
+  METHOD getnextphase.
+    CASE i_phaseid.
+      WHEN phase_id-plan.
+        r_out = phase_id-dev.
+      WHEN phase_id-dev.
+        r_out = phase_id-prod.
+      WHEN phase_id-prod.
+        r_out = phase_id-out.
+      WHEN phase_id-out.
+        r_out = phase_id-plan.
+      WHEN OTHERS.
+        r_out = phase_id-plan.
+    ENDCASE.
+  ENDMETHOD.
+
 ENDCLASS.
 ```
 
@@ -451,50 +482,43 @@ CLASS lhc_product DEFINITION INHERITING FROM cl_abap_behavior_handler.
     METHODS priorPhase FOR MODIFY
       IMPORTING keys FOR ACTION Product~priorPhase RESULT result.
 
+    METHODS getPriorPhase IMPORTING i_phaseid type int1 RETURNING VALUE(r_out) type int1.
+
 ENDCLASS.
 
 CLASS lhc_product IMPLEMENTATION.
-
   METHOD priorPhase.
     READ ENTITIES OF z##_c_product_#### IN LOCAL MODE
          ENTITY Product
-         FIELDS ( Phaseid )
-         WITH CORRESPONDING #( keys )
-         RESULT DATA(lt_product)
-         FAILED failed.
-
-    LOOP AT lt_product ASSIGNING FIELD-SYMBOL(<ls_product>).
-      DATA(lv_phase_id) = phase_id-plan.
-      CASE <ls_product>-Phaseid.
-        WHEN phase_id-plan.
-          lv_phase_id = phase_id-out.
-        WHEN phase_id-dev.
-          lv_phase_id = phase_id-plan.
-        WHEN phase_id-prod.
-          lv_phase_id = phase_id-dev.
-        WHEN phase_id-out.
-          lv_phase_id = phase_id-prod.
-        WHEN OTHERS.
-          lv_phase_id = phase_id-plan.
-      ENDCASE.
-
-      MODIFY ENTITIES OF z##_c_product_#### IN LOCAL MODE
-             ENTITY Product
-             UPDATE
-             FIELDS ( Phaseid )
-             WITH VALUE #( FOR key IN keys
-                           ( %tky    = key-%tky
-                             Phaseid = lv_phase_id ) )
-             FAILED   failed
-             REPORTED reported.
-      READ ENTITIES OF z##_c_product_#### IN LOCAL MODE
+         ALL FIELDS WITH CORRESPONDING #( keys )
+         RESULT DATA(lt_result).
+    MODIFY ENTITIES OF z##_c_product_#### IN LOCAL MODE
            ENTITY Product
-           ALL FIELDS WITH CORRESPONDING #( keys )
-           RESULT DATA(lt_result).
-      result = VALUE #( FOR ls_product_result IN lt_result
-                        ( %tky   = ls_product_result-%tky
-                          %param = ls_product_result ) ).
-    ENDLOOP.
+           UPDATE
+           FIELDS ( Phaseid )
+           WITH VALUE #( FOR ls_result IN lt_result
+                         ( %tky    = ls_result-%tky
+                           Phaseid = getpriorphase( ls_result-Phaseid ) ) )
+           FAILED   failed
+           REPORTED reported.
+    result = VALUE #( FOR ls_product_result IN lt_result
+                      ( %tky   = ls_product_result-%tky
+                        %param = ls_product_result ) ).
+  ENDMETHOD.
+
+  METHOD getpriorphase.
+    CASE i_phaseid.
+      WHEN phase_id-plan.
+        r_out = phase_id-out.
+      WHEN phase_id-dev.
+        r_out = phase_id-plan.
+      WHEN phase_id-prod.
+        r_out = phase_id-dev.
+      WHEN phase_id-out.
+        r_out = phase_id-prod.
+      WHEN OTHERS.
+        r_out = phase_id-plan.
+    ENDCASE.
   ENDMETHOD.
 
 ENDCLASS.
@@ -502,49 +526,6 @@ ENDCLASS.
 *"* use this source file for the definition and implementation of
 *"* local helper classes, interface definitions and type
 *"* declarations
-```
-
-## Behaviour Implementation for CDS Product Projection Transactional Query
-<a name="lsc_z##_i_product_"></a>
-lsc_z##_i_product_####
-
-```ABAP
-CLASS lsc_z##_i_product_#### DEFINITION INHERITING FROM cl_abap_behavior_saver.
-
-  PROTECTED SECTION.
-
-    METHODS save_modified REDEFINITION.
-
-ENDCLASS.
-
-CLASS lsc_z##_i_product_#### IMPLEMENTATION.
-  METHOD save_modified.
-    IF create-product IS NOT INITIAL.
-      " Event defined in BDEF: event created;
-      RAISE ENTITY EVENT z##_i_product_####~testEvent
-            FROM VALUE #( FOR <cr> IN create-product
-                          ( %key   = VALUE #( ProdUuid = <cr>-ProdUuid )
-                            %param = VALUE #( p_1 = '001' )  ) ).
-    ENDIF.
-
-    IF update-product IS NOT INITIAL.
-      " Event defined in BDEF: event updated parameter some_abstract_entity;
-      RAISE ENTITY EVENT z##_i_product_####~testEvent
-            FROM VALUE #( FOR <upd> IN update-product
-                          ( %key   = VALUE #( ProdUuid = <upd>-ProdUuid )
-                            %param = VALUE #( p_1 = '001' ) ) ).
-    ENDIF.
-
-    IF delete-product IS NOT INITIAL.
-      " Event defined in BDEF: event deleted parameter some_abstract_entity;
-      RAISE ENTITY EVENT z##_i_product_####~testEvent
-            FROM VALUE #( FOR <del> IN delete-product
-                          ( %key   = VALUE #( ProdUuid = <del>-ProdUuid )
-                            %param = VALUE #( p_1 = '001' ) ) ).
-    ENDIF.
-  ENDMETHOD.
-
-ENDCLASS.
 ```
 ## Behaviour Implementation for CDS Product Projection Transactional Query
 <a name="lcl_local_event_consumption"></a>
