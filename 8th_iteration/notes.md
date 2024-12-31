@@ -1,31 +1,31 @@
 # Notes
 
-## Eigth Iteration: Side-by-Side Extension
+## Eighth Iteration: Side-by-Side Extension
 
-In this iteration, we enhance the User interface.
+In this iteration, we enhance the user interface.
 
 ---
 
 ### Key Objectives:
 
-1. Extension Market data table.
-2. Extension Market CDS Projection Transactional Query.
-2. Extension Market BDEF.
+1. Extend the Market data table.
+2. Extend the Market CDS Projection Transactional Query.
+3. Extend the Market BDEF.
 
 ---
 
 ### Pay Attention:
 
-1. **To make our scenario more realistic, we make several assumptions**:
-  
-  - All modifications for adding extensibility are created in the **main packag**e.
-  - All extensions are created in a **separate package**.
+1. **To make our scenario more realistic, we make several assumptions:**
+   
+   - All modifications for adding extensibility are created in the **main package**.
+   - All extensions are created in a **separate package**.
 
 ---
 
 ### Steps:
 
-1. **[Create Dummy append Structure for Product data table in main package](./00_tables.md#z##_s_ext_incl_prod_)**
+1. **[Create Dummy Append Structure for Product Data Table in Main Package](./00_tables.md#z##_s_ext_incl_prod_)**
 
 ```ABAP
 @EndUserText.label : 'Extension Include'
@@ -34,9 +34,7 @@ In this iteration, we enhance the User interface.
 @AbapCatalog.enhancement.quotaMaximumFields : 350
 @AbapCatalog.enhancement.quotaMaximumBytes : 3500
 define structure z##_s_ext_incld_prod_#### {
-
   dummy_field : abap.char(1);
-
 }
 ```
 
@@ -44,11 +42,9 @@ define structure z##_s_ext_incld_prod_#### {
 @EndUserText.label : 'Product data'
 @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
      " Part of code was skipped
-define table z##_d_mrkt_#### {
-
+define table z##_d_prod_#### {
      " Part of code was skipped
   include z##_s_ext_incld_prod_####;
-
 }
 ```
 
@@ -57,14 +53,12 @@ define table z##_d_mrkt_#### {
 @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
      " Part of code was skipped
 define table z##_dt_prod_#### {
-
      " Part of code was skipped
   include z##_s_ext_incld_prod_####;
-
 }
 ```
 
-2. **[Create Dummy append Structure for Market data table in main package](./00_tables.md#z##_s_ext_incl_mrkt_)**
+2. **[Create Dummy Append Structure for Market Data Table in Main Package](./00_tables.md#z##_s_ext_incl_mrkt_)**
 
 ```ABAP
 @EndUserText.label : 'Extension Include'
@@ -73,9 +67,7 @@ define table z##_dt_prod_#### {
 @AbapCatalog.enhancement.quotaMaximumFields : 350
 @AbapCatalog.enhancement.quotaMaximumBytes : 3500
 define structure z##_s_ext_incld_mrkt_#### {
-
   dummy_field : abap.char(1);
-
 }
 ```
 
@@ -84,10 +76,8 @@ define structure z##_s_ext_incld_mrkt_#### {
 @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
      " Part of code was skipped
 define table z##_d_mrkt_#### {
-
      " Part of code was skipped
   include z##_s_ext_incld_mrkt_####;
-
 }
 ```
 
@@ -96,14 +86,12 @@ define table z##_d_mrkt_#### {
 @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
      " Part of code was skipped
 define table z##_dt_mrkt_#### {
-
      " Part of code was skipped
   include z##_s_ext_incld_mrkt_####;
-
 }
 ```
 
-3. **[Create Dummy append Structure for Order data table in main package](./00_tables.md#z##_s_ext_incl_order_)**
+3. **[Create Dummy Append Structure for Order Data Table in Main Package](./00_tables.md#z##_s_ext_incl_order_)**
 
 ```ABAP
 @EndUserText.label : 'Extension Include'
@@ -112,9 +100,7 @@ define table z##_dt_mrkt_#### {
 @AbapCatalog.enhancement.quotaMaximumFields : 350
 @AbapCatalog.enhancement.quotaMaximumBytes : 3500
 define structure z##_s_ext_incld_order_#### {
-
   dummy_field : abap.char(1);
-
 }
 ```
 
@@ -123,10 +109,8 @@ define structure z##_s_ext_incld_order_#### {
 @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
      " Part of code was skipped
 define table z##_d_order_#### {
-
      " Part of code was skipped
   include z##_s_ext_incld_order_####;
-
 }
 ```
 
@@ -135,26 +119,22 @@ define table z##_d_order_#### {
 @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
      " Part of code was skipped
 define table z##_dt_ordr_#### {
-
      " Part of code was skipped
   include z##_s_ext_incld_order_####;
-
 }
 ```
 
-4. **[Create new package for Extension and create there Append structure for Market data table in other package](./08_extensions.md#z##_s_ext_market_status_)**
+4. **[Create New Package for Extensions and Append Structure for Market Data Table](./08_extensions.md#z##_s_ext_market_status_)**
 
 ```ABAP
-@EndUserText.label : 'Extension include for Market Status'
+@EndUserText.label : 'Extension Include for Market Status'
 @AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
 extend type z##_s_ext_incld_mrkt_#### with z##_s_ext_market_status_#### {
-
   zz_status_zmr : abap.char(5);
-
 }
 ```
 
-5. **Create extension for [CDS Interface](./06_behavior_definition.md#z##_i_ext_market_), [CDS Projection Transactional Interface](./06_behavior_definition.md#z##_ci_ext_market_), [CDS projection transaqtionsl Query](./06_behavior_definition.md#z##_c_ext_market_) Market entity in other package**
+5. **Create Extensions for [CDS Interface](./06_behavior_definition.md#z##_i_ext_market_), [CDS Projection Transactional Interface](./06_behavior_definition.md#z##_ci_ext_market_), [CDS Projection Transactional Query](./06_behavior_definition.md#z##_c_ext_market_) Market Entity in Another Package**
 
 ```ABAP
 extend view entity Z##_I_MARKET_#### with {
@@ -174,7 +154,7 @@ extend view entity Z##_C_MARKET_#### with {
 }
 ```
 
-6. **[Add extensible to Behavior definition for interface](./06_behavior_definition.md#z##_i_product_)**
+6. **[Add Extensibility to Behavior Definition for Interface](./06_behavior_definition.md#z##_i_product_)**
 
 - **Header**
 
@@ -191,7 +171,7 @@ extensible
 with draft;
 ```
 
-- **Product entity**
+- **Product Entity**
 
 ```ABAP
 define behavior for Z##_I_PRODUCT_#### alias Product
@@ -214,7 +194,7 @@ extensible
 }
 ```
 
-- **Market entity**
+- **Market Entity**
 
 ```ABAP
 define behavior for Z##_I_MARKET_#### alias Market
@@ -231,7 +211,7 @@ extensible
 }
 ```
 
-- **Order entity**
+- **Order Entity**
 
 ```ABAP
 define behavior for Z##_I_ORDER_#### alias Order
@@ -248,7 +228,7 @@ extensible
 }
 ```
 
-7. **[Add extensible to Behavior definition for Projection Transactional Interface](./06_behavior_definition.md#z##_ci_product_)**
+7. **[Add Extensibility to Behavior Definition for Projection Transactional Interface](./06_behavior_definition.md#z##_ci_product_)**
 
 - Header
 
@@ -259,7 +239,7 @@ use draft;
 use side effects;
 ```
 
-8. **[Add extensible to Behavior definition for Projection Transactional Query](./06_behavior_definition.md#z##_c_product_)**
+8. **[Add Extensibility to Behavior Definition for Projection Transactional Query](./06_behavior_definition.md#z##_c_product_)**
 
 - **Header**
 
@@ -271,7 +251,7 @@ use draft;
 use side effects;
 ```
 
--** Product entity**
+- **Product Entity**
 
 ```ABAP
 define behavior for Z##_C_PRODUCT_#### alias Product
@@ -281,7 +261,7 @@ extensible
 }
 ```
 
-- **Market entity**
+- **Market Entity**
 
 ```ABAP
 define behavior for Z##_C_MARKET_#### alias Market
@@ -291,7 +271,7 @@ extensible
 }
 ```
 
-- **Order entity**
+- **Order Entity**
 
 ```ABAP
 define behavior for Z##_C_ORDER_#### alias Order
@@ -301,9 +281,9 @@ extensible
 }
 ```
 
-8. **Create extension for Behaviour Implementation in other package**
+9. **Create Extension for Behavior Implementation in Another Package**
 
-- **[Create extension for CDS Interface, here you should use CDS Projection Transactional Interface or not](./08_extensions.md#z##_##_i_ext_product_)**
+- **[Create Extension for CDS Interface, Here You Should Use CDS Projection Transactional Interface or Not](./08_extensions.md#z##_##_i_ext_product_)**
 
 ```ABAP
 extension using interface z##_ci_product_####
@@ -322,7 +302,7 @@ determination zz_setStatus on save { create; field zz_status_zmr; }
 }
 ```
 
-- **[Create class implementation for extension](./08_extensions.md#zbp_##_i_ext_product_)**
+- **[Create Class Implementation for Extension](./08_extensions.md#zbp_##_i_ext_product_)**
 Create global table, which are used for passing info from action to saver class
 ```ABAP
 CLASS zbp_##_i_ext_product_#### DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF z##_i_product_####.
@@ -436,7 +416,7 @@ CLASS lhc_product IMPLEMENTATION.
 ENDCLASS.
 ```
 
-- **[Create Metadata Extension for actions, add button](./08_extensions.md#z##_c_ext_product_me)**
+- **[Create Metadata Extension for Actions, Add Button](./08_extensions.md#z##_c_ext_product_me)**
 Pay attention, annotation in Metadata Extension are stacked, so use correct **@Metadata.layer**, **#PARTNER** overwrite all annotation for field from **#CORE**
 ```ABAP
 @Metadata.layer: #PARTNER
@@ -456,7 +436,7 @@ annotate entity Z##_C_PRODUCT_####
 }
 ```
 
-- **[Create Metadata Extension for new fields](./08_extensions.md#z##_c_ext_market_me)**
+- **[Create Metadata Extension for New Fields](./08_extensions.md#z##_c_ext_market_me)**
 Pay attention, annotation in Metadata Extension are stacked, so use correct **@Metadata.layer**, **#PARTNER** overwrite all annotation for field from **#CORE**
 ```ABAP
 @Metadata.layer: #PARTNER
@@ -471,13 +451,14 @@ annotate entity ZOK_C_MARKET_0001
 }
 ```
 
-- **[Create extension for CDS Projection Transactional Query](./08_extensions.md#z##_c_ext_product_)**
+- **[Create Extension for CDS Projection Transactional Query](./08_extensions.md#z##_c_ext_product_)**
 
 ```ABAP
 extension for projection;
 
 extend behavior for Product
 {
+  use action zz_tester;
 }
 
 extend behavior for Market
@@ -494,12 +475,13 @@ extend behavior for Order
 ### Final Steps:
 
 - Activate all updated BDEFs.
-
 - Test the updated services in the Fiori application to ensure proper integration and functionality.
 
 ---
 
 ### Possible Issues and Solutions:
+
+- [Insert potential issues and solutions]
 
 ---
 
