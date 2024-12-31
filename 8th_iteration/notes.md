@@ -436,6 +436,41 @@ CLASS lhc_product IMPLEMENTATION.
 ENDCLASS.
 ```
 
+- **[Create Metadata Extension for actions, add button](./08_extensions.md#z##_c_ext_product_me)**
+Pay attention, annotation in Metadata Extension are stacked, so use correct **@Metadata.layer**, **#PARTNER** overwrite all annotation for field from **#CORE**
+```ABAP
+@Metadata.layer: #PARTNER
+
+annotate entity Z##_C_PRODUCT_####
+    with
+
+{
+  @UI.identification: [ { type: #FOR_ACTION, dataAction: 'nextPhase',  label: 'Next Phase',  position: 10 },
+                        { type: #FOR_ACTION, dataAction: 'priorPhase', label: 'Prior Phase', position: 20 },
+                        { type: #FOR_ACTION, dataAction: 'zz_tester',  label: 'Test Event',  position: 30 } ]
+
+  @UI.lineItem: [ { type: #FOR_ACTION, dataAction: 'nextPhase',  label: 'Next Phase',  position: 10 },
+                  { type: #FOR_ACTION, dataAction: 'priorPhase', label: 'Prior Phase', position: 20 },
+                  { type: #FOR_ACTION, dataAction: 'zz_tester',  label: 'Test Event',  position: 30 } ]
+  ProdUuid;
+}
+```
+
+- **[Create Metadata Extension for new fields](./08_extensions.md#z##_c_ext_market_me)**
+Pay attention, annotation in Metadata Extension are stacked, so use correct **@Metadata.layer**, **#PARTNER** overwrite all annotation for field from **#CORE**
+```ABAP
+@Metadata.layer: #PARTNER
+
+annotate entity ZOK_C_MARKET_0001
+    with
+
+{
+  @UI.fieldGroup: [ { position: 35, qualifier: 'MarketCharacteristics', label: 'ZZ_STATUS' } ]
+  @UI.lineItem: [ { position: 75, label: 'ZZ_STATUS' } ]
+  zz_status_zmr;
+}
+```
+
 - **[Create extension for CDS Projection Transactional Query](./08_extensions.md#z##_c_ext_product_)**
 
 ```ABAP
