@@ -7,6 +7,7 @@ In this iteration, we enhance the User interface.
 ---
 
 ### Key Objectives:
+
 1. Extension Market data table.
 2. Extension Market CDS Projection Transactional Query.
 2. Extension Market BDEF.
@@ -14,14 +15,18 @@ In this iteration, we enhance the User interface.
 ---
 
 ### Pay Attention:
-1. **By manage do our scenario more like to real life we do several presumtions**:
-  - All modification for adding extensibility we create in main package
-  - All extentions we create in separate package .
+
+1. **To make our scenario more realistic, we make several assumptions**:
+  
+  - All modifications for adding extensibility are created in the **main packag**e.
+  - All extensions are created in a **separate package**.
 
 ---
 
 ### Steps:
+
 1. **[Create Dummy append Structure for Product data table in main package](./00_tables.md#z##_s_ext_incl_prod_)**
+
 ```ABAP
 @EndUserText.label : 'Extension Include'
 @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
@@ -34,6 +39,7 @@ define structure z##_s_ext_incld_prod_#### {
 
 }
 ```
+
 ```ABAP
 @EndUserText.label : 'Product data'
 @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
@@ -45,6 +51,7 @@ define table z##_d_mrkt_#### {
 
 }
 ```
+
 ```ABAP
 @EndUserText.label : 'Draft table for entity Z##_I_PRODUCT_####'
 @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
@@ -56,7 +63,9 @@ define table z##_dt_prod_#### {
 
 }
 ```
+
 2. **[Create Dummy append Structure for Market data table in main package](./00_tables.md#z##_s_ext_incl_mrkt_)**
+
 ```ABAP
 @EndUserText.label : 'Extension Include'
 @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
@@ -69,6 +78,7 @@ define structure z##_s_ext_incld_mrkt_#### {
 
 }
 ```
+
 ```ABAP
 @EndUserText.label : 'Markets data'
 @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
@@ -80,6 +90,7 @@ define table z##_d_mrkt_#### {
 
 }
 ```
+
 ```ABAP
 @EndUserText.label : 'Draft table for entity Z##_I_MARKET_####'
 @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
@@ -91,7 +102,9 @@ define table z##_dt_mrkt_#### {
 
 }
 ```
+
 3. **[Create Dummy append Structure for Order data table in main package](./00_tables.md#z##_s_ext_incl_order_)**
+
 ```ABAP
 @EndUserText.label : 'Extension Include'
 @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
@@ -104,6 +117,7 @@ define structure z##_s_ext_incld_order_#### {
 
 }
 ```
+
 ```ABAP
 @EndUserText.label : 'Orders data'
 @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
@@ -115,6 +129,7 @@ define table z##_d_order_#### {
 
 }
 ```
+
 ```ABAP
 @EndUserText.label : 'Draft table for entity Z##_I_ORDER_####'
 @AbapCatalog.enhancement.category : #EXTENSIBLE_ANY
@@ -126,7 +141,9 @@ define table z##_dt_ordr_#### {
 
 }
 ```
+
 4. **[Create new package for Extension and create there Append structure for Market data table in other package](./08_extensions.md#z##_s_ext_market_status_)**
+
 ```ABAP
 @EndUserText.label : 'Extension include for Market Status'
 @AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
@@ -136,24 +153,31 @@ extend type z##_s_ext_incld_mrkt_#### with z##_s_ext_market_status_#### {
 
 }
 ```
+
 5. **Create extension for [CDS Interface](./06_behavior_definition.md#z##_i_ext_market_), [CDS Projection Transactional Interface](./06_behavior_definition.md#z##_ci_ext_market_), [CDS projection transaqtionsl Query](./06_behavior_definition.md#z##_c_ext_market_) Market entity in other package**
+
 ```ABAP
 extend view entity Z##_I_MARKET_#### with {
    Market.zz_status_zmr
 }
 ```
+
 ```ABAP
 extend view entity Z##_CI_MARKET_#### with {
    Market.zz_status_zmr
 }
 ```
+
 ```ABAP
 extend view entity Z##_C_MARKET_#### with {
    Market.zz_status_zmr
 }
 ```
+
 6. **[Add extensible to Behavior definition for interface](./06_behavior_definition.md#z##_i_product_)**
+
 - **Header**
+
 ```ABAP
 managed with additional save implementation in class zbp_##_i_product_#### unique;
 strict ( 2 );
@@ -166,7 +190,9 @@ extensible
 }
 with draft;
 ```
+
 - **Product entity**
+
 ```ABAP
 define behavior for Z##_I_PRODUCT_#### alias Product
      " Part of code was skipped
@@ -187,7 +213,9 @@ extensible
     }
 }
 ```
+
 - **Market entity**
+
 ```ABAP
 define behavior for Z##_I_MARKET_#### alias Market
      " Part of code was skipped
@@ -202,7 +230,9 @@ extensible
     }
 }
 ```
+
 - **Order entity**
+
 ```ABAP
 define behavior for Z##_I_ORDER_#### alias Order
      " Part of code was skipped
@@ -217,16 +247,22 @@ extensible
     }
 }
 ```
+
 7. **[Add extensible to Behavior definition for Projection Transactional Interface](./06_behavior_definition.md#z##_ci_product_)**
+
 - Header
+
 ```ABAP
 interface;
 extensible;
 use draft;
 use side effects;
 ```
+
 8. **[Add extensible to Behavior definition for Projection Transactional Query](./06_behavior_definition.md#z##_c_product_)**
+
 - **Header**
+
 ```ABAP
 projection implementation in class zbp_##_c_product_#### unique;
 strict ( 2 );
@@ -234,7 +270,9 @@ extensible;
 use draft;
 use side effects;
 ```
+
 -** Product entity**
+
 ```ABAP
 define behavior for Z##_C_PRODUCT_#### alias Product
 extensible
@@ -242,7 +280,9 @@ extensible
      " Part of code was skipped
 }
 ```
+
 - **Market entity**
+
 ```ABAP
 define behavior for Z##_C_MARKET_#### alias Market
 extensible
@@ -250,7 +290,9 @@ extensible
      " Part of code was skipped
 }
 ```
+
 - **Order entity**
+
 ```ABAP
 define behavior for Z##_C_ORDER_#### alias Order
 extensible
@@ -258,9 +300,13 @@ extensible
      " Part of code was skipped
 }
 ```
+
 8. **Create extension for Behaviour Implementation in other package**
+
 - **[Create extension for CDS Interface, here you should use CDS Projection Transactional Interface or not.
+
   But we can't create extension for CDS Projection Transactional Interface only(./08_extensions.md#zbp_##_i_ext_product_####)]**
+
   ```ABAP
   extension using interface z##_ci_product_####
   implementation in class zbp_##_i_ext_product_#### unique;
@@ -270,7 +316,9 @@ extensible
       determination zz_setStatus on save { create; field zz_status_zmr; }
   }
   ```
+
 - [Create extension for CDS Projection Transactional Query](./08_extensions.md#zbp_##_c_ext_product_####)
+
   ```ABAP
   extension for projection;
 
@@ -286,11 +334,13 @@ extensible
   {
   }
   ```
+
 ---
 
 ### Final Steps:
 
 - Activate all updated BDEFs.
+
 - Test the updated services in the Fiori application to ensure proper integration and functionality.
 
 ---
@@ -300,4 +350,5 @@ extensible
 ---
 
 ### Summary:
-This iteration enabled extesibility and create extension.
+
+This iteration enabled extensibility and created extensions.
