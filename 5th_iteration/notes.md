@@ -396,7 +396,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
 
    ENDCLASS.
    ```
-   - create **[entity event handler class](./07_behavior_implementation.md#lcl_local_event_consumption)** for test
+   - Create **[Handler class for events of Z##_I_PRODUCT_####](./07_behavior_implementation.md#z##_cl_event_handler_)** for test
    ```ABAP
    CLASS z##_cl_event_handler_#### DEFINITION
    PUBLIC
@@ -414,6 +414,7 @@ In this iteration, we enhance the business model by introducing **Value Helpers*
    CLASS z##_cl_event_handler_#### IMPLEMENTATION.
    ENDCLASS.
    ```
+   - Create local **lcl_local_event_consumption** class inner **z##_cl_event_handler_####**
    ```ABAP
    *"* use this source file for the definition and implementation of
    *"* local helper classes, interface definitions and type

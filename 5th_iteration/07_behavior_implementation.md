@@ -528,9 +528,26 @@ ENDCLASS.
 *"* declarations
 ```
 ## Behaviour Implementation for CDS Product Projection Transactional Query
-<a name="lcl_local_event_consumption"></a>
-lcl_local_event_consumption
+<a name="z##_cl_event_handler_"></a>
+Z##CL_EVENT_HANDLER_####
 
+```ABAP
+CLASS z##_cl_event_handler_#### DEFINITION
+  PUBLIC
+  ABSTRACT
+  FINAL
+  FOR EVENTS OF Z##_I_PRODUCT_#### .
+
+  PUBLIC SECTION.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS z##_cl_event_handler_#### IMPLEMENTATION.
+ENDCLASS.
+```
 ```ABAP
 CLASS lcl_local_event_consumption DEFINITION INHERITING FROM cl_abap_behavior_event_handler.
   PRIVATE SECTION.
