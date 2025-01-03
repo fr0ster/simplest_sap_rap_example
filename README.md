@@ -123,3 +123,4 @@ By following this step-by-step process, the application matures into a full-feat
 ### Useful links
 1. [ABAP - Keyword Documentation](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/ABENABAP.html).
 2. [ABAP Cheat Sheets](https://github.com/SAP-samples/abap-cheat-sheets.git).
+3. [Troubleshooting Tools for RAP-based Apps](https://pages.community.sap.com/topics/abap-testing-analysis/troubleshooting).
