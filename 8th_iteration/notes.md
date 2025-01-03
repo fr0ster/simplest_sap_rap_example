@@ -1,6 +1,6 @@
 # Notes
 
-## Eighth Iteration: Side-by-Side Extension
+## Eighth Iteration: Extension
 
 In this iteration, we enhance the user interface.
 
