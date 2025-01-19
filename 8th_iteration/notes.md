@@ -441,7 +441,7 @@ Pay attention, annotation in Metadata Extension are stacked, so use correct **@M
 ```ABAP
 @Metadata.layer: #PARTNER
 
-annotate entity ZOK_C_MARKET_0001
+annotate entity Z##_C_MARKET_####
     with
 
 {
