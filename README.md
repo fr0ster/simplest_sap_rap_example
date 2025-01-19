@@ -104,7 +104,7 @@ This iteration focuses on improving application performance and resolving issues
 
 ---
 
-## [Iteration 10: Creating OData WebAPI service and consumer for them](./9th_iteration/notes.md)
+## [Iteration 10: Creating OData WebAPI service and consumer for them](./10th_iteration/notes.md)
 
 Useful links:
 [Connect to SAP S/4HANA Cloud with SAP BTP, ABAP Environment](https://developers.sap.com/mission.abap-env-connect-s4hana.html).
