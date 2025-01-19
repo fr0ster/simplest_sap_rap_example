@@ -92,37 +92,27 @@ The eigth iteration integrates a side-by-side extension:
 
 ---
 
-## [Iteration 9: Working of SAP RAP BO with](./9th_iteration/notes.md)
+## [Iteration 9: Working of SAP RAP BO with EML](./9th_iteration/notes.md)
 
 This iteration focuses on improving application performance and resolving issues:
 
-- **Debugging**:
-  - Use debugging tools to identify and resolve issues in Business Object (BO) and CDS views.
-  - Test edge cases to ensure stability.
-- **Performance Optimization**:
-  - Analyze CDS view execution plans to identify bottlenecks.
-  - Refactor queries and associations for better efficiency.
-  - Introduce indexes or adjust database configurations where necessary.
-- **Validation**:
-  - Verify that optimized CDS views produce correct results.
-  - Test with large datasets to ensure scalability.
+- Creating.
+- Reading.
+- List reading.
+- Updating.
+- Deleting.
 
 ---
 
-## [Iteration 10: Debugging and Performance Optimization](./10th_iteration/notes.md)
+## [Iteration 10: Creating OData WebAPI service and consumer for them](./9th_iteration/notes.md)
 
-This iteration focuses on improving application performance and resolving issues:
+Useful links:
+[Connect to SAP S/4HANA Cloud with SAP BTP, ABAP Environment](https://developers.sap.com/mission.abap-env-connect-s4hana.html).
+[Integrate the SAP BTP, ABAP environment with SAP S/4HANA Cloud, public edition](https://developers.sap.com/group.sap-btp-abap-s4hana-integrate.html).
+[Get Data from a Remote System Using an OData Service](https://developers.sap.com/mission.abap-env-connect-2-environments.html).
+- [Service Consumption via Communication Arrangements](https://help.sap.com/docs/btp/sap-business-technology-platform/service-consumption-via-communication-arrangements).
+- [Service Consumption Model 2 for OData Client Proxy](https://blogs.sap.com/2023/11/06/service-consumption-model-2-for-odata-client-proxy/).
 
-- **Debugging**:
-  - Use debugging tools to identify and resolve issues in Business Object (BO) and CDS views.
-  - Test edge cases to ensure stability.
-- **Performance Optimization**:
-  - Analyze CDS view execution plans to identify bottlenecks.
-  - Refactor queries and associations for better efficiency.
-  - Introduce indexes or adjust database configurations where necessary.
-- **Validation**:
-  - Verify that optimized CDS views produce correct results.
-  - Test with large datasets to ensure scalability.
 
 ---
 
@@ -142,6 +132,14 @@ By following this step-by-step process, the application matures into a full-feat
 2. [ABAP RESTful Programming Model](https://help.sap.com/docs/CP/c0d02c4330c34b3abca88bdd57eaccfc/3b77569ca8ee4226bdab4fcebd6f6ea6.html)
 3. [ABAP Cheat Sheets](https://github.com/SAP-samples/abap-cheat-sheets.git).
 4. [Troubleshooting Tools for RAP-based Apps](https://pages.community.sap.com/topics/abap-testing-analysis/troubleshooting).
-5. []()
+5. [Create a SAP Fiori App and Deploy it to SAP BTP, Cloud Foundry environment](https://developers.sap.com/tutorials/abap-environment-deploy-cf..html).
 6. [Integrate the SAP BTP, ABAP environment with SAP S/4HANA Cloud, public edition](https://developers.sap.com/group.sap-btp-abap-s4hana-integrate.html).
-7. [Install the Cloud Foundry Command Line Interface (CLI)](https://developers.sap.com/tutorials/cp-cf-download-cli..html).
+7. SAP Help Portal: [Service Consumption via Communication Arrangements](https://help.sap.com/docs/btp/sap-business-technology-platform/service-consumption-via-communication-arrangements).
+8. SAP Community blog post: [Service Consumption Model 2 for OData Client Proxy](https://blogs.sap.com/2023/11/06/service-consumption-model-2-for-odata-client-proxy/).
+9. [Download and Start Using the btp CLI Client](https://help.sap.com/docs/btp/sap-business-technology-platform/download-and-start-using-btp-cli-client).
+10. [Get Started with the SAP BTP Command Line Interface (btp CLI)](https://developers.sap.com/tutorials/cp-sapcp-getstarted..html).
+11. [SAP BTP Command Line Setup and Cloud Foundry Setup](https://community.sap.com/t5/technology-blogs-by-members/sap-btp-command-line-setup-and-cloud-foundry-setup/ba-p/13587706).
+12. [Account Administration Using the SAP BTP Command Line Interface (btp CLI)](https://help.sap.com/docs/btp/sap-business-technology-platform/account-administration-using-sap-btp-command-line-interface-btp-cli).
+
+
+[Install the Cloud Foundry Command Line Interface (CLI)](https://developers.sap.com/tutorials/cp-cf-download-cli..html).
