@@ -92,7 +92,24 @@ The eigth iteration integrates a side-by-side extension:
 
 ---
 
-## [Iteration 9: Debugging and Performance Optimization](./9th_iteration/notes.md)
+## [Iteration 9: Working of SAP RAP BO with](./9th_iteration/notes.md)
+
+This iteration focuses on improving application performance and resolving issues:
+
+- **Debugging**:
+  - Use debugging tools to identify and resolve issues in Business Object (BO) and CDS views.
+  - Test edge cases to ensure stability.
+- **Performance Optimization**:
+  - Analyze CDS view execution plans to identify bottlenecks.
+  - Refactor queries and associations for better efficiency.
+  - Introduce indexes or adjust database configurations where necessary.
+- **Validation**:
+  - Verify that optimized CDS views produce correct results.
+  - Test with large datasets to ensure scalability.
+
+---
+
+## [Iteration 10: Debugging and Performance Optimization](./10th_iteration/notes.md)
 
 This iteration focuses on improving application performance and resolving issues:
 
