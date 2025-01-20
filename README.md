@@ -106,12 +106,7 @@ This iteration focuses on improving application performance and resolving issues
 
 ## [Iteration 10: Creating OData WebAPI service and consumer for them](./10th_iteration/notes.md)
 
-Useful links:
-[Connect to SAP S/4HANA Cloud with SAP BTP, ABAP Environment](https://developers.sap.com/mission.abap-env-connect-s4hana.html).
-[Integrate the SAP BTP, ABAP environment with SAP S/4HANA Cloud, public edition](https://developers.sap.com/group.sap-btp-abap-s4hana-integrate.html).
-[Get Data from a Remote System Using an OData Service](https://developers.sap.com/mission.abap-env-connect-2-environments.html).
-- [Service Consumption via Communication Arrangements](https://help.sap.com/docs/btp/sap-business-technology-platform/service-consumption-via-communication-arrangements).
-- [Service Consumption Model 2 for OData Client Proxy](https://blogs.sap.com/2023/11/06/service-consumption-model-2-for-odata-client-proxy/).
+This iteration focuses on improving application performance and resolving issues:
 
 
 ---
@@ -140,6 +135,5 @@ By following this step-by-step process, the application matures into a full-feat
 10. [Get Started with the SAP BTP Command Line Interface (btp CLI)](https://developers.sap.com/tutorials/cp-sapcp-getstarted..html).
 11. [SAP BTP Command Line Setup and Cloud Foundry Setup](https://community.sap.com/t5/technology-blogs-by-members/sap-btp-command-line-setup-and-cloud-foundry-setup/ba-p/13587706).
 12. [Account Administration Using the SAP BTP Command Line Interface (btp CLI)](https://help.sap.com/docs/btp/sap-business-technology-platform/account-administration-using-sap-btp-command-line-interface-btp-cli).
-
-
-[Install the Cloud Foundry Command Line Interface (CLI)](https://developers.sap.com/tutorials/cp-cf-download-cli..html).
+13. [Install the Cloud Foundry Command Line Interface (CLI)](https://developers.sap.com/tutorials/cp-cf-download-cli..html).
+14. [SAP ABAP Programming Best Practices](https://www.linkedin.com/learning/sap-abap-programming-best-practices/).

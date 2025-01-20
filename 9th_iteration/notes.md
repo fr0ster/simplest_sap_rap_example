@@ -196,3 +196,6 @@ ENDCLASS.
 ### Summary:
 
 This code explaines how work with SAP RAP BO.
+
+### Useful links
+1. [ABAP for RAP Business Objects](https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/ABENABAP_FOR_RAP_BOS.html).
