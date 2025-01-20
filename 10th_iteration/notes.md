@@ -47,11 +47,12 @@ Pay attention, Inbound and Outbound Services should be created in different syst
   ![inbound_system](./inbound_system_4.png)
   ![inbound_system](./inbound_system_5.png)
   ![inbound_system](./inbound_system_5.png)
-  ![inbound_system](./inbound_system_7.png)6
+  ![inbound_system](./inbound_system_7.png)
   - Create Communication Arrangement
   ![inbound_arrangement](./inbound_arrangement_1.png)
   ![inbound_arrangement](./inbound_arrangement_2.png)
   ![inbound_arrangement](./inbound_arrangement_3.png)
+  ![inbound_arrangement](./inbound_arrangement_4.png)
   - Download Service Metadata File
   ![inbound_arrangement](./inbound_arrangement_4.png)
 
@@ -90,21 +91,40 @@ Pay attention, Inbound and Outbound Services should be created in different syst
   - Create Outbound Service
   ![outbound_service](./outbound_service_1.png)
   ![outbound_service](./outbound_service_2.png)
-  ![outbound_service](./outbound_service_3.png)
   - Create Communication Scenario
   ![outbound_communication](./outbound_communication_scenario_1.png)
   ![outbound_communication](./outbound_communication_scenario_2.png)
   ![outbound_communication](./outbound_communication_scenario_3.png)
+- Next steps you should do in Abap Instance UI in Administration tab, so it's impossible on trial account :(
+  - Create Communication System
+  ![outbound_system](./outbound_system_1.png)
+  ![outbound_system](./outbound_system_2.png)
+  ![outbound_system](./outbound_system_3.png)
+  ![outbound_system](./outbound_system_4.png)
+  - Create Communication Arrangement
+  ![inbound_arrangement](./outbound_arrangement_1.png)
+  ![inbound_arrangement](./outbound_arrangement_2.png)
+  ![inbound_arrangement](./outbound_arrangement_3.png)
+  - **[Download metadata](https://sapes5.sapdevcenter.com/sap/opu/odata/sap/ZE2E100_SOL_2_SRV/$metadata)**
+   [Metadata](./ZE2E100_SOL_2_SRV.xml)
+  - Create Service Consumtion Model
+  ![outbound_model](./outbound_model_with_service_1.png)
   - Create class Consumer
   ![outbound_class_with_service](./outbound_class_with_service_1.png)
-  ![outbound_class_with_service](./outbound_class_without_service_2.png)
+  ![outbound_class_with_service](./outbound_class_with_service_2.png)
    ```ABAP
-          " Create http client
-*    DATA(lo_destination) = cl_http_destination_provider=>create_by_comm_arrangement(
-*                                                 comm_scenario  = '<Comm Scenario>'
-*                                                 comm_system_id = '<Comm System Id>'
-*                                                 service_id     = '<Service Id>' ).
-    lo_http_client = cl_web_http_client_manager=>create_by_http_destination( lo_destination ).
+        " Create http client
+        DATA(lo_destination) = cl_http_destination_provider=>create_by_comm_arrangement(
+                                   comm_scenario  = 'Z####_CS_BUSINESS_PARTNER_####'
+                                   comm_system_id = 'Z####_BP_COMM_SYS_####'
+                                   service_id     = 'Z####_BUSINESS_PARTNER_####_REST' ).
+        lo_http_client = cl_web_http_client_manager=>create_by_http_destination( lo_destination ).
+        lo_client_proxy = /iwbep/cl_cp_factory_remote=>create_v2_remote_proxy(
+                              is_proxy_model_key       = VALUE #( repository_id       = 'DEFAULT'
+                                                                  proxy_model_id      = 'Z####_CS_BUSINESS_PARTNER_####'
+                                                                  proxy_model_version = '####' )
+                              io_http_client           = lo_http_client
+                              iv_relative_service_root = '' ).
   ```
 ## Useful links
   [Implement an Outbound Service Call in SAP BTP, ABAP environment for an OData Service via Service Consumption Model](https://developers.sap.com/tutorials/abap-environment-business-partner-outbound-call.html)
