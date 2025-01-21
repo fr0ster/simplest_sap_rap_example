@@ -129,7 +129,6 @@ By following this step-by-step process, the application matures into a full-feat
 3. [ABAP Cheat Sheets](https://github.com/SAP-samples/abap-cheat-sheets.git).
 4. [Troubleshooting Tools for RAP-based Apps](https://pages.community.sap.com/topics/abap-testing-analysis/troubleshooting).
 5. [SAP Tutorials](https://developers.sap.com/tutorial-navigator..html).
-6. [ABAP RESTful Programming Model](https://help.sap.com/docs/CP/c0d02c4330c34b3abca88bdd57eaccfc).
 
 - **Fiori App**
 1. [Create a SAP Fiori App and Deploy it to SAP BTP, Cloud Foundry environment](https://developers.sap.com/tutorials/abap-environment-deploy-cf..html).
