@@ -26,49 +26,49 @@ Pay attention, Inbound and Outbound Services should be created in different syst
 
 - Next steps you should do in ADT
   - Create separated Abap Package for your Inbound Service
-  ![inbound_package](./inbound_package.png)
+  ![inbound_package](./image/inbound_package.png)
   - Create Service Binding
-  ![inbound_binding](./inbound_service_binding_1.png)
-  ![inbound_binding](./inbound_service_binding_2.png)
+  ![inbound_binding](./image/inbound_service_binding_1.png)
+  ![inbound_binding](./image/inbound_service_binding_2.png)
   - Create Communication Scenario
-  ![inbound_communication](./inbound_communication_scenario_1.png)
-  ![inbound_communication](./inbound_communication_scenario_2.png)
-  ![inbound_communication](./inbound_communication_scenario_3.png)
-  ![inbound_communication](./inbound_communication_scenario_4.png)
+  ![inbound_communication](./image/inbound_communication_scenario_1.png)
+  ![inbound_communication](./image/inbound_communication_scenario_2.png)
+  ![inbound_communication](./image/inbound_communication_scenario_3.png)
+  ![inbound_communication](./image/inbound_communication_scenario_4.png)
 - Next steps you should do in Abap Instance UI in Administration tab, so it's impossible on trial account :(
   - Create Communication User
-  ![inbound_user](./inbound_user_1.png)
-  ![inbound_user](./inbound_user_2.png)
-  ![inbound_user](./inbound_user_3.png)
+  ![inbound_user](./image/inbound_user_1.png)
+  ![inbound_user](./image/inbound_user_2.png)
+  ![inbound_user](./image/inbound_user_3.png)
   - Create Communication System
-  ![inbound_system](./inbound_system_1.png)
-  ![inbound_system](./inbound_system_2.png)
-  ![inbound_system](./inbound_system_3.png)
-  ![inbound_system](./inbound_system_4.png)
-  ![inbound_system](./inbound_system_5.png)
-  ![inbound_system](./inbound_system_5.png)
-  ![inbound_system](./inbound_system_7.png)
+  ![inbound_system](./image/inbound_system_1.png)
+  ![inbound_system](./image/inbound_system_2.png)
+  ![inbound_system](./image/inbound_system_3.png)
+  ![inbound_system](./image/inbound_system_4.png)
+  ![inbound_system](./image/inbound_system_5.png)
+  ![inbound_system](./image/inbound_system_5.png)
+  ![inbound_system](./image/inbound_system_7.png)
   - Create Communication Arrangement
-  ![inbound_arrangement](./inbound_arrangement_1.png)
-  ![inbound_arrangement](./inbound_arrangement_2.png)
-  ![inbound_arrangement](./inbound_arrangement_3.png)
-  ![inbound_arrangement](./inbound_arrangement_4.png)
+  ![inbound_arrangement](./image/inbound_arrangement_1.png)
+  ![inbound_arrangement](./image/inbound_arrangement_2.png)
+  ![inbound_arrangement](./image/inbound_arrangement_3.png)
+  ![inbound_arrangement](./image/inbound_arrangement_4.png)
   - Download Service Metadata File
-  ![inbound_arrangement](./inbound_arrangement_4.png)
+  ![inbound_arrangement](./image/inbound_arrangement_4.png)
 
 2. **Create consumer without Outbound Service**
 
   - Create separated Abap Package for your Consumer
-  ![outbound_package](./outbound_package.png)
+  ![outbound_package](./image/outbound_package.png)
   - Download Service Metadata File
-  ![oubound_arrangement](./inbound_arrangement_4.png)
+  ![oubound_arrangement](./image/inbound_arrangement_4.png)
   - Create Service Consumtion Model
-  ![outbound_model](./outbound_model_1.png)
-  ![outbound_model](./outbound_model_2.png)
-  ![outbound_model](./outbound_model_3.png)
+  ![outbound_model](./image/outbound_model_1.png)
+  ![outbound_model](./image/outbound_model_2.png)
+  ![outbound_model](./image/outbound_model_3.png)
   - [Create class Consumer](./09_others.md#z##_cl_consumer_without_)
-  ![outbound_class_without_service](./outbound_class_without_service_1.png)
-  ![outbound_class_without_service](./outbound_class_without_service_2.png)
+  ![outbound_class_without_service](./image/outbound_class_without_service_1.png)
+  ![outbound_class_without_service](./image/outbound_class_without_service_2.png)
   ```ABAP
           " Create http client
 *    DATA(lo_destination) = cl_http_destination_provider=>create_by_comm_arrangement(
@@ -89,29 +89,29 @@ Pay attention, Inbound and Outbound Services should be created in different syst
 3. **Create consumer with Outbound Service**
 
   - Create Outbound Service
-  ![outbound_service](./outbound_service_1.png)
-  ![outbound_service](./outbound_service_2.png)
+  ![outbound_service](./image/outbound_service_1.png)
+  ![outbound_service](./image/outbound_service_2.png)
   - Create Communication Scenario
-  ![outbound_communication](./outbound_communication_scenario_1.png)
-  ![outbound_communication](./outbound_communication_scenario_2.png)
-  ![outbound_communication](./outbound_communication_scenario_3.png)
+  ![outbound_communication](./image/outbound_communication_scenario_1.png)
+  ![outbound_communication](./image/outbound_communication_scenario_2.png)
+  ![outbound_communication](./image/outbound_communication_scenario_3.png)
 - Next steps you should do in Abap Instance UI in Administration tab, so it's impossible on trial account :(
   - Create Communication System
-  ![outbound_system](./outbound_system_1.png)
-  ![outbound_system](./outbound_system_2.png)
-  ![outbound_system](./outbound_system_3.png)
-  ![outbound_system](./outbound_system_4.png)
+  ![outbound_system](./image/outbound_system_1.png)
+  ![outbound_system](./image/outbound_system_2.png)
+  ![outbound_system](./image/outbound_system_3.png)
+  ![outbound_system](./image/outbound_system_4.png)
   - Create Communication Arrangement
-  ![inbound_arrangement](./outbound_arrangement_1.png)
-  ![inbound_arrangement](./outbound_arrangement_2.png)
-  ![inbound_arrangement](./outbound_arrangement_3.png)
+  ![inbound_arrangement](./image/outbound_arrangement_1.png)
+  ![inbound_arrangement](./image/outbound_arrangement_2.png)
+  ![inbound_arrangement](./image/outbound_arrangement_3.png)
   - **[Download metadata](https://sapes5.sapdevcenter.com/sap/opu/odata/sap/ZE2E100_SOL_2_SRV/$metadata)**
    [Metadata](./ZE2E100_SOL_2_SRV.xml)
   - Create Service Consumtion Model
-  ![outbound_model](./outbound_model_with_service_1.png)
+  ![outbound_model](./image/outbound_model_with_service_1.png)
   - Create class Consumer
-  ![outbound_class_with_service](./outbound_class_with_service_1.png)
-  ![outbound_class_with_service](./outbound_class_with_service_2.png)
+  ![outbound_class_with_service](./image/outbound_class_with_service_1.png)
+  ![outbound_class_with_service](./image/outbound_class_with_service_2.png)
    ```ABAP
         " Create http client
         DATA(lo_destination) = cl_http_destination_provider=>create_by_comm_arrangement(
@@ -149,10 +149,10 @@ Pay attention, Inbound and Outbound Services should be created in different syst
 This code explaines how work with SAP RAP BO.
 
 ### Useful links:
-[Connect to SAP S/4HANA Cloud with SAP BTP, ABAP Environment](https://developers.sap.com/mission.abap-env-connect-s4hana.html).
-[Integrate the SAP BTP, ABAP environment with SAP S/4HANA Cloud, public edition](https://developers.sap.com/group.sap-btp-abap-s4hana-integrate.html).
-[Get Data from a Remote System Using an OData Service](https://developers.sap.com/mission.abap-env-connect-2-environments.html).
-- [Service Consumption via Communication Arrangements](https://help.sap.com/docs/btp/sap-business-technology-platform/service-consumption-via-communication-arrangements).
-- [Service Consumption Model 2 for OData Client Proxy](https://blogs.sap.com/2023/11/06/service-consumption-model-2-for-odata-client-proxy/).
-[Maintain a Communication Arrangement for Inbound Communication](https://developers.sap.com/tutorials/abap-environment-communication-arrangement.html).
-[Learn How to Modernize RFC Receiver Communications into API-Based Protocols in Cloud Integration](https://developers.sap.com/tutorials/modernize-rfc-receiver.html).
+- [Connect to SAP S/4HANA Cloud with SAP BTP, ABAP Environment](https://developers.sap.com/mission.abap-env-connect-s4hana.html).
+- [Integrate the SAP BTP, ABAP environment with SAP S/4HANA Cloud, public edition](https://developers.sap.com/group.sap-btp-abap-s4hana-integrate.html).
+- [Get Data from a Remote System Using an OData Service](https://developers.sap.com/mission.abap-env-connect-2-environments.html).
+  - [Service Consumption via Communication Arrangements](https://help.sap.com/docs/btp/sap-business-technology-platform/service-consumption-via-communication-arrangements).
+  - [Service Consumption Model 2 for OData Client Proxy](https://blogs.sap.com/2023/11/06/service-consumption-model-2-for-odata-client-proxy/).
+- [Maintain a Communication Arrangement for Inbound Communication](https://developers.sap.com/tutorials/abap-environment-communication-arrangement.html).
+- [Learn How to Modernize RFC Receiver Communications into API-Based Protocols in Cloud Integration](https://developers.sap.com/tutorials/modernize-rfc-receiver.html).
