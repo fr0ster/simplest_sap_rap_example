@@ -154,5 +154,7 @@ This code explaines how work with SAP RAP BO.
 - [Get Data from a Remote System Using an OData Service](https://developers.sap.com/mission.abap-env-connect-2-environments.html).
   - [Service Consumption via Communication Arrangements](https://help.sap.com/docs/btp/sap-business-technology-platform/service-consumption-via-communication-arrangements).
   - [Service Consumption Model 2 for OData Client Proxy](https://blogs.sap.com/2023/11/06/service-consumption-model-2-for-odata-client-proxy/).
-- [Maintain a Communication Arrangement for Inbound Communication](https://developers.sap.com/tutorials/abap-environment-communication-arrangement.html).
+- [Expose an ABAP CDS View Externally Using a Communication Scenario](https://developers.sap.com/group.abap-env-first-app.html).
+  - [Expose a Standard Core Data Service for ABAP Environment](https://developers.sap.com/tutorials/abap-environment-business-service-provisioning.html).
+  - [Maintain a Communication Arrangement for Inbound Communication](https://developers.sap.com/tutorials/abap-environment-communication-arrangement.html).
 - [Learn How to Modernize RFC Receiver Communications into API-Based Protocols in Cloud Integration](https://developers.sap.com/tutorials/modernize-rfc-receiver.html).
