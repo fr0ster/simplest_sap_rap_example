@@ -157,8 +157,15 @@ By following this step-by-step process, the application matures into a full-feat
 
 - **[SAP Tutorials](https://developers.sap.com/tutorial-navigator..html)**
   1. [SAP BTP, ABAP environment](https://developers.sap.com/tutorial-navigator.html?tag=software-product%3Atechnology-platform%2Fsap-business-technology-platform%2Fsap-btp-abap-environment).
-  2. [SAP HANA Cloud](https://developers.sap.com/tutorial-navigator.html?tag=software-product%3Atechnology-platform%2Fsap-hana-cloud%2Fsap-hana-cloud).
-  3. [SAP Integration Suite](https://developers.sap.com/tutorial-navigator.html?tag=software-product%3Atechnology-platform%2Fsap-business-technology-platform%2Fsap-integration-suite).
+  2. [SAP Integration Suite](https://developers.sap.com/tutorial-navigator.html?tag=software-product%3Atechnology-platform%2Fsap-business-technology-platform%2Fsap-integration-suite).
 
 - **Fiori**
   1. [Welcome to the Developing and Extending SAP Fiori Elements Apps openSAP samples](https://github.com/SAP-samples/fiori-elements-opensap/tree/main).
+
+- **CAP**
+  1. [Build a Business Application Using CAP for Java](https://developers.sap.com/mission.cap-java-app.html).
+  2. [Combine CAP with SAP HANA Cloud to Create Full-Stack Applications](https://developers.sap.com/mission.hana-cloud-cap.html).
+
+- **SAP Hana**
+  1. [Get Started with SAP HANA Cloud](https://developers.sap.com/mission.hana-cloud-get-started.html).
+  2. [SAP HANA Cloud](https://developers.sap.com/tutorial-navigator.html?tag=software-product%3Atechnology-platform%2Fsap-hana-cloud%2Fsap-hana-cloud).
