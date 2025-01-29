@@ -156,16 +156,20 @@ By following this step-by-step process, the application matures into a full-feat
   1. [SAP ABAP Programming Best Practices](https://www.linkedin.com/learning/sap-abap-programming-best-practices/).
 
 - **[SAP Tutorials](https://developers.sap.com/tutorial-navigator..html)**
-  1. [SAP BTP, ABAP environment](https://developers.sap.com/tutorial-navigator.html?tag=software-product%3Atechnology-platform%2Fsap-business-technology-platform%2Fsap-btp-abap-environment).
-  2. [SAP Integration Suite](https://developers.sap.com/tutorial-navigator.html?tag=software-product%3Atechnology-platform%2Fsap-business-technology-platform%2Fsap-integration-suite).
+  - **General**
+    1. [SAP BTP, ABAP environment](https://developers.sap.com/tutorial-navigator.html?tag=software-product%3Atechnology-platform%2Fsap-business-technology-platform%2Fsap-btp-abap-environment).
+    2. [SAP Integration Suite](https://developers.sap.com/tutorial-navigator.html?tag=software-product%3Atechnology-platform%2Fsap-business-technology-platform%2Fsap-integration-suite).
 
-- **Fiori**
-  1. [Welcome to the Developing and Extending SAP Fiori Elements Apps openSAP samples](https://github.com/SAP-samples/fiori-elements-opensap/tree/main).
+  - **Fiori**
+    1. [Welcome to the Developing and Extending SAP Fiori Elements Apps openSAP samples](https://github.com/SAP-samples/fiori-elements-opensap/tree/main).
 
-- **CAP**
-  1. [Build a Business Application Using CAP for Java](https://developers.sap.com/mission.cap-java-app.html).
-  2. [Combine CAP with SAP HANA Cloud to Create Full-Stack Applications](https://developers.sap.com/mission.hana-cloud-cap.html).
+  - **CAP**
+    1. [Build a Business Application Using CAP for Java](https://developers.sap.com/mission.cap-java-app.html).
+    2. [Combine CAP with SAP HANA Cloud to Create Full-Stack Applications](https://developers.sap.com/mission.hana-cloud-cap.html).
 
-- **SAP Hana**
-  1. [Get Started with SAP HANA Cloud](https://developers.sap.com/mission.hana-cloud-get-started.html).
-  2. [SAP HANA Cloud](https://developers.sap.com/tutorial-navigator.html?tag=software-product%3Atechnology-platform%2Fsap-hana-cloud%2Fsap-hana-cloud).
+  - **SAP Hana**
+    1. [Get Started with SAP HANA Cloud](https://developers.sap.com/mission.hana-cloud-get-started.html).
+    2. [SAP HANA Cloud](https://developers.sap.com/tutorial-navigator.html?tag=software-product%3Atechnology-platform%2Fsap-hana-cloud%2Fsap-hana-cloud).
+
+  - **Kyma Runtime**
+    1. [Develop a Full-Stack Application in SAP BTP, Kyma Runtime](https://developers.sap.com/mission.cp-kyma-full-stack.html).
