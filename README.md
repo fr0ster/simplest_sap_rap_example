@@ -111,6 +111,9 @@ Finalizing application with API exposure:
   3. [Create a SAP Fiori App in Visual Studio Code and Deploy it to SAP BTP, ABAP Environment](https://developers.sap.com/tutorials/abap-environment-vs-code.html).
   4. [SAP BTP ABAP Environment: Level Up](https://developers.sap.com/mission.abap-env-level-up.html).
 
+- **SAP CDS**
+  1. [CDS : How to define Hierarchy View](https://community.sap.com/t5/technology-blogs-by-sap/cds-how-to-define-hierarchy-view/ba-p/13758059).
+
 - **SAP Hana**
   1. [Connect to SAP S/4HANA Cloud with SAP BTP, ABAP Environment](https://developers.sap.com/mission.abap-env-connect-s4hana.html).
   2. [Integrate the SAP BTP, ABAP environment with SAP S/4HANA Cloud, public edition](https://developers.sap.com/group.sap-btp-abap-s4hana-integrate.html).
