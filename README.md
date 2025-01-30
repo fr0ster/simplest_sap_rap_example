@@ -134,6 +134,9 @@ Finalizing application with API exposure:
   5. [Install the Cloud Foundry Command Line Interface (CLI)](https://developers.sap.com/tutorials/cp-cf-download-cli..html).
   6. [Cloud Foundry CLI](https://github.com/cloudfoundry/cli).
 
+- **SAP Kyme**
+  1. [Access a Kyma Instance Using kubectl](https://help.sap.com/docs/btp/sap-business-technology-platform/access-kyma-instance-using-kubectl).
+
 - **Best Practices**
   1. [SAP ABAP Programming Best Practices](https://www.linkedin.com/learning/sap-abap-programming-best-practices/).
 
