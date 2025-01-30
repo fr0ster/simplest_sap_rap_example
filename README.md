@@ -85,7 +85,7 @@ Draft Handling is introduced to manage intermediate data states:
 
 ## [Iteration 8: Extension](./8th_iteration/notes.md)
 
-The eigth iteration integrates a side-by-side extension:
+The eighth iteration integrates a side-by-side extension:
 - Extension Market data table.
 - Extension Market CDS Projection Transactional Query.
 - Extension Market BDEF.
