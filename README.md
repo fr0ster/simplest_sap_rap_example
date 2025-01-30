@@ -170,6 +170,11 @@ By following this step-by-step process, the application matures into a full-feat
   - **SAP Hana**
     1. [Get Started with SAP HANA Cloud](https://developers.sap.com/mission.hana-cloud-get-started.html).
     2. [SAP HANA Cloud](https://developers.sap.com/tutorial-navigator.html?tag=software-product%3Atechnology-platform%2Fsap-hana-cloud%2Fsap-hana-cloud).
+    3. [Use Clients to Query an SAP HANA Database](https://developers.sap.com/mission.hana-cloud-clients.html).
+    4. [Python Analysis with Multi-Model Data in SAP HANA Cloud](https://developers.sap.com/group.hana-cloud-database-python-multi-model.html).
 
   - **Kyma Runtime**
     1. [Develop a Full-Stack Application in SAP BTP, Kyma Runtime](https://developers.sap.com/mission.cp-kyma-full-stack.html).
+  
+  - **Other topics**
+    1. [Create an Application with the Luigi Micro Frontend Framework](https://developers.sap.com/group.luigi-app.html)
