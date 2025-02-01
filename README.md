@@ -147,6 +147,7 @@ Finalizing application with API exposure:
   1. [Access a Kyma Instance Using kubectl](https://help.sap.com/docs/btp/sap-business-technology-platform/access-kyma-instance-using-kubectl).
   2. [Develop a Full-Stack Application in SAP BTP, Kyma Runtime](https://developers.sap.com/mission.cp-kyma-full-stack.html).
   3. [Consume SAP BTP Services In SAP Kyma](https://developers.sap.com/tutorials/btp-kyma-extension.html).
+  4. [Use Redis in SAP BTP, Kyma Runtime to Store and Retrieve Data](https://developers.sap.com/tutorials/cp-kyma-redis-function.html).
 
 - **Best Practices**
 
