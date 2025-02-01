@@ -137,6 +137,7 @@ Finalizing application with API exposure:
 - **SAP Kyme**
   1. [Access a Kyma Instance Using kubectl](https://help.sap.com/docs/btp/sap-business-technology-platform/access-kyma-instance-using-kubectl).
   2. [Develop a Full-Stack Application in SAP BTP, Kyma Runtime](https://developers.sap.com/mission.cp-kyma-full-stack.html).
+  3. [Consume SAP BTP Services In SAP Kyma](https://developers.sap.com/tutorials/btp-kyma-extension.html).
 
 - **Best Practices**
   1. [SAP ABAP Programming Best Practices](https://www.linkedin.com/learning/sap-abap-programming-best-practices/).
