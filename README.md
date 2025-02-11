@@ -112,7 +112,8 @@ Finalizing application with API exposure:
   2. [Create a SAP Fiori App and Deploy it to SAP BTP, ABAP Environment](https://developers.sap.com/tutorials/abap-environment-deploy-cf-production.html).
   3. [Create a SAP Fiori App in Visual Studio Code and Deploy it to SAP BTP, ABAP Environment](https://developers.sap.com/tutorials/abap-environment-vs-code.html).
   4. [Create SAP Fiori Launchpad Space and Page Templates](https://developers.sap.com/tutorials/abap-environment-create-spaces-pages-template.html).
-  5. [SAP BTP ABAP Environment: Level Up](https://developers.sap.com/mission.abap-env-level-up.html).
+  5. [Add Cloud Foundry App to Portal Site](https://developers.sap.com/tutorials/abap-environment-portal-site-vscode.html).
+  6. [SAP BTP ABAP Environment: Level Up](https://developers.sap.com/mission.abap-env-level-up.html).
 
 - **SAP CDS**
 
