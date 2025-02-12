@@ -155,6 +155,9 @@ Finalizing application with API exposure:
 
   1. [SAP ABAP Programming Best Practices](https://www.linkedin.com/learning/sap-abap-programming-best-practices/).
 
+- **OAth2 and authentication**
+  1. [Connect SAP Web IDE with S/4HANA Cloud System](https://developers.sap.com/tutorials/abap-custom-ui-communication-arrangement.html).
+
 - **[SAP Tutorials](https://developers.sap.com/tutorial-navigator..html)**
 
   - **General**
