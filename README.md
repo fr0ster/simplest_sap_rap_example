@@ -14,7 +14,7 @@ The first iteration establishes the foundation of the application:
 
 ---
 
-## [Iteration 2: Behavior Implementation](./2ond_iteration/notes.md)
+## [Iteration 2: Behavior Implementation](./2nd_iteration/notes.md)
 
 This iteration introduces transaction capabilities:
 
