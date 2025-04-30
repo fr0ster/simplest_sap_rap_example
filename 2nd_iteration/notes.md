@@ -41,6 +41,7 @@ In this iteration, we implement the behavior for our business object, enabling t
    **Problem**:
    - The application remains read-only, and the **Create** and **Delete** buttons are not visible.
    **Solution**:
+   - When using your BO with an OData V4 service without enabling draft functionality, the full CRUD model cannot be utilized. To resolve this, either enable drafts for your BO or switch the service to OData V2.
    - Verify the syntax and ensure all required objects (Interface BDEF, Projection BDEF, Implementation Class) are defined correctly and activated without errors.
 
 ---
