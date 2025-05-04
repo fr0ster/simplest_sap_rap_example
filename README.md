@@ -106,7 +106,10 @@ Finalizing application with API exposure:
   4. [Troubleshooting Tools for RAP-based Apps](https://pages.community.sap.com/topics/abap-testing-analysis/troubleshooting).
   5. [ABAP Data Models](https://help.sap.com/docs/abap-cloud/abap-data-models/abap-data-models)
   6. [Build an SAP Fiori App Using the ABAP RESTful Application Programming Model [RAP100]](https://developers.sap.com/mission.sap-fiori-abap-rap100.html).
-  9. [Refine the Object Page with Annotations](https://developers.sap.com/tutorials/fiori-tools-rap-modify-object-page.html).
+  7. [Create a Travel App with SAP Fiori Elements Based on OData V4 RAP Service](https://developers.sap.com/group.fiori-tools-odata-v4-travel.html).
+  8. [Refine the Object Page with Annotations](https://developers.sap.com/tutorials/fiori-tools-rap-modify-object-page.html).
+  9. [SAP BTP ABAP Environment: Level Up](https://developers.sap.com/mission.abap-env-level-up.html).
+  10. [Build an SAP Fiori App Using the ABAP RESTful Application Programming Model [RAP100]](https://developers.sap.com/mission.sap-fiori-abap-rap100.html).
 
 - **Fiori App**
 
@@ -115,9 +118,6 @@ Finalizing application with API exposure:
   3. [Create a SAP Fiori App in Visual Studio Code and Deploy it to SAP BTP, ABAP Environment](https://developers.sap.com/tutorials/abap-environment-vs-code.html).
   4. [Create SAP Fiori Launchpad Space and Page Templates](https://developers.sap.com/tutorials/abap-environment-create-spaces-pages-template.html).
   5. [Add Cloud Foundry App to Portal Site](https://developers.sap.com/tutorials/abap-environment-portal-site-vscode.html).
-  6. [SAP BTP ABAP Environment: Level Up](https://developers.sap.com/mission.abap-env-level-up.html).
-  7. [Build an SAP Fiori App Using the ABAP RESTful Application Programming Model [RAP100]](https://developers.sap.com/mission.sap-fiori-abap-rap100.html).
-  8. [Create a Travel App with SAP Fiori Elements Based on OData V4 RAP Service](https://developers.sap.com/group.fiori-tools-odata-v4-travel.html).
 
 - **SAP CDS**
 
