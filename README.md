@@ -138,6 +138,7 @@ Finalizing application with API exposure:
 
   2. SAP Help Portal: [Service Consumption via Communication Arrangements](https://help.sap.com/docs/btp/sap-business-technology-platform/service-consumption-via-communication-arrangements).
   3. SAP Community blog post: [Service Consumption Model 2 for OData Client Proxy](https://blogs.sap.com/2023/11/06/service-consumption-model-2-for-odata-client-proxy/).
+  4. SAP Tutorial: [Connect Your SAP BTP Trial Account to SAP S/4HANA for Content Consumption](https://developers.sap.com/tutorials/cp-launchpad-federation-connectivity.html).
 
 - **Tools&CLI**
 
